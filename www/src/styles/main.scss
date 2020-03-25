@@ -1,0 +1,42 @@
+// @use '@material/button/mdc-button';
+// @use '@material/button';
+// @use "@material/list/mdc-list";
+// @use "@material/menu-surface/mdc-menu-surface";
+// @use "@material/menu/mdc-menu";
+// @use "@material/select/mdc-select";
+
+@import 'reset.scss';
+
+$color: #eecccc;
+body {
+  margin: 2vh 1vw;
+  --mdc-theme-primary: #0097a7;
+  --mdc-theme-secondary: #8d6e63;
+  --mdc-theme-background: #ffffff;
+}
+
+mwc-select {
+  min-width: 180px;
+}
+
+.demo-width-class {
+  width: 200px;
+}
+
+div#toolbar {
+  margin-top: 16px;
+  display: flex;
+  * {
+    padding-right: 8px;
+  }
+}
+
+budget-sankey {
+  margin-top: 1vh;
+  width: 98vw;
+  height: 80vh;
+}
+
+h1 {
+  font-family: Roboto;
+}

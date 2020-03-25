@@ -1,0 +1,62 @@
+html {
+  height: 100%;
+  box-sizing: border-box;
+  font-size: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0px;
+  padding: 0;
+}
+
+body {
+  margin: 2vh 1vw;
+  --mdc-theme-primary: #0097a7;
+  --mdc-theme-secondary: #8d6e63;
+  --mdc-theme-background: #ffffff;
+}
+
+mwc-select {
+  min-width: 180px;
+}
+
+.demo-width-class {
+  width: 200px;
+}
+
+div#toolbar {
+  margin-top: 16px;
+  display: flex;
+}
+div#toolbar * {
+  padding-right: 8px;
+}
+
+budget-sankey {
+  margin-top: 1vh;
+  width: 98vw;
+  height: 80vh;
+}
+
+h1 {
+  font-family: Roboto;
+}
+
+/*# sourceMappingURL=main.css.map*/
