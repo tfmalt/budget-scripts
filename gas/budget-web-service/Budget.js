@@ -1,10 +1,10 @@
 const config = {
-  version: '1.0.24',
+  version: '1.1.31',
   budgets: {
     '2017': '1bTLpH16W1CTlyve0-IEdj5zKxMXpe6ktywzc1Q-OSGc',
     '2018': '1vuqouGcvZot3j_YJo4JAfaW1fz54SU2IjDDpnxOduKY',
     '2019': '1AWeagKYTcCAFnbnTzpd94ziahKJ5B298UsQSlPHAjLU',
-    '2020': '1sM58ObI6vrX5VHNzYi9lvXd_7AFcgYk7jSD2vHjMf9E'
+    '2020': '1gGDcfCT9YlJPfDW-AIN303P-Iy1cIKTMLPUjob1Sr1A' //'1sM58ObI6vrX5VHNzYi9lvXd_7AFcgYk7jSD2vHjMf9E'
   }
 };
 
@@ -57,6 +57,8 @@ function getSheets(year) {
 
 function handleGetMonth(year, month) {
   const sheets = getSheets(year);
+  const expensesTotal = sheets.expenses.getRange(5, month + 3).getValue();
+
   const data = {
     information: {
       version: `Budget API v${config.version}`,
@@ -65,12 +67,7 @@ function handleGetMonth(year, month) {
       month
     },
     expenses: {
-      total: parseFloat(
-        sheets.expenses
-          .getRange(5, month + 3)
-          .getValue()
-          .toFixed(2)
-      ),
+      total: typeof expensesTotal === 'number' ? parseFloat(expensesTotal.toFixed(2)) : 0,
       categories: getExpensesObject(
         sheets.expenses
           .getRange(7, 2, sheets.expenses.getLastRow() - 6, month + 2)
@@ -89,20 +86,19 @@ function handleGetMonth(year, month) {
         .getRange(5, 2, 8, month + 1)
         .getValues()
         .map(r => ({ name: r[0], amount: parseFloat(r.slice(-1)[0].toFixed(2)) }))
-    },
-    salary: {}
+    }
   };
 
-  let salaries = {};
-  sheets.salary
-    .getRange(2, 1, 3, month + 1)
-    .getValues()
-    .map(r => r.slice(0, 1).concat(r.slice(-1)))
-    .forEach(r => {
-      salaries[r[0].toLowerCase()] = parseFloat(r[1].toFixed(2));
-    });
-
-  data.salary = salaries;
+  // let salaries = {};
+  // sheets.salary
+  //   .getRange(2, 1, 3, month + 1)
+  //   .getValues()
+  //   .map(r => r.slice(0, 1).concat(r.slice(-1)))
+  //   .forEach(r => {
+  //     salaries[r[0].toLowerCase()] = parseFloat(r[1].toFixed(2));
+  //   });
+  //
+  //   data.salary = salaries;
 
   return ContentService.createTextOutput(JSON.stringify(data)).setMimeType(
     ContentService.MimeType.JSON
@@ -132,16 +128,16 @@ function handleGetYear(year) {
 
   data.income.categories = getIncomeData(sheets.income);
 
-  let salaries = {};
-  sheets.salary
-    .getDataRange()
-    .getValues()
-    .slice(1)
-    .forEach(r => {
-      salaries[r[0].toLowerCase()] = parseFloat(r.slice(-1)[0].toFixed(2));
-    });
+  // let salaries = {};
+  // sheets.salary
+  //   .getDataRange()
+  //   .getValues()
+  //   .slice(1)
+  //   .forEach(r => {
+  //     salaries[r[0].toLowerCase()] = parseFloat(r.slice(-1)[0].toFixed(2));
+  //   });
 
-  data['salary'] = salaries;
+  // data['salary'] = salaries;
 
   // let currentCategory = null;
   data.expenses.categories = getExpensesObject(
@@ -169,14 +165,14 @@ function getExpensesObject(data) {
     if (typeof row[0] === 'string' && row[0].length > 0) {
       current = {
         name: row[0],
-        amount: parseFloat(row[2].toFixed(2)),
+        amount: typeof row[2] === 'number' ? parseFloat(row[2].toFixed(2)) : 0,
         categories: []
       };
       categories.push(current);
     } else if (typeof current === 'object' && typeof row[1] === 'string' && row[1].length > 0) {
       current.categories.push({
         name: row[1],
-        amount: parseFloat(row[2].toFixed(2))
+        amount: typeof row[2] === 'number' ? parseFloat(row[2].toFixed(2)) : 0
       });
     }
   });

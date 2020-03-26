@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "gas-push": "cd ./gas && clasp push"
+    "gas-deploy": "cd ./gas/budget-web-service && clasp push && clasp deploy --deploymentId AKfycbyL4WsxNK-88L1cdvmgruVaLXFyndHkOlSpLK9ZWFjMuf-YUewd"
   },
   "author": "thomas@malt.no",
   "license": "MIT",
