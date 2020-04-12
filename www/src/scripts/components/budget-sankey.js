@@ -79,7 +79,7 @@ import { linkColors, nodeColors } from './colors';
 
       GoogleCharts.load(
         () => {
-          console.log('google charts loaded');
+          // console.log('google charts loaded');
           this.isChartLoaded = true;
           this.drawChart();
         },
@@ -95,8 +95,6 @@ import { linkColors, nodeColors } from './colors';
       let chart = new GoogleCharts.api.visualization.Sankey(
         this.shadowRoot.querySelector('#budget-sankey-container')
       );
-      // console.log('Got budget:', budget);
-      // console.log('Calculated rows:', rows);
       var data = new google.visualization.DataTable();
       data.addColumn('string', 'From');
       data.addColumn('string', 'To');
@@ -104,19 +102,18 @@ import { linkColors, nodeColors } from './colors';
       data.addColumn({ type: 'string', role: 'tooltip' });
       data.addRows(this.state.data);
 
-      // Instantiate and draw our chart, passing in some options.
       chart.draw(data, this.options);
     }
 
     async updateData(data) {
-      // console.log('sankey update data:', this);
       this.state['data'] = data;
 
       if (this.isChartLoaded) {
         return this.drawChart();
-      } else {
-        console.log('charts not loaded. skipping draw');
       }
+      // else {
+      //   // console.log('charts not loaded. skipping draw');
+      // }
     }
   }
 
