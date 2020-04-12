@@ -68,6 +68,9 @@ module.exports = {
     ]
   },
   devtool: 'source-map',
+  devServer: {
+    contentBase: './public'
+  },
   plugins: [
     new MiniCssExtractPlugin({
       filename: 'assets/styles/main.css'
