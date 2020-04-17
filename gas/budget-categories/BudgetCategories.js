@@ -29,6 +29,7 @@ function category(desc, expense = 0, income = 0) {
   if (desc.match(/ark [a-z]/i)) return 'gaver';
   if (desc.match(/apotek/i)) return 'dagligvarer';
   if (desc.match(/apple\.com/i)) return 'apper';
+  if (desc.match(/^avtalegiro$/i)) return 'regning ukjent';
   if (desc.match(/årsavgift bankkort/i)) return 'bankgebyr';
   if (desc.match(/bad bishop/i)) return 'restaurant';
   if (desc.match(/bankgebyr/i)) return 'bankgebyr';
@@ -57,6 +58,7 @@ function category(desc, expense = 0, income = 0) {
   if (desc.match(/diesel/i)) return 'drivstoff';
   if (desc.match(/domeneshop/i)) return 'internett';
   if (desc.match(/elkjoep/i)) return 'hus og hage';
+  if (desc.match(/^efaktura nettbank/i)) return 'regning ukjent';
   if (desc.match(/euro ?sko/i)) return 'klær og sko';
   if (desc.match(/EUROPRIS/i)) return 'dagligvarer';
   if (desc.match(/EUROSPAR/i)) return 'dagligvarer';
@@ -106,6 +108,7 @@ function category(desc, expense = 0, income = 0) {
   if (desc.match(/leker/i)) return 'leker';
   if (desc.match(/lindex/i)) return 'klær og sko';
   if (desc.match(/linsevann/i)) return 'briller';
+  if (desc.match(/^lån$/i)) return 'boliglån';
   if (desc.match(/lommepenger/i)) return 'lommepenger';
   if (desc.match(/matpenger/i)) return 'overføring';
   if (desc.match(/matvarer/i)) return 'dagligvarer';
@@ -116,9 +119,11 @@ function category(desc, expense = 0, income = 0) {
   if (desc.match(/narvesen/i)) return 'kiosk';
   if (desc.match(/NEBBURSVOLLEN/i)) return 'aktiviteter';
   if (desc.match(/NETFLIX/i)) return 'tv og streaming';
+  if (desc.match(/^nettbank$/i)) return 'overføring ukjent';
   if (desc.match(/nille/i)) return 'dagligvarer';
   if (desc.match(/nintendo/i)) return 'spill';
   if (desc.match(/Nohs Oslo/i)) return 'frisør';
+  if (desc.match(/norges automobi/i)) return 'NAF';
   if (desc.match(/NORLANDIA/i)) return 'barnehage';
   if (desc.match(/NRK LISENS/i)) return 'tv og streaming';
   if (desc.match(/OBOS/i)) return 'obos';
@@ -178,62 +183,6 @@ function category(desc, expense = 0, income = 0) {
 
   return '';
 }
-
-function updateBudget() {
-  var sheet = SpreadsheetApp.getActiveSheet();
-
-  var name = sheet.getName();
-
-  if (name != 'Overview') {
-    return true;
-  }
-
-  var startRow = 11;
-  var startCol = 1;
-  var lastRow = 57;
-  var lastCol = sheet.getLastColumn();
-  var range = sheet.getRange(startRow, startCol, lastRow, lastCol);
-  var rows = range.getNumRows();
-  var cols = range.getNumColumns();
-  var budgetCol = cols - 5;
-  var values = range.getValues();
-  var formats = range.getNumberFormats();
-  var colors = [];
-
-  for (var i = 0; i < rows; i++) {
-    var budget = values[i][budgetCol]; //range.getCell(i, 7)
-    colors[i] = [];
-
-    for (var j = 0; j < cols; j++) {
-      if (j == budgetCol) {
-        colors[i][j] = '#000000';
-        continue;
-      }
-
-      var value = values[i][j];
-      var format = formats[i][j];
-
-      if (format == '') {
-        colors[i][j] = '#000000';
-      } else if (value > budget) {
-        colors[i][j] = '#aa3333';
-      } else if (value < budget) {
-        colors[i][j] = '#448844';
-      } else if (value == budget) {
-        colors[i][j] = '#555555';
-      } else {
-        colors[i][j] = '#000000';
-      }
-    }
-  }
-
-  range.setFontColors(colors);
-}
-
-/* function onEdit(e) {
- * updateBudget();
- * }
- */
 
 /**
  * Adds a custom menu to the active spreadsheet, containing a single menu item

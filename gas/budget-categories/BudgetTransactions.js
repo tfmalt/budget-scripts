@@ -11,9 +11,6 @@ function updateTransactions() {
   // Always update the title of the sheet
   sheet.getRange(3, 2).setValue(sheet.getName());
 
-  // Clear the existing data if any.
-  sheet.getRange(8, 2, 192, 8).clear({ contentsOnly: true });
-
   const now = new Date();
   const to = now.toISOString().split('T')[0];
   const from = now.toISOString().split('-').slice(0, 2).concat(['01']).join('-');
@@ -25,6 +22,11 @@ function updateTransactions() {
   });
 
   const status = res.getResponseCode();
+  if (status != 200) {
+    console.log(`status: ${status}. Not as expected aborting update`);
+    return;
+  }
+
   const data = JSON.parse(res.getContentText());
   const items = data.items.map((i) => {
     const r = [
@@ -35,6 +37,7 @@ function updateTransactions() {
       i.transactionType,
       i.text,
     ];
+
     const amount = i.amount < 0 ? [i.amount * -1, null] : [null, i.amount];
     r.push(...amount);
 
@@ -42,8 +45,8 @@ function updateTransactions() {
   });
 
   console.log(`status: ${status}, name: ${data.name}, version: ${data.version}, rows: ${data.items.length}`);
-
-  sheet.getRange(8, 2, items.length, items[0].length).setValues(items);
+  // Clear the existing data if any and set the new data.
+  sheet.getRange(8, 2, items.length, items[0].length).clear({ contentsOnly: true }).setValues(items.reverse());
 
   // Set last updated string
   sheet.getRange(2, 2).setValue(`Last Updated: ${now.toISOString()}, version: ${data.version}`);
