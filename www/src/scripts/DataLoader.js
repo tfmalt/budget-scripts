@@ -1,7 +1,6 @@
 class DataLoader {
   constructor() {
-    this.url =
-      'https://script.google.com/macros/s/AKfycbyL4WsxNK-88L1cdvmgruVaLXFyndHkOlSpLK9ZWFjMuf-YUewd/exec';
+    this.url = 'https://api.malt.no/budget/expenses';
   }
 
   /**
@@ -31,17 +30,17 @@ class DataLoader {
     }
 
     fetch(`${this.url}?y=${year}&m=${month}`)
-      .then(res => res.json())
-      .then(json => {
+      .then((res) => res.json())
+      .then((json) => {
         console.log('Fetched data from web service', json);
         const data = { timestamp: Date.now(), data: json };
         localStorage.setItem(key, JSON.stringify(data));
         return json;
       })
-      .then(json => {
+      .then((json) => {
         window.dispatchEvent(new CustomEvent('budget-data-fetched', { detail: json }));
       })
-      .catch(err => console.log('got error:', err));
+      .catch((err) => console.log('got error:', err));
 
     if (item) {
       console.log('returning default data:', item.data);
@@ -65,14 +64,9 @@ class DataLoader {
 
   _getIncome(data, collapse = 1000) {
     const rows = [];
-    data.income.categories.forEach(row => {
+    data.income.categories.forEach((row) => {
       if (row.amount > collapse) {
-        rows.push([
-          row.name,
-          'Inntekter',
-          row.amount,
-          `${row.name}: ${this._formatAmount(row.amount)}`
-        ]);
+        rows.push([row.name, 'Inntekter', row.amount, `${row.name}: ${this._formatAmount(row.amount)}`]);
       }
     });
 
@@ -83,21 +77,16 @@ class DataLoader {
     let remainder = 0;
 
     const rows = [];
-    data.expenses.categories.forEach(row => {
+    data.expenses.categories.forEach((row) => {
       if (row.amount < collapse) {
         remainder += row.amount;
         return;
       }
 
-      rows.push([
-        'Inntekter',
-        row.name,
-        row.amount,
-        `${row.name}: ${this._formatAmount(row.amount)}`
-      ]);
+      rows.push(['Inntekter', row.name, row.amount, `${row.name}: ${this._formatAmount(row.amount)}`]);
 
       let srRemainder = 0;
-      row.categories.forEach(sr => {
+      row.categories.forEach((sr) => {
         if (sr.amount < collapse) {
           srRemainder += sr.amount;
         } else {
@@ -105,22 +94,12 @@ class DataLoader {
         }
       });
       if (srRemainder >= collapse) {
-        rows.push([
-          row.name,
-          `${row.name} annet`,
-          srRemainder,
-          `Andre utgifter: ${this._formatAmount(srRemainder)}`
-        ]);
+        rows.push([row.name, `${row.name} annet`, srRemainder, `Andre utgifter: ${this._formatAmount(srRemainder)}`]);
       }
     });
 
     if (remainder >= collapse) {
-      rows.push([
-        'Inntekter',
-        'Andre utgifter',
-        incomeOther,
-        `Andre utgifter: ${this._formatAmount(srRemainder)}`
-      ]);
+      rows.push(['Inntekter', 'Andre utgifter', incomeOther, `Andre utgifter: ${this._formatAmount(srRemainder)}`]);
     }
 
     return rows;
