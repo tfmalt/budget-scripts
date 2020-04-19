@@ -10,7 +10,7 @@
 $color: #eecccc;
 
 body {
-  margin: 16px 1vw;
+  margin: 16px;
   --mdc-theme-primary: #0097a7;
   --mdc-theme-secondary: #8d6e63;
   --mdc-theme-background: #ffffff;
@@ -37,12 +37,12 @@ nav#toolbar {
 
 budget-sankey {
   margin-top: 0;
-  width: 98vw;
+  width: calc(100vw - 32px);
   height: calc(100vh - 164px);
   border: none;
 }
 
 h1 {
   font-family: Roboto;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
 }
