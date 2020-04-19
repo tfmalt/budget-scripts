@@ -8,8 +8,9 @@
 @import 'reset.scss';
 
 $color: #eecccc;
+
 body {
-  margin: 2vh 1vw;
+  margin: 16px 1vw;
   --mdc-theme-primary: #0097a7;
   --mdc-theme-secondary: #8d6e63;
   --mdc-theme-background: #ffffff;
@@ -23,20 +24,25 @@ mwc-select {
   width: 200px;
 }
 
-div#toolbar {
-  margin-top: 16px;
+nav#toolbar {
+  padding: 16px 0;
+
   display: flex;
+  // border-bottom: 1px solid #ccc;
+
   * {
     padding-right: 8px;
   }
 }
 
 budget-sankey {
-  margin-top: 1vh;
+  margin-top: 0;
   width: 98vw;
-  height: 80vh;
+  height: calc(100vh - 164px);
+  border: none;
 }
 
 h1 {
   font-family: Roboto;
+  font-size: 1.6rem;
 }

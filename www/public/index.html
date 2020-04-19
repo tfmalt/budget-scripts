@@ -1,16 +1,17 @@
 <html>
   <head>
-    <title>Experiment with Sankey Charts</title>
+    <title>SD60 Budget - Money Streams - Sankey Chart</title>
     <link rel="stylesheet" href="./assets/styles/main.css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Material+Icons&display=block"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
   </head>
+
   <body>
-    <h1>SD60 Budget - Money Streams</h1>
-    <div id="toolbar">
+    <header>
+      <h1>SD60 Budget - Money Streams</h1>
+    </header>
+    <nav id="toolbar">
       <mwc-select label="YEAR" id="budget-year-select">
         <mwc-list-item value="2018">2018</mwc-list-item>
         <mwc-list-item value="2019">2019</mwc-list-item>
@@ -31,8 +32,9 @@
         <mwc-list-item value="11">November</mwc-list-item>
         <mwc-list-item value="12">December</mwc-list-item>
       </mwc-select>
-    </div>
+    </nav>
     <budget-sankey id="budgetSankey"></budget-sankey>
+    <footer></footer>
     <script src="./assets/scripts/bundle.js"></script>
   </body>
 </html>

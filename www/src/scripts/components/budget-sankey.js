@@ -13,20 +13,24 @@ import { linkColors, nodeColors } from './colors';
           node: {
             colors: nodeColors[800],
             width: 40,
-            label: { color: '#444', fontName: 'Roboto', fontSize: 14 }
-          }
+            label: { color: '#444', fontName: 'Roboto', fontSize: 14 },
+          },
         },
         tooltip: {
           isHtml: true,
           textStyle: {
-            fontSize: 12
-          }
-        }
+            fontSize: 12,
+          },
+        },
+        animation: {
+          duration: 1000,
+          easing: 'out',
+        },
       };
 
       this.state = {
         chartIsLoaded: false,
-        data: {}
+        data: {},
       };
 
       this.chart = null;
@@ -46,6 +50,7 @@ import { linkColors, nodeColors } from './colors';
         #budget-sankey-container {
           width: inherit;
           height: inherit;
+          border: inherit;
         }
       `;
 
@@ -80,6 +85,10 @@ import { linkColors, nodeColors } from './colors';
       GoogleCharts.load(
         () => {
           // console.log('google charts loaded');
+          this.chart = new GoogleCharts.api.visualization.Sankey(
+            this.shadowRoot.querySelector('#budget-sankey-container')
+          );
+
           this.isChartLoaded = true;
           this.drawChart();
         },
@@ -92,9 +101,7 @@ import { linkColors, nodeColors } from './colors';
         return;
       }
 
-      let chart = new GoogleCharts.api.visualization.Sankey(
-        this.shadowRoot.querySelector('#budget-sankey-container')
-      );
+      // let chart = new GoogleCharts.api.visualization.Sankey(this.shadowRoot.querySelector('#budget-sankey-container'));
       var data = new google.visualization.DataTable();
       data.addColumn('string', 'From');
       data.addColumn('string', 'To');
@@ -102,7 +109,7 @@ import { linkColors, nodeColors } from './colors';
       data.addColumn({ type: 'string', role: 'tooltip' });
       data.addRows(this.state.data);
 
-      chart.draw(data, this.options);
+      this.chart.draw(data, this.options);
     }
 
     async updateData(data) {
