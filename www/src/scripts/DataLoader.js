@@ -1,8 +1,6 @@
-class DataLoader {
-  constructor() {
-    this.url = 'https://api.malt.no/budget/expenses';
-  }
+import { apikey, url } from './config.json';
 
+class DataLoader {
   /**
    * Fetches budget data. First from local storage. If the data is stale
    * (after 30 minutes) it startes an asynchronous fetch process and
@@ -29,7 +27,17 @@ class DataLoader {
       }
     }
 
-    fetch(`${this.url}?y=${year}&m=${month}`)
+    // , {
+    //   headers: { Authorization: `Bearer ${apikey}` },
+    // })
+    fetch(`${url}?y=${year}&m=${month}&apikey=${apikey}`)
+      .then((res) => {
+        if (!res.ok) {
+          throw Error(`${res.status} - ${res.statusText}`);
+        }
+
+        return res;
+      })
       .then((res) => res.json())
       .then((json) => {
         console.log('Fetched data from web service', json);
@@ -40,7 +48,7 @@ class DataLoader {
       .then((json) => {
         window.dispatchEvent(new CustomEvent('budget-data-fetched', { detail: json }));
       })
-      .catch((err) => console.log('got error:', err));
+      .catch((err) => console.log(`got error fetching ${url}:`, err));
 
     if (item) {
       console.log('returning default data:', item.data);
