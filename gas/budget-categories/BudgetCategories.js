@@ -113,7 +113,7 @@ function category(desc, expense = 0, income = 0) {
   if (desc.match(/matpenger/i)) return 'overføring';
   if (desc.match(/matvarer/i)) return 'dagligvarer';
   if (desc.match(/maxbo/i)) return 'hus og hage';
-  if (desc.match(/mester gronn/i)) return 'hus og hage';
+  if (desc.match(/mester gr.nn/i)) return 'gaver';
   if (desc.match(/MENY/i)) return 'dagligvarer';
   if (desc.match(/museum/i)) return 'aktiviteter';
   if (desc.match(/narvesen/i)) return 'kiosk';
@@ -174,6 +174,7 @@ function category(desc, expense = 0, income = 0) {
   if (desc.match(/Til aksjedepot/i)) return 'sparing';
   if (desc.match(/til:97108091812/i)) return 'boliglån';
   if (desc.match(/til.*eira.*gunvor/i)) return 'gaver';
+  if (desc.match(/tilbakeføring/i)) return 'utlegg';
   if (desc.match(/trg norge/i)) return 'hobby';
   if (desc.match(/vedhandel/i)) return 'ved';
   if (desc.match(/verdipapirhandel/i)) return 'sparing';
