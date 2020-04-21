@@ -6,3 +6,4 @@ etc/credentials.json
 etc/token.json
 gas/budget-categories/.clasp.json
 gas/budget-categories/Config.js
+gas/budget-web-service/Config.js
