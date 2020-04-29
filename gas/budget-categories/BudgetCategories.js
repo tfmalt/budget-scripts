@@ -20,6 +20,8 @@ function categories(data) {
 function category(desc, expense = 0, income = 0) {
   console.log(`desc: ${desc}, exp: ${expense}, inc: ${income}`);
 
+  if (desc.match(/tilbakeføring/i)) return 'tilbakeføring';
+  if (desc.match(/kreditering/i)) return 'tilbakeføring';
   if (desc.match(/1503.17.34573/i)) return 'hund';
   if (desc.match(/7-?eleven/i)) return 'kiosk';
   if (desc.match(/aftenposten/i)) return 'aviser';
@@ -131,8 +133,7 @@ function category(desc, expense = 0, income = 0) {
   if (desc.match(/oslo dyrebutikk/i)) return 'hund';
   if (desc.match(/oslo sykkelverksted/i)) return 'sykkel';
   if (desc.match(/OSLO KOMMUNE/i)) return 'aktivitetsskole';
-  if (desc.match(/overføring (til|fra)/i)) return 'overføring';
-  if (desc.match(/overføring mellom/i)) return 'overføring';
+  if (desc.match(/overføring/i)) return 'overføring';
   if (desc.match(/paypal.*princesspol/i)) return 'klær og sko';
   if (desc.match(/paypal.*bodymod/i)) return 'klær og sko';
   if (desc.match(/paypal.*evernote/i)) return 'apper';
@@ -174,7 +175,6 @@ function category(desc, expense = 0, income = 0) {
   if (desc.match(/Til aksjedepot/i)) return 'sparing';
   if (desc.match(/til:97108091812/i)) return 'boliglån';
   if (desc.match(/til.*eira.*gunvor/i)) return 'gaver';
-  if (desc.match(/tilbakeføring/i)) return 'utlegg';
   if (desc.match(/trg norge/i)) return 'hobby';
   if (desc.match(/vedhandel/i)) return 'ved';
   if (desc.match(/verdipapirhandel/i)) return 'sparing';
