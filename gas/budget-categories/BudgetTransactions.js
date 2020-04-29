@@ -44,12 +44,24 @@ function updateTransactions() {
     return r;
   });
 
-  console.log(`status: ${status}, name: ${data.name}, version: ${data.version}, rows: ${data.items.length}`);
+  const washed = items.filter((row) => {
+    for (let i = 0; i < items.length; i++) {
+      if (row[0] === items[i][0] && row[5] === items[i][5] && row[6] === items[i][7]) {
+        console.log('washing:', row);
+        return false;
+      }
+    }
+    return true;
+  });
+
+  console.log(
+    `status: ${status}, name: ${data.name}, version: ${data.version}, rows: ${data.items.length}, washed: ${washed.length}`
+  );
   // Clear the existing data if any and set the new data.
-  sheet.getRange(8, 2, items.length, items[0].length).clear({ contentsOnly: true }).setValues(items.reverse());
+  sheet.getRange(8, 2, washed.length, washed[0].length).clear({ contentsOnly: true }).setValues(washed.reverse());
 
   // Set last updated string
-  sheet.getRange(2, 2).setValue(`Last Updated: ${now.toISOString()}, version: ${data.version}`);
+  sheet.getRange(2, 2).setValue(`Last Updated: ${now.toISOString()}, version: ${data.version}, status: ${status}`);
 }
 
 /**
