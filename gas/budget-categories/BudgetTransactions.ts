@@ -1,15 +1,13 @@
-// @ts-check
-const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const months: Array<String> = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 /**
  * Used to manually update the transactions for the current active spreadsheet.
  */
 function updateTransactionsCurrentSheet() {
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-  const [month, year] = sheet.getName().split(' ');
-
-  const from = new Date(parseInt(year, 10), months.indexOf(month), 1, 2).toISOString().split('T')[0];
-  const to =
+  const sheet: GoogleAppsScript.Spreadsheet.Sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  const [month, year]: Array<string> = sheet.getName().split(' ');
+  const from: string = new Date(parseInt(year), months.indexOf(month), 1, 2).toISOString().split('T')[0];
+  const to: string =
     new Date(parseInt(year, 10), months.indexOf(month) + 1, 0, 2) > new Date()
       ? new Date().toISOString().split('T')[0]
       : new Date(parseInt(year, 10), months.indexOf(month) + 1, 0, 2).toISOString().split('T')[0];
@@ -40,8 +38,8 @@ function updateTransactions() {
  * @returns {sheet} The sheet for the current month
  */
 function getOrCreateSheet() {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
-  const now = new Date();
+  const ss: GoogleAppsScript.Spreadsheet.Spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  const now: Date = new Date();
   const sName = `${months[now.getMonth()]} ${now.getFullYear()}`;
 
   console.log('current name:', sName);
@@ -68,25 +66,47 @@ function getOrCreateSheet() {
   return sheet.copyTo(ss).setName(sName);
 }
 
+interface Transaction {
+  accountingDate: string;
+  interestDate: string;
+  accountName: string;
+  transactionType: string;
+  text: string;
+  amount: number;
+}
+
+interface TransactionsObject {
+  items: Array<Transaction>;
+  name: string;
+  version: string;
+  status: number;
+}
+
 /**
  * Fetch transaction from web service.
+ *
+ * @param {string} from - ISO Date String
+ * @param {string} to - ISO Date String
+ * @return {TransactionsObject}
  */
-function fetchTransactions(from, to) {
+function fetchTransactions(from: string, to: string) {
+  // @ts-ignore
   const res = UrlFetchApp.fetch(`${config.url}?from=${from}&to=${to}`, {
     headers: {
+      // @ts-ignore
       Authorization: `Bearer ${config.apikey}`,
     },
   });
 
-  const status = res.getResponseCode();
-  if (status != 200) {
+  const status: number = res.getResponseCode();
+  if (status !== 200) {
     console.log(`status: ${status}. Not as expected aborting update`);
     return;
   }
 
-  const data = JSON.parse(res.getContentText());
-  const items = data.items.map((i) => {
-    const r = [
+  const data: TransactionsObject = JSON.parse(res.getContentText());
+  const items: Array<any> = data.items.map((i) => {
+    const r: Array<any> = [
       i.accountingDate.split('T')[0],
       i.interestDate.split('T')[0],
       i.accountName,
@@ -95,7 +115,7 @@ function fetchTransactions(from, to) {
       i.text,
     ];
 
-    const amount = i.amount < 0 ? [i.amount * -1, null] : [null, i.amount];
+    const amount: Array<any> = i.amount < 0 ? [i.amount * -1, null] : [null, i.amount];
     r.push(...amount);
 
     return r;
@@ -104,10 +124,11 @@ function fetchTransactions(from, to) {
   return { items, status, version: data.version, name: data.name };
 }
 
-/** Filter the fetched items to remove internal transactions based on date and
- *  idential expense<->income values
+/**
+ * Filter the fetched items to remove internal transactions based on date and
+ * idential expense<->income values
  */
-function removeInternalTransactions(items, from) {
+function removeInternalTransactions(items: Array<any>, from: string) {
   return items
     .filter((row) => new Date(row[0]) >= new Date(from))
     .filter((row) => {
@@ -126,15 +147,15 @@ function removeInternalTransactions(items, from) {
 /**
  * Fetches transactions from webservice and updates the sheet with new data
  */
-function updateSheet(sheet, from, to) {
+function updateSheet(sheet: GoogleAppsScript.Spreadsheet.Sheet, from: string, to: string) {
   console.log('Got Sheet:', sheet.getName());
 
   // Always update the title of the sheet
   sheet.getRange(3, 2).setValue(sheet.getName());
 
-  const data = fetchTransactions(from, to);
-  const items = data.items;
-  const washed = removeInternalTransactions(items, from);
+  const data: TransactionsObject = fetchTransactions(from, to);
+  const items: Array<any> = data.items;
+  const washed: Array<any> = removeInternalTransactions(items, from);
 
   console.log(
     `status: ${data.status}, name: ${data.name}, version: ${data.version}, rows: ${data.items.length}, washed: ${washed.length}`
