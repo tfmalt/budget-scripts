@@ -1,20 +1,77 @@
+// @ts-check
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 /**
- * Fetches my the latest bank transactions
+ * Used to manually update the transactions for the current active spreadsheet.
+ */
+function updateTransactionsCurrentSheet() {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  const [month, year] = sheet.getName().split(' ');
+
+  const from = new Date(parseInt(year, 10), months.indexOf(month), 1, 2).toISOString().split('T')[0];
+  const to =
+    new Date(parseInt(year, 10), months.indexOf(month) + 1, 0, 2) > new Date()
+      ? new Date().toISOString().split('T')[0]
+      : new Date(parseInt(year, 10), months.indexOf(month) + 1, 0, 2).toISOString().split('T')[0];
+
+  console.log(`Update Transactions Current Sheet: month: ${month}, year: ${year}`);
+  console.log({ from }, { to });
+
+  updateSheet(sheet, from, to);
+}
+
+/**
+ * Fetches the latest bank transactions
  *
  */
 function updateTransactions() {
   const sheet = getOrCreateSheet();
-  console.log('Got Sheet:', sheet.getName());
-
-  // Always update the title of the sheet
-  sheet.getRange(3, 2).setValue(sheet.getName());
-
   const now = new Date();
   const to = now.toISOString().split('T')[0];
   const from = now.toISOString().split('-').slice(0, 2).concat(['01']).join('-');
 
+  updateSheet(sheet, from, to);
+}
+
+/**
+ * Looks for a sheet with the current months name. If it is not found it
+ * creates it by copying the previous month sheet and uses that as a template.
+ *
+ * @returns {sheet} The sheet for the current month
+ */
+function getOrCreateSheet() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const now = new Date();
+  const sName = `${months[now.getMonth()]} ${now.getFullYear()}`;
+
+  console.log('current name:', sName);
+
+  let sheet = ss.getSheetByName(sName);
+
+  if (sheet !== null) {
+    return sheet;
+  }
+
+  let month = now.getMonth() - 1;
+  if (month < 0) {
+    month = 11;
+  }
+
+  const prev = `${months[month]} ${now.getFullYear()}`;
+  console.log('must get prev:', prev);
+
+  sheet = ss.getSheetByName(prev);
+  if (sheet === null) {
+    throw new TypeError('Expected a valid Sheet but got null');
+  }
+
+  return sheet.copyTo(ss).setName(sName);
+}
+
+/**
+ * Fetch transaction from web service.
+ */
+function fetchTransactions(from, to) {
   const res = UrlFetchApp.fetch(`${config.url}?from=${from}&to=${to}`, {
     headers: {
       Authorization: `Bearer ${config.apikey}`,
@@ -44,57 +101,56 @@ function updateTransactions() {
     return r;
   });
 
-  const washed = items.filter((row) => {
-    for (let i = 0; i < items.length; i++) {
-      if (row[0] === items[i][0] && row[5] === items[i][5] && row[6] === items[i][7]) {
-        console.log('washing:', row);
-        return false;
+  return { items, status, version: data.version, name: data.name };
+}
+
+/** Filter the fetched items to remove internal transactions based on date and
+ *  idential expense<->income values
+ */
+function removeInternalTransactions(items, from) {
+  return items
+    .filter((row) => new Date(row[0]) >= new Date(from))
+    .filter((row) => {
+      for (let i = 0; i < items.length; i++) {
+        if (row[0] === items[i][0] && row[5] === items[i][5] && row[6] === items[i][7] && row[7] === items[i][6]) {
+          console.log('washing:', row);
+          // The row is removed from the returned array
+          return false;
+        }
       }
-    }
-    return true;
-  });
-
-  console.log(
-    `status: ${status}, name: ${data.name}, version: ${data.version}, rows: ${data.items.length}, washed: ${washed.length}`
-  );
-  // Clear the existing data if any and set the new data.
-  sheet.getRange(8, 2, washed.length, washed[0].length).clear({ contentsOnly: true }).setValues(washed.reverse());
-
-  // Set last updated string
-  sheet.getRange(2, 2).setValue(`Last Updated: ${now.toISOString()}, version: ${data.version}, status: ${status}`);
+      // The row is included in the returned array
+      return true;
+    });
 }
 
 /**
- * Looks for a sheet with the current months name. If it is not found it
- * creates it by copying the previous month sheet and uses that as a template.
- *
- * @returns {Sheet} The sheet for the current month
+ * Fetches transactions from webservice and updates the sheet with new data
  */
-function getOrCreateSheet() {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
-  const now = new Date();
-  const sName = `${months[now.getMonth()]} ${now.getFullYear()}`;
+function updateSheet(sheet, from, to) {
+  console.log('Got Sheet:', sheet.getName());
 
-  console.log('current name:', sName);
+  // Always update the title of the sheet
+  sheet.getRange(3, 2).setValue(sheet.getName());
 
-  let sheet = ss.getSheetByName(sName);
+  const data = fetchTransactions(from, to);
+  const items = data.items;
+  const washed = removeInternalTransactions(items, from);
 
-  if (sheet !== null) {
-    return sheet;
-  }
+  console.log(
+    `status: ${data.status}, name: ${data.name}, version: ${data.version}, rows: ${data.items.length}, washed: ${washed.length}`
+  );
 
-  let month = now.getMonth() - 1;
-  if (month < 0) {
-    month = 11;
-  }
+  // Clear the existing data if any and set the new data.
+  sheet.getRange(9, 2, sheet.getLastRow(), washed[0].length).clear({ contentsOnly: true });
+  sheet.getRange(9, 2, washed.length, washed[0].length).setValues(washed.reverse());
 
-  const prev = `${months[month]} ${now.getFullYear()}`;
-  console.log('must get prev:', prev);
-
-  sheet = ss.getSheetByName(prev);
-  if (sheet === null) {
-    throw new TypeError('Expected a valid Sheet but got null');
-  }
-
-  return sheet.copyTo(ss).setName(sName);
+  // Set last updated string
+  sheet
+    .getRange(2, 2)
+    .setValue(
+      `Last Updated: ${new Date().toLocaleString('se')}, status: ${data.status}, version: ${
+        data.version
+      }, range: ${from} - ${to}`
+    );
+  sheet.getRange(1, 2).setValue(new Date(from));
 }
