@@ -38,6 +38,7 @@
     "@material/button": "^5.1.0",
     "@material/mwc-button": "^0.14.1",
     "@material/mwc-select": "^0.14.1",
+    "@types/google.visualization": "^0.0.53",
     "google-charts": "^2.0.0",
     "material-components-web": "^5.1.0",
     "regenerator-runtime": "^0.13.5"

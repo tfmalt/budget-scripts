@@ -11,7 +11,7 @@ class DataLoader {
    *
    * @param {Number} year the year to fetch data for
    * @param {Number} month the month to get data for (0 == whole year)
-   * @returns {Object} json object with data from web service.
+   * @returns {Promise<[]>} json object with data from web service.
    */
   async getBudgetData(year = 2019, month = 0) {
     const timeout = 30 * 60 * 1000; // 30 minutes
@@ -59,7 +59,7 @@ class DataLoader {
   /**
    * Parse budget data and return Array with rows of sankey input data
    * @param {object} budget json data from webservice
-   * @returns {Array} array with sankey input data
+   * @returns {Promise<Array>} array with sankey input data
    */
   async parseBudgetData(budget) {
     if (typeof budget === 'undefined') {

@@ -1,10 +1,11 @@
+// @ts-nocheck
 import 'regenerator-runtime/runtime.js';
 import '@material/mwc-select';
 import '@material/mwc-list/mwc-list-item';
 import './components/budget-sankey';
 import { loader } from './DataLoader';
 
-window.addEventListener('load', e => {
+window.addEventListener('load', (e) => {
   const year = document.querySelector('#budget-year-select');
   const month = document.querySelector('#budget-month-select');
 
@@ -24,10 +25,7 @@ window.addEventListener('load', e => {
   const dispatch = () => {
     updateGraphData(year.value, month.index);
 
-    localStorage.setItem(
-      'selectedBudget',
-      JSON.stringify({ year: year.index, month: month.index })
-    );
+    localStorage.setItem('selectedBudget', JSON.stringify({ year: year.index, month: month.index }));
 
     window.dispatchEvent(
       new CustomEvent('budget-select-changed', { detail: { year: year.value, month: month.index } })
@@ -38,8 +36,8 @@ window.addEventListener('load', e => {
   month.addEventListener('change', () => dispatch());
 });
 
-window.addEventListener('budget-data-fetched', e => {
-  loader.parseBudgetData(e.detail).then(data => {
+window.addEventListener('budget-data-fetched', (e) => {
+  loader.parseBudgetData(e.detail).then((data) => {
     console.log('handle budget data fetch - updating graph data');
     document.querySelector('budget-sankey').updateData(data);
   });

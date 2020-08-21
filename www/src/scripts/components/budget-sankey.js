@@ -1,5 +1,7 @@
+// @ts-ignore
 import { GoogleCharts } from 'google-charts';
 import { linkColors, nodeColors } from './colors';
+import { google } from 'googleapis';
 
 (() => {
   class BudgetSankey extends HTMLElement {
@@ -71,7 +73,7 @@ import { linkColors, nodeColors } from './colors';
       }
 
       this.state.chartIsLoaded = bool;
-      return this.state.chartIsLoaded;
+      // return this.state.chartIsLoaded;
     }
 
     connectedCallback() {
@@ -82,9 +84,11 @@ import { linkColors, nodeColors } from './colors';
       // });
       window.addEventListener('resize', () => this.drawChart());
 
+      // @ts-ignore
       GoogleCharts.load(
         () => {
           // console.log('google charts loaded');
+          // @ts-ignore
           this.chart = new GoogleCharts.api.visualization.Sankey(
             this.shadowRoot.querySelector('#budget-sankey-container')
           );
