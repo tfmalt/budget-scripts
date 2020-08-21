@@ -1,18 +1,23 @@
-const months: Array<String> = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+type Month = 'Jan' | 'Feb' | 'Mar' | 'Apr' | 'May' | 'Jun' | 'Jul' | 'Aug' | 'Sep' | 'Oct' | 'Nov' | 'Dec';
+type SheetNameList = [Month, string];
+const months: Array<Month> = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 /**
  * Used to manually update the transactions for the current active spreadsheet.
  */
-function updateTransactionsCurrentSheet() {
+function updateTransactionsCurrentSheet(): void {
   const sheet: GoogleAppsScript.Spreadsheet.Sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-  const [month, year]: Array<string> = sheet.getName().split(' ');
-  const from: string = new Date(parseInt(year), months.indexOf(month), 1, 2).toISOString().split('T')[0];
-  const to: string =
-    new Date(parseInt(year, 10), months.indexOf(month) + 1, 0, 2) > new Date()
-      ? new Date().toISOString().split('T')[0]
-      : new Date(parseInt(year, 10), months.indexOf(month) + 1, 0, 2).toISOString().split('T')[0];
+  const names: Array<string> = sheet.getName().split(' ');
+  const mon: Month = names[0] as Month;
+  const year: number = parseInt(names[1]);
 
-  console.log(`Update Transactions Current Sheet: month: ${month}, year: ${year}`);
+  const from: string = new Date(year, months.indexOf(mon), 1, 2).toISOString().split('T')[0];
+  const to: string =
+    new Date(year, months.indexOf(mon) + 1, 0, 2) > new Date()
+      ? new Date().toISOString().split('T')[0]
+      : new Date(year, months.indexOf(mon) + 1, 0, 2).toISOString().split('T')[0];
+
+  console.log(`Update Transactions Current Sheet: month: ${mon}, year: ${year}`);
   console.log({ from }, { to });
 
   updateSheet(sheet, from, to);
@@ -20,13 +25,12 @@ function updateTransactionsCurrentSheet() {
 
 /**
  * Fetches the latest bank transactions
- *
  */
-function updateTransactions() {
-  const sheet = getOrCreateSheet();
-  const now = new Date();
-  const to = now.toISOString().split('T')[0];
-  const from = now.toISOString().split('-').slice(0, 2).concat(['01']).join('-');
+function updateTransactions(): void {
+  const sheet: GoogleAppsScript.Spreadsheet.Sheet = getOrCreateSheet();
+  const now: Date = new Date();
+  const to: string = now.toISOString().split('T')[0];
+  const from: string = now.toISOString().split('-').slice(0, 2).concat(['01']).join('-');
 
   updateSheet(sheet, from, to);
 }
@@ -37,25 +41,25 @@ function updateTransactions() {
  *
  * @returns {sheet} The sheet for the current month
  */
-function getOrCreateSheet() {
+function getOrCreateSheet(): GoogleAppsScript.Spreadsheet.Sheet {
   const ss: GoogleAppsScript.Spreadsheet.Spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
   const now: Date = new Date();
-  const sName = `${months[now.getMonth()]} ${now.getFullYear()}`;
+  const sName: string = `${months[now.getMonth()]} ${now.getFullYear()}`;
 
   console.log('current name:', sName);
 
-  let sheet = ss.getSheetByName(sName);
+  let sheet: GoogleAppsScript.Spreadsheet.Sheet = ss.getSheetByName(sName);
 
   if (sheet !== null) {
     return sheet;
   }
 
-  let month = now.getMonth() - 1;
+  let month: number = now.getMonth() - 1;
   if (month < 0) {
     month = 11;
   }
 
-  const prev = `${months[month]} ${now.getFullYear()}`;
+  const prev: string = `${months[month]} ${now.getFullYear()}`;
   console.log('must get prev:', prev);
 
   sheet = ss.getSheetByName(prev);
@@ -89,11 +93,9 @@ interface TransactionsObject {
  * @param {string} to - ISO Date String
  * @return {TransactionsObject}
  */
-function fetchTransactions(from: string, to: string) {
-  // @ts-ignore
-  const res = UrlFetchApp.fetch(`${config.url}?from=${from}&to=${to}`, {
+function fetchTransactions(from: string, to: string): TransactionsObject | undefined {
+  const res: GoogleAppsScript.URL_Fetch.HTTPResponse = UrlFetchApp.fetch(`${config.url}?from=${from}&to=${to}`, {
     headers: {
-      // @ts-ignore
       Authorization: `Bearer ${config.apikey}`,
     },
   });
@@ -115,7 +117,7 @@ function fetchTransactions(from: string, to: string) {
       i.text,
     ];
 
-    const amount: Array<any> = i.amount < 0 ? [i.amount * -1, null] : [null, i.amount];
+    const amount: Array<number | null> = i.amount < 0 ? [i.amount * -1, null] : [null, i.amount];
     r.push(...amount);
 
     return r;
@@ -127,8 +129,12 @@ function fetchTransactions(from: string, to: string) {
 /**
  * Filter the fetched items to remove internal transactions based on date and
  * idential expense<->income values
+ *
+ * @param {Array<any>} items - The list of transactions
+ * @param {string} from - The datestring.
+ * @returns {Array<Transaction>}
  */
-function removeInternalTransactions(items: Array<any>, from: string) {
+function removeInternalTransactions(items: Array<any>, from: string): Array<any> {
   return items
     .filter((row) => new Date(row[0]) >= new Date(from))
     .filter((row) => {
@@ -147,7 +153,7 @@ function removeInternalTransactions(items: Array<any>, from: string) {
 /**
  * Fetches transactions from webservice and updates the sheet with new data
  */
-function updateSheet(sheet: GoogleAppsScript.Spreadsheet.Sheet, from: string, to: string) {
+function updateSheet(sheet: GoogleAppsScript.Spreadsheet.Sheet, from: string, to: string): void {
   console.log('Got Sheet:', sheet.getName());
 
   // Always update the title of the sheet

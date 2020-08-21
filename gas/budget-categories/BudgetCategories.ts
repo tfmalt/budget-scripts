@@ -5,8 +5,8 @@
  * @return array of values
  * @customfunction
  */
-function categories(data) {
-  console.log(typeof data, data.length);
+function categories(data: Array<[string, number, number]>) {
+  // console.log(typeof data, data.length);
   return data.map((r) => [category(r[0], r[1], r[2])]);
 }
 
@@ -17,8 +17,8 @@ function categories(data) {
  * @returns desc the correct category for the input desc
  * @customfunction
  */
-function category(desc, expense = 0, income = 0) {
-  console.log(`desc: ${desc}, exp: ${expense}, inc: ${income}`);
+function category(desc: string, expense: number = 0, income: number = 0): string {
+  // console.log(`desc: ${desc}, exp: ${expense}, inc: ${income}`);
 
   // tilbakeføring
   if (desc.match(/tilbakeføring/i)) return 'tilbakeføring';
@@ -42,6 +42,7 @@ function category(desc, expense = 0, income = 0) {
   if (desc.match(/REMA/i)) return 'dagligvarer';
   if (desc.match(/RIMI/i)) return 'dagligvarer';
   if (desc.match(/sande meieri/i)) return 'dagligvarer';
+  if (desc.match(/metro buga trygve lies/i)) return 'dagligvarer';
 
   // helse
   if (desc.match(/helse/i)) return 'helse';
@@ -53,6 +54,19 @@ function category(desc, expense = 0, income = 0) {
   if (desc.match(/paypal.*washpost/i)) return 'aviser';
   if (desc.match(/paypal.*ny.times/i)) return 'aviser';
   if (desc.match(/paypal.*guardiannew/i)) return 'aviser';
+
+  // klær og sko
+  if (desc.match(/xxl alna/i)) return 'klær og sko';
+  if (desc.match(/lindex/i)) return 'klær og sko';
+  if (desc.match(/klær/i)) return 'klær og sko';
+  if (desc.match(/fretex/i)) return 'klær og sko';
+  if (desc.match(/euro ?sko/i)) return 'klær og sko';
+  if (desc.match(/cubus/i)) return 'klær og sko';
+  if (desc.match(/paypal.*fruugo/i)) return 'klær og sko';
+  if (desc.match(/paypal.*zaful/i)) return 'klær og sko';
+  if (desc.match(/paypal.*zalando/i)) return 'klær og sko';
+  if (desc.match(/paypal.*princesspol/i)) return 'klær og sko';
+  if (desc.match(/paypal.*bodymod/i)) return 'klær og sko';
 
   // hund
   if (desc.match(/1503.17.34573/i)) return 'hund';
@@ -82,7 +96,7 @@ function category(desc, expense = 0, income = 0) {
 
   // kiosk eller drivstoff
   if (desc.match(/yx sande/i)) return expense > 300 ? 'drivstoff' : 'kiosk';
-  if (desc.match(/circle k bryn/i)) return expense > 300 ? 'drivstoff' : 'kiosk';
+  if (desc.match(/circle k/i)) return expense > 300 ? 'drivstoff' : 'kiosk';
 
   // drivstoff
   if (desc.match(/diesel/i)) return 'drivstoff';
@@ -97,6 +111,7 @@ function category(desc, expense = 0, income = 0) {
   if (desc.match(/trg norge/i)) return 'hobby';
   if (desc.match(/flying tiger copenhagen/i)) return 'hobby';
   if (desc.match(/ark [a-z]/i)) return 'hobby';
+  if (desc.match(/nøstet mitt/i)) return 'hobby';
 
   // apper
   if (desc.match(/microsoft sto/i)) return 'apper';
@@ -148,6 +163,9 @@ function category(desc, expense = 0, income = 0) {
   if (desc.match(/scandinavian ai/i)) return 'reise';
   if (desc.match(/sas airline/i)) return 'reise';
 
+  // hytte
+  if (desc.match(/obs bygg digernes/i)) return 'hytte';
+
   // ====================================================================
   // Usortert herfra
   if (desc.match(/amazon video/i)) return 'tv og streaming';
@@ -167,21 +185,16 @@ function category(desc, expense = 0, income = 0) {
 
   if (desc.match(/clas ohl/i)) return 'hus og hage';
 
-  if (desc.match(/cubus/i)) return 'klær og sko';
-
   if (desc.match(/dutyfree/i)) return 'taxfree';
   if (desc.match(/debetrente/i)) return 'bankgebyr';
 
   if (desc.match(/domeneshop/i)) return 'internett';
   if (desc.match(/elkjoep/i)) return 'hus og hage';
   if (desc.match(/^efaktura nettbank/i)) return 'regning ukjent';
-  if (desc.match(/euro ?sko/i)) return 'klær og sko';
-
   if (desc.match(/ferie/i)) return 'ferie';
   if (desc.match(/filantropi/i)) return 'filantropi';
   if (desc.match(/Fjellinjen/i)) return 'bomringen';
 
-  if (desc.match(/fretex/i)) return 'klær og sko';
   if (desc.match(/frisør/i)) return 'frisør';
   if (desc.match(/from .* to .*/i)) return 'overføring';
 
@@ -210,12 +223,10 @@ function category(desc, expense = 0, income = 0) {
   if (desc.match(/kirsti/i)) return 'kirsti';
   if (desc.match(/kjell.*company/i)) return 'elektronikk';
 
-  if (desc.match(/klær/i)) return 'klær og sko';
   if (desc.match(/kontanter/i)) return 'kontanter';
   if (desc.match(/kostnader sms/i)) return 'bankgebyr';
   if (desc.match(/kredittkort/i)) return 'kredittkort';
   if (desc.match(/leker/i)) return 'leker';
-  if (desc.match(/lindex/i)) return 'klær og sko';
   if (desc.match(/linsevann/i)) return 'briller';
   if (desc.match(/^lån$/i)) return 'boliglån';
 
@@ -236,14 +247,9 @@ function category(desc, expense = 0, income = 0) {
   if (desc.match(/oslo sykkelverksted/i)) return 'sykkel';
   if (desc.match(/OSLO KOMMUNE/i)) return 'aktivitetsskole';
   if (desc.match(/overføring/i)) return 'overføring';
-  if (desc.match(/paypal.*princesspol/i)) return 'klær og sko';
-  if (desc.match(/paypal.*bodymod/i)) return 'klær og sko';
-
-  if (desc.match(/paypal.*fruugo/i)) return 'klær og sko';
   if (desc.match(/paypal.*steam games/i)) return 'spill';
 
   if (desc.match(/paypal.*crunchyroll/i)) return 'tv og streaming';
-  if (desc.match(/paypal.*zalando/i)) return 'klær og sko';
   if (desc.match(/paypal.*privateint/i)) return 'internett';
   if (desc.match(/paypal.*playstation/i)) return 'spill';
 
@@ -276,8 +282,6 @@ function category(desc, expense = 0, income = 0) {
   if (desc.match(/vedhandel/i)) return 'ved';
   if (desc.match(/verdipapirhandel/i)) return 'sparing';
   if (desc.match(/VINMONOPOLET/i)) return 'drikkevarer';
-
-  if (desc.match(/xxl alna/i)) return 'klær og sko';
 
   return '';
 }
