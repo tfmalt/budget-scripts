@@ -10,9 +10,9 @@
   "author": "thomas@malt.no",
   "license": "MIT",
   "dependencies": {
-    "@types/google-apps-script": "^1.0.12",
-    "googleapis": "^48.0.0",
+    "@types/google-apps-script": "^1.0.14",
+    "googleapis": "^59.0.0",
     "node-fetch": "^2.6.0",
-    "prettier": "^2.0.4"
+    "prettier": "^2.1.1"
   }
 }
