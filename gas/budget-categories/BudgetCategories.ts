@@ -166,6 +166,9 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   // hytte
   if (desc.match(/obs bygg digernes/i)) return 'hytte';
 
+  // diverse
+  if (desc.match(/til.*kristine westby/i)) return 'diverse';
+
   // ====================================================================
   // Usortert herfra
   if (desc.match(/amazon video/i)) return 'tv og streaming';
