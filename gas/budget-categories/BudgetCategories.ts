@@ -162,12 +162,20 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/for goahead/i)) return 'reise';
   if (desc.match(/scandinavian ai/i)) return 'reise';
   if (desc.match(/sas airline/i)) return 'reise';
+  if (desc.match(/flytoget/i)) return 'reise';
 
   // hytte
   if (desc.match(/obs bygg digernes/i)) return 'hytte';
 
+  // ferie
+  if (desc.match(/ferie/i)) return 'ferie';
+  if (desc.match(/EIDE HANDEL FJORDVEIEN/i)) return 'ferie';
+
   // diverse
   if (desc.match(/til.*kristine westby/i)) return 'diverse';
+
+  // konfirmasjon
+  if (desc.match(/HUMAN ETISK FOR/i)) return 'konfirmasjon';
 
   // ====================================================================
   // Usortert herfra
@@ -194,7 +202,6 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/domeneshop/i)) return 'internett';
   if (desc.match(/elkjoep/i)) return 'hus og hage';
   if (desc.match(/^efaktura nettbank/i)) return 'regning ukjent';
-  if (desc.match(/ferie/i)) return 'ferie';
   if (desc.match(/filantropi/i)) return 'filantropi';
   if (desc.match(/Fjellinjen/i)) return 'bomringen';
 
