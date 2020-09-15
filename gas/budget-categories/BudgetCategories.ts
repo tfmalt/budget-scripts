@@ -93,6 +93,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/Nettgiro til: Malt Martha/i)) return 'lommepenger';
   if (desc.match(/overført til annen konto/i)) return expense == 180 ? 'lommepenger' : 'overføring';
   if (desc.match(/^nettbank$/i)) return expense == 180 ? 'lommepenger' : 'overføring';
+  if (desc.match(/til.*annie therese videsjorden/i)) return 'lommepenger';
 
   // kiosk eller drivstoff
   if (desc.match(/yx sande/i)) return expense > 300 ? 'drivstoff' : 'kiosk';
