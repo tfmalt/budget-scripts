@@ -48,7 +48,7 @@ function getOrCreateSheet(): GoogleAppsScript.Spreadsheet.Sheet {
 
   console.log('current name:', sName);
 
-  let sheet: GoogleAppsScript.Spreadsheet.Sheet = ss.getSheetByName(sName);
+  let sheet: GoogleAppsScript.Spreadsheet.Sheet | null = ss.getSheetByName(sName);
 
   if (sheet !== null) {
     return sheet;
@@ -159,7 +159,9 @@ function updateSheet(sheet: GoogleAppsScript.Spreadsheet.Sheet, from: string, to
   // Always update the title of the sheet
   sheet.getRange(3, 2).setValue(sheet.getName());
 
-  const data: TransactionsObject = fetchTransactions(from, to);
+  const data: TransactionsObject | undefined = fetchTransactions(from, to);
+  if (typeof data === 'undefined') return;
+
   const items: Array<any> = data.items;
   const washed: Array<any> = removeInternalTransactions(items, from);
 

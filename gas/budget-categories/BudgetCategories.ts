@@ -47,6 +47,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   // helse
   if (desc.match(/helse/i)) return 'helse';
   if (desc.match(/apotek/i)) return 'helse';
+  if (desc.match(/AHUS/i)) return 'helse';
 
   // aviser
   if (desc.match(/aftenposten/i)) return 'aviser';
@@ -74,6 +75,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/oslo dyrebutikk/i)) return 'hund';
   if (desc.match(/buddy tveita/i)) return 'hund';
   if (desc.match(/vipps.*cotrau/i)) return 'hund';
+  if (desc.match(/iZ.*Cotrau Grooming/i)) return 'hund';
 
   // parkering
   if (desc.match(/parkering/i)) return 'parkering';
