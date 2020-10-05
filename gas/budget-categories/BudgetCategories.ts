@@ -47,6 +47,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   // helse
   if (desc.match(/helse/i)) return 'helse';
   if (desc.match(/apotek/i)) return 'helse';
+  if (desc.match(/gastro poliklinikk/i)) return 'helse';
 
   // aviser
   if (desc.match(/aftenposten/i)) return 'aviser';
@@ -74,6 +75,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/oslo dyrebutikk/i)) return 'hund';
   if (desc.match(/buddy tveita/i)) return 'hund';
   if (desc.match(/vipps.*cotrau/i)) return 'hund';
+  if (desc.match(/cotrau groomin/i)) return 'hund';
 
   // parkering
   if (desc.match(/parkering/i)) return 'parkering';
@@ -126,6 +128,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/til.*lars ivar næss/i)) return 'gaver';
   if (desc.match(/til.*anne ånstad/i)) return 'gaver';
   if (desc.match(/til.*jens gislason/i)) return 'gaver';
+  if (desc.match(/til.*anders fredrik ulsaker malt/i)) return 'gaver';
   if (desc.match(/mester gr.nn/i)) return 'gaver';
   if (desc.match(/japan photo/i)) return 'gaver';
   if (desc.match(/gaver?/i)) return 'gaver';
@@ -165,6 +168,14 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/sas airline/i)) return 'reise';
   if (desc.match(/flytoget/i)) return 'reise';
 
+  // TV og Streaming
+  if (desc.match(/paypal.*crunchyroll/i)) return 'tv og streaming';
+  if (desc.match(/NETFLIX/i)) return 'tv og streaming';
+  if (desc.match(/hbo.nordic/i)) return 'tv og streaming';
+  if (desc.match(/amazon video/i)) return 'tv og streaming';
+  if (desc.match(/NRK LISENS/i)) return 'tv og streaming';
+  if (desc.match(/paypal.*disneyplus/i)) return 'tv og streaming';
+
   // hytte
   if (desc.match(/obs bygg digernes/i)) return 'hytte';
 
@@ -180,7 +191,6 @@ function category(desc: string, expense: number = 0, income: number = 0): string
 
   // ====================================================================
   // Usortert herfra
-  if (desc.match(/amazon video/i)) return 'tv og streaming';
   if (desc.match(/^avtalegiro$/i)) return 'regning ukjent';
   if (desc.match(/årsavgift bankkort/i)) return 'bankgebyr';
 
@@ -214,8 +224,6 @@ function category(desc: string, expense: number = 0, income: number = 0): string
 
   if (desc.match(/Hafslund/i)) return 'elektrisitet';
 
-  if (desc.match(/hbo.nordic/i)) return 'tv og streaming';
-
   if (desc.match(/husholdning/i)) return 'husholdning';
 
   if (desc.match(/IF SKADEFOR/i)) return 'forsikring';
@@ -245,14 +253,12 @@ function category(desc: string, expense: number = 0, income: number = 0): string
 
   if (desc.match(/maxbo/i)) return 'hus og hage';
 
-  if (desc.match(/NETFLIX/i)) return 'tv og streaming';
   if (desc.match(/^nettbank$/i)) return 'overføring ukjent';
 
   if (desc.match(/nintendo/i)) return 'spill';
   if (desc.match(/Nohs Oslo/i)) return 'frisør';
   if (desc.match(/norges automobi/i)) return 'naf';
   if (desc.match(/NORLANDIA/i)) return 'barnehage';
-  if (desc.match(/NRK LISENS/i)) return 'tv og streaming';
   if (desc.match(/OBOS/i)) return 'obos';
 
   if (desc.match(/oslo sykkelverksted/i)) return 'sykkel';
@@ -260,7 +266,6 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/overføring/i)) return 'overføring';
   if (desc.match(/paypal.*steam games/i)) return 'spill';
 
-  if (desc.match(/paypal.*crunchyroll/i)) return 'tv og streaming';
   if (desc.match(/paypal.*privateint/i)) return 'internett';
   if (desc.match(/paypal.*playstation/i)) return 'spill';
 
