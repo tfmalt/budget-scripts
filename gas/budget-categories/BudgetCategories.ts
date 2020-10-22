@@ -51,6 +51,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/apotek/i)) return 'helse';
   if (desc.match(/gastro poliklinikk/i)) return 'helse';
   if (desc.match(/AHUS/i)) return 'helse';
+  if (desc.match(/STOROKLINIKKEN/i)) return 'helse';
 
   // aviser
   if (desc.match(/aftenposten/i)) return 'aviser';
@@ -152,6 +153,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/til.*anne ånstad/i)) return 'gaver';
   if (desc.match(/til.*jens gislason/i)) return 'gaver';
   if (desc.match(/til.*anders fredrik ulsaker malt/i)) return 'gaver';
+  if (desc.match(/til.*martha elin ånstad malt/i)) return 'gaver';
   if (desc.match(/mester gr.nn/i)) return 'gaver';
   if (desc.match(/japan photo/i)) return 'gaver';
   if (desc.match(/gaver?/i)) return 'gaver';
@@ -214,6 +216,10 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   // konfirmasjon
   if (desc.match(/HUMAN ETISK FOR/i)) return 'konfirmasjon';
 
+  // kontanter
+  if (desc.match(/kontanter/i)) return 'kontanter';
+  if (desc.match(/NORDEA TVEITA LOBBY/i)) return 'kontanter';
+
   // ====================================================================
   // Usortert herfra
   if (desc.match(/^avtalegiro$/i)) return 'regning ukjent';
@@ -256,8 +262,6 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/kino/i)) return 'kino';
 
   if (desc.match(/kirsti/i)) return 'kirsti';
-
-  if (desc.match(/kontanter/i)) return 'kontanter';
   if (desc.match(/kostnader sms/i)) return 'bankgebyr';
   if (desc.match(/kredittkort/i)) return 'kredittkort';
   if (desc.match(/leker/i)) return 'leker';
