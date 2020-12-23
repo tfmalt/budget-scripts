@@ -24,6 +24,12 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/tilbakeføring/i)) return 'tilbakeføring';
   if (desc.match(/kreditering/i)) return 'tilbakeføring';
   if (desc.match(/doc martens egenandel/i)) return 'tilbakeføring';
+  if (desc.match(/tilbakebetaling utlegg/i)) return 'tilbakeføring';
+
+  // julegaver
+  if (desc.match(/julepresang/i)) return 'julegaver';
+  if (desc.match(/julegaver/i)) return 'julegaver';
+  if (desc.match(/7125 15.12 NOK 926.00 VIPPS.*KOMPLETT.NO/i)) return 'julegaver';
 
   // dagligvarer
   if (desc.match(/MENY/i)) return 'dagligvarer';
@@ -51,6 +57,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/apotek/i)) return 'helse';
   if (desc.match(/gastro poliklinikk/i)) return 'helse';
   if (desc.match(/AHUS/i)) return 'helse';
+  if (desc.match(/NIMI.*AS/i)) return 'helse';
   if (desc.match(/STOROKLINIKKEN/i)) return 'helse';
 
   // aviser
@@ -97,6 +104,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/kiosk/i)) return 'kiosk';
   if (desc.match(/narvesen/i)) return 'kiosk';
   if (desc.match(/on the track/i)) return 'kiosk';
+  if (desc.match(/DRONNINGVEIEN S/i)) return 'kiosk';
 
   // Internett
   if (desc.match(/paypal.*privateint/i)) return 'internett';
@@ -104,6 +112,12 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/GET AS/i)) return 'internett';
   if (desc.match(/get/i) && expense == 539) return 'internett';
   if (desc.match(/Telia TV og int/i)) return 'internett';
+
+  // Spill
+  if (desc.match(/paypal.*steam games/i)) return 'spill';
+  if (desc.match(/nintendo/i)) return 'spill';
+  if (desc.match(/UBISOFT/i)) return 'spill';
+  if (desc.match(/paypal.*playstation/i)) return 'spill';
 
   // parkering
   if (desc.match(/parkering/i)) return 'parkering';
@@ -125,6 +139,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   // drivstoff
   if (desc.match(/diesel/i)) return 'drivstoff';
   if (desc.match(/automat 1/i)) return 'drivstoff';
+  if (desc.match(/UNO-X/i)) return 'drivstoff';
 
   // aktiviteter
   if (desc.match(/aktiviteter/i)) return 'aktiviteter';
@@ -142,7 +157,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
 
   // apper
   if (desc.match(/microsoft sto/i)) return 'apper';
-  if (desc.match(/apple\.com/i)) return 'apper';
+  if (desc.match(/apple\.com/i)) return expense > 600 ? 'apple' : 'apper';
   if (desc.match(/paypal.*evernote/i)) return 'apper';
   if (desc.match(/itunes/i)) return 'apper';
 
@@ -203,6 +218,17 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/NRK LISENS/i)) return 'tv og streaming';
   if (desc.match(/paypal.*disneyplus/i)) return 'tv og streaming';
 
+  // Elektrisitet
+  if (desc.match(/Hafslund/i)) return 'elektrisitet';
+  if (desc.match(/FORTUM TELLIER/i)) return 'elektrisitet';
+  if (desc.match(/Tibber/i)) return 'elektrisitet';
+
+  // bankgebyr
+  if (desc.match(/kostnader sms/i)) return 'bankgebyr';
+  if (desc.match(/debetrente/i)) return 'bankgebyr';
+  if (desc.match(/bankgebyr/i)) return 'bankgebyr';
+  if (desc.match(/årsavgift bankkort/i)) return 'bankgebyr';
+
   // hytte
   if (desc.match(/obs bygg digernes/i)) return 'hytte';
 
@@ -212,6 +238,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
 
   // diverse
   if (desc.match(/til.*kristine westby/i)) return 'diverse';
+  if (desc.match(/vipps.*posten.*norge/i)) return 'diverse';
 
   // konfirmasjon
   if (desc.match(/HUMAN ETISK FOR/i)) return 'konfirmasjon';
@@ -220,12 +247,20 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/kontanter/i)) return 'kontanter';
   if (desc.match(/NORDEA TVEITA LOBBY/i)) return 'kontanter';
 
+  // drikkevarer
+  if (desc.match(/VINMONOPO/i)) return 'drikkevarer';
+
+  // møbler og interiør
+  if (desc.match(/ikea/i)) return 'møbler og interiør';
+  if (desc.match(/kid.*interiør/i)) return 'møbler og interiør';
+
   // ====================================================================
   // Usortert herfra
   if (desc.match(/^avtalegiro$/i)) return 'regning ukjent';
-  if (desc.match(/årsavgift bankkort/i)) return 'bankgebyr';
+  if (desc.match(/KLARNA BANK AB/i)) return 'regning ukjent';
+  if (desc.match(/^efaktura nettbank/i)) return 'regning ukjent';
+  if (desc.match(/NETTGIRO/i)) return 'regning ukjent';
 
-  if (desc.match(/bankgebyr/i)) return 'bankgebyr';
   if (desc.match(/barnetrygd/i)) return 'barnetrygd';
   if (desc.match(/bilkollektivet/i)) return 'bilkollektivet';
   if (desc.match(/biltur/i)) return 'bil';
@@ -236,33 +271,24 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/brilleland/i)) return 'briller';
 
   if (desc.match(/dutyfree/i)) return 'taxfree';
-  if (desc.match(/debetrente/i)) return 'bankgebyr';
-
-  if (desc.match(/^efaktura nettbank/i)) return 'regning ukjent';
   if (desc.match(/filantropi/i)) return 'filantropi';
   if (desc.match(/Fjellinjen/i)) return 'bomringen';
 
   if (desc.match(/frisør/i)) return 'frisør';
   if (desc.match(/from .* to .*/i)) return 'overføring';
 
-  if (desc.match(/Hafslund/i)) return 'elektrisitet';
-
   if (desc.match(/husholdning/i)) return 'husholdning';
 
   if (desc.match(/IF SKADEFOR/i)) return 'forsikring';
-  if (desc.match(/ikea/i)) return 'møbler og interiør';
   if (desc.match(/intersport/i)) return 'sportsutstyr';
 
   if (desc.match(/julefeiring/i)) return 'julefeiring';
-  if (desc.match(/julegaver/i)) return 'julegaver';
   if (desc.match(/julekalender/i)) return 'julekalender';
-  if (desc.match(/julepresang/i)) return 'julegaver';
 
   if (desc.match(/kantinekortet/i)) return 'lunsjpenger';
   if (desc.match(/kino/i)) return 'kino';
 
   if (desc.match(/kirsti/i)) return 'kirsti';
-  if (desc.match(/kostnader sms/i)) return 'bankgebyr';
   if (desc.match(/kredittkort/i)) return 'kredittkort';
   if (desc.match(/leker/i)) return 'leker';
   if (desc.match(/linsevann/i)) return 'briller';
@@ -272,7 +298,6 @@ function category(desc: string, expense: number = 0, income: number = 0): string
 
   if (desc.match(/^nettbank$/i)) return 'overføring ukjent';
 
-  if (desc.match(/nintendo/i)) return 'spill';
   if (desc.match(/Nohs Oslo/i)) return 'frisør';
   if (desc.match(/norges automobi/i)) return 'naf';
   if (desc.match(/NORLANDIA/i)) return 'barnehage';
@@ -281,9 +306,6 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/oslo sykkelverksted/i)) return 'sykkel';
   if (desc.match(/OSLO KOMMUNE/i)) return 'aktivitetsskole';
   if (desc.match(/overføring/i)) return 'overføring';
-  if (desc.match(/paypal.*steam games/i)) return 'spill';
-
-  if (desc.match(/paypal.*playstation/i)) return 'spill';
 
   if (desc.match(/penger til kollektiv/i)) return 'overføring';
 
@@ -311,7 +333,6 @@ function category(desc: string, expense: number = 0, income: number = 0): string
 
   if (desc.match(/vedhandel/i)) return 'ved';
   if (desc.match(/verdipapirhandel/i)) return 'sparing';
-  if (desc.match(/VINMONOPOLET/i)) return 'drikkevarer';
 
   return '';
 }
