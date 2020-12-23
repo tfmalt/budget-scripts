@@ -30,6 +30,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/julepresang/i)) return 'julegaver';
   if (desc.match(/julegaver/i)) return 'julegaver';
   if (desc.match(/7125 15.12 NOK 926.00 VIPPS.*KOMPLETT.NO/i)) return 'julegaver';
+  if (desc.match(/21.12 Bank1 - Tveita.*0671 Oslo/i)) return expense == 1200 ? 'julegaver' : 'kontanter';
 
   // dagligvarer
   if (desc.match(/MENY/i)) return 'dagligvarer';
@@ -79,6 +80,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/paypal.*zalando/i)) return 'klær og sko';
   if (desc.match(/paypal.*princesspol/i)) return 'klær og sko';
   if (desc.match(/paypal.*bodymod/i)) return 'klær og sko';
+  if (desc.match(/Nettgiro til.*Federal Expre Betalt.*22.12.20/)) return 'klær og sko';
 
   // Hus og hage
   if (desc.match(/plantasjen/i)) return 'hus og hage';
@@ -239,6 +241,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   // diverse
   if (desc.match(/til.*kristine westby/i)) return 'diverse';
   if (desc.match(/vipps.*posten.*norge/i)) return 'diverse';
+  if (desc.match(/7125 09.12 NOK 15.00 POSTEN/i)) return 'diverse';
 
   // konfirmasjon
   if (desc.match(/HUMAN ETISK FOR/i)) return 'konfirmasjon';
@@ -246,6 +249,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   // kontanter
   if (desc.match(/kontanter/i)) return 'kontanter';
   if (desc.match(/NORDEA TVEITA LOBBY/i)) return 'kontanter';
+  if (desc.match(/bank1 - Tveita/i)) return expense == 800 ? 'kontanter' : '';
 
   // drikkevarer
   if (desc.match(/VINMONOPO/i)) return 'drikkevarer';
