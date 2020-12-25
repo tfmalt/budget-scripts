@@ -31,6 +31,10 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/julegaver/i)) return 'julegaver';
   if (desc.match(/7125 15.12 NOK 926.00 VIPPS.*KOMPLETT.NO/i)) return 'julegaver';
   if (desc.match(/21.12 Bank1 - Tveita.*0671 Oslo/i)) return expense == 1200 ? 'julegaver' : 'kontanter';
+  if (desc.match(/22.12 Bank1 - Tveita.*0671 Oslo/i)) return expense == 400 ? 'julegaver' : 'kontanter';
+
+  // julefeiring
+  if (desc.match(/Gjermund Sveen/i)) return 'julefeiring';
 
   // dagligvarer
   if (desc.match(/MENY/i)) return 'dagligvarer';
@@ -72,6 +76,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/xxl alna/i)) return 'klær og sko';
   if (desc.match(/lindex/i)) return 'klær og sko';
   if (desc.match(/klær/i)) return 'klær og sko';
+  if (desc.match(/H&M/i)) return 'klær og sko';
   if (desc.match(/fretex/i)) return 'klær og sko';
   if (desc.match(/euro ?sko/i)) return 'klær og sko';
   if (desc.match(/cubus/i)) return 'klær og sko';
