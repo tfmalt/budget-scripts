@@ -170,8 +170,10 @@ function updateSheet(sheet: GoogleAppsScript.Spreadsheet.Sheet, from: string, to
   );
 
   // Clear the existing data if any and set the new data.
-  sheet.getRange(9, 2, sheet.getLastRow(), washed[0].length).clear({ contentsOnly: true });
-  sheet.getRange(9, 2, washed.length, washed[0].length).setValues(washed.reverse());
+  if (washed.length > 0) {
+    sheet.getRange(9, 2, sheet.getLastRow(), washed[0].length).clear({ contentsOnly: true });
+    sheet.getRange(9, 2, washed.length, washed[0].length).setValues(washed.reverse());
+  }
 
   // Set last updated string
   sheet

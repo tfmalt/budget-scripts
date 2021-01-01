@@ -1,4 +1,6 @@
 /**
+ * Godt nytt år
+ *
  * Calculates all the categories in one function
  *
  * @param {A1:C3} data of input
@@ -170,6 +172,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
 
   // Gaver
   if (desc.match(/til.*eira.*gunvor/i)) return 'gaver';
+  if (desc.match(/til.*tord fredrik brinch malt/i)) return 'gaver';
   if (desc.match(/til.*jenny/i)) return 'gaver';
   if (desc.match(/til.*lars ivar næss/i)) return 'gaver';
   if (desc.match(/til.*anne ånstad/i)) return 'gaver';
