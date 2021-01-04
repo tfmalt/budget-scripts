@@ -15,7 +15,7 @@ function updateTransactionsCurrentSheet(): void {
   const to: string =
     new Date(year, months.indexOf(mon) + 1, 0, 2) > new Date()
       ? new Date().toISOString().split('T')[0]
-      : new Date(year, months.indexOf(mon) + 1, 0, 2).toISOString().split('T')[0];
+      : new Date(year, months.indexOf(mon) + 1, 1, 2).toISOString().split('T')[0];
 
   console.log(`Update Transactions Current Sheet: month: ${mon}, year: ${year}`);
   console.log({ from }, { to });
@@ -135,6 +135,9 @@ function fetchTransactions(from: string, to: string): TransactionsObject | undef
  * @returns {Array<Transaction>}
  */
 function removeInternalTransactions(items: Array<any>, from: string): Array<any> {
+  console.log('inside removeInternalTransactions:', from);
+  // row[0]: accountingDate
+  // row[1]: interestDate
   return items
     .filter((row) => new Date(row[0]) >= new Date(from))
     .filter((row) => {
@@ -146,6 +149,7 @@ function removeInternalTransactions(items: Array<any>, from: string): Array<any>
         }
       }
       // The row is included in the returned array
+      console.log('keeping:', row);
       return true;
     });
 }
@@ -160,10 +164,13 @@ function updateSheet(sheet: GoogleAppsScript.Spreadsheet.Sheet, from: string, to
   sheet.getRange(3, 2).setValue(sheet.getName());
 
   const data: TransactionsObject | undefined = fetchTransactions(from, to);
+  console.log('updateSheet data:', data);
   if (typeof data === 'undefined') return;
 
   const items: Array<any> = data.items;
   const washed: Array<any> = removeInternalTransactions(items, from);
+
+  console.log('washed data:', washed);
 
   console.log(
     `status: ${data.status}, name: ${data.name}, version: ${data.version}, rows: ${data.items.length}, washed: ${washed.length}`
@@ -171,8 +178,10 @@ function updateSheet(sheet: GoogleAppsScript.Spreadsheet.Sheet, from: string, to
 
   // Clear the existing data if any and set the new data.
   if (washed.length > 0) {
-    sheet.getRange(9, 2, sheet.getLastRow(), washed[0].length).clear({ contentsOnly: true });
-    sheet.getRange(9, 2, washed.length, washed[0].length).setValues(washed.reverse());
+    const rows = washed.length || 0;
+    const cols = washed.length > 0 ? washed[0].length : 0;
+    sheet.getRange(9, 2, sheet.getLastRow(), cols).clear({ contentsOnly: true });
+    sheet.getRange(9, 2, rows, cols).setValues(washed.reverse());
   }
 
   // Set last updated string
