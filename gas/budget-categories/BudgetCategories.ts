@@ -76,6 +76,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
 
   // klær og sko
   if (desc.match(/xxl alna/i)) return 'klær og sko';
+  if (desc.match(/www.stormberg.com/i)) return 'klær og sko';
   if (desc.match(/lindex/i)) return 'klær og sko';
   if (desc.match(/klær/i)) return 'klær og sko';
   if (desc.match(/H&M/i)) return 'klær og sko';
@@ -266,6 +267,10 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/ikea/i)) return 'møbler og interiør';
   if (desc.match(/kid.*interiør/i)) return 'møbler og interiør';
 
+  // Telefon
+  if (desc.match(/TELENOR/i)) return 'telefon';
+  if (desc.match(/teleregning/i)) return 'telefon';
+
   // ====================================================================
   // Usortert herfra
   if (desc.match(/^avtalegiro$/i)) return 'regning ukjent';
@@ -338,7 +343,6 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/spotify/i)) return 'musikk';
   if (desc.match(/stiftelsen sos/i)) return 'filantropi';
   if (desc.match(/taxi/i)) return 'taxi';
-  if (desc.match(/TELENOR/i)) return 'telefon';
   if (desc.match(/thomas/i)) return 'thomas';
   if (desc.match(/Til aksjedepot/i)) return 'sparing';
   if (desc.match(/til:97108091812/i)) return 'boliglån';
