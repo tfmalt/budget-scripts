@@ -120,6 +120,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/paypal.*privateint/i)) return 'internett';
   if (desc.match(/domeneshop/i)) return 'internett';
   if (desc.match(/GET AS/i)) return 'internett';
+  if (desc.match(/get a\.s\./i)) return 'internett';
   if (desc.match(/get/i) && expense == 539) return 'internett';
   if (desc.match(/Telia TV og int/i)) return 'internett';
 
@@ -131,6 +132,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
 
   // parkering
   if (desc.match(/parkering/i)) return 'parkering';
+  if (desc.match(/apcoa flow/i)) return 'parkering';
   if (desc.match(/paypal.*easypark/i)) return 'parkering';
 
   // lommepenger
