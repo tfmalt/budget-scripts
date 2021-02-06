@@ -99,6 +99,9 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/biltema/i)) return 'hus og hage';
   if (desc.match(/lovenskiold han/i)) return 'hus og hage';
 
+  // vedlikehold
+  if (desc.match(/elektro.siver/i)) return 'vedlikehold';
+
   // hund
   if (desc.match(/1503.17.34573/i)) return 'hund';
   if (desc.match(/alnavet/i)) return 'hund';
@@ -273,6 +276,9 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/TELENOR/i)) return 'telefon';
   if (desc.match(/teleregning/i)) return 'telefon';
 
+  // barnetrygd
+  if (desc.match(/barnetrygd/i)) return 'barnetrygd';
+
   // ====================================================================
   // Usortert herfra
   if (desc.match(/^avtalegiro$/i)) return 'regning ukjent';
@@ -280,7 +286,6 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/^efaktura nettbank/i)) return 'regning ukjent';
   if (desc.match(/NETTGIRO/i)) return 'regning ukjent';
 
-  if (desc.match(/barnetrygd/i)) return 'barnetrygd';
   if (desc.match(/bilkollektivet/i)) return 'bilkollektivet';
   if (desc.match(/biltur/i)) return 'bil';
   if (desc.match(/bilvask/i)) return 'bilservice';
