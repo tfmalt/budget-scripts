@@ -42,6 +42,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/MENY/i)) return 'dagligvarer';
   if (desc.match(/bunnpris/i)) return 'dagligvarer';
   if (desc.match(/coop/i)) return 'dagligvarer';
+  if (desc.match(/obs alnabru/i)) return 'dagligvarer';
   if (desc.match(/DAGLIGVARE/i)) return 'dagligvarer';
   if (desc.match(/EUROPRIS/i)) return 'dagligvarer';
   if (desc.match(/EUROSPAR/i)) return 'dagligvarer';
