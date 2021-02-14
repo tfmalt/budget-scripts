@@ -282,10 +282,6 @@ function category(desc: string, expense: number = 0, income: number = 0): string
 
   // ====================================================================
   // Usortert herfra
-  if (desc.match(/^avtalegiro$/i)) return 'regning ukjent';
-  if (desc.match(/KLARNA BANK AB/i)) return 'regning ukjent';
-  if (desc.match(/^efaktura nettbank/i)) return 'regning ukjent';
-  if (desc.match(/NETTGIRO/i)) return 'regning ukjent';
 
   if (desc.match(/bilkollektivet/i)) return 'bilkollektivet';
   if (desc.match(/biltur/i)) return 'bil';
@@ -296,7 +292,6 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/brilleland/i)) return 'briller';
 
   if (desc.match(/dutyfree/i)) return 'taxfree';
-  if (desc.match(/filantropi/i)) return 'filantropi';
   if (desc.match(/Fjellinjen/i)) return 'bomringen';
 
   if (desc.match(/frisør/i)) return 'frisør';
@@ -317,7 +312,6 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/kredittkort/i)) return 'kredittkort';
   if (desc.match(/leker/i)) return 'leker';
   if (desc.match(/linsevann/i)) return 'briller';
-  if (desc.match(/^lån$/i)) return 'boliglån';
 
   if (desc.match(/matpenger/i)) return 'overføring';
 
@@ -329,14 +323,9 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/OBOS/i)) return 'obos';
 
   if (desc.match(/oslo sykkelverksted/i)) return 'sykkel';
-  if (desc.match(/OSLO KOMMUNE/i)) return 'aktivitetsskole';
   if (desc.match(/overføring/i)) return 'overføring';
 
   if (desc.match(/penger til kollektiv/i)) return 'overføring';
-
-  if (desc.match(/prince lunchbar/i)) return 'lunch thomas';
-
-  if (desc.match(/ram thai/i)) return 'lunch thomas';
 
   if (desc.match(/RENTER/i)) return 'renter';
 
@@ -344,19 +333,41 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/ruter/i)) return 'kollektivtransport';
   if (desc.match(/sayso/i)) return 'frisør';
 
-  if (desc.match(/SKANDIABANKEN/i)) return 'boliglån';
   if (desc.match(/småting kjøpt/i)) return 'overføring';
-  if (desc.match(/SOS-BARNEBYER/i)) return 'filantropi';
-  if (desc.match(/Spareavtale/i)) return 'sparing';
   if (desc.match(/spotify/i)) return 'musikk';
-  if (desc.match(/stiftelsen sos/i)) return 'filantropi';
   if (desc.match(/taxi/i)) return 'taxi';
+
+  // aktivitetsskole - skole
+  if (desc.match(/oslo kommune/i)) return 'aktivitetsskole';
+
+  // Filantropi
+  if (desc.match(/stiftelsen sos/i)) return 'filantropi';
+  if (desc.match(/filantropi/i)) return 'filantropi';
+  if (desc.match(/SOS-BARNEBYER/i)) return 'filantropi';
+
+  // Thomas
   if (desc.match(/thomas/i)) return 'thomas';
-  if (desc.match(/Til aksjedepot/i)) return 'sparing';
+  if (desc.match(/prince lunchbar/i)) return 'lunch thomas';
+  if (desc.match(/ram thai/i)) return 'lunch thomas';
+
+  // boliglån
+  if (desc.match(/^lån$/i)) return 'boliglån';
+  if (desc.match(/SKANDIABANKEN/i)) return 'boliglån';
   if (desc.match(/til:97108091812/i)) return 'boliglån';
 
+  // ved
   if (desc.match(/vedhandel/i)) return 'ved';
+
+  // sparing
+  if (desc.match(/Spareavtale/i)) return 'sparing';
+  if (desc.match(/Til aksjedepot/i)) return 'sparing';
   if (desc.match(/verdipapirhandel/i)) return 'sparing';
+
+  // Regning ukjent
+  if (desc.match(/^avtalegiro$/i)) return 'regning ukjent';
+  if (desc.match(/KLARNA BANK AB/i)) return 'regning ukjent';
+  if (desc.match(/^efaktura nettbank/i)) return 'regning ukjent';
+  if (desc.match(/NETTGIRO/i)) return 'regning ukjent';
 
   return '';
 }
