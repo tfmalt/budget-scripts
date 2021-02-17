@@ -77,6 +77,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
 
   // klær og sko
   if (desc.match(/xxl alna/i)) return 'klær og sko';
+  if (desc.match(/klarna.*xxl no/i)) return 'klær og sko';
   if (desc.match(/www.stormberg.com/i)) return 'klær og sko';
   if (desc.match(/lindex/i)) return 'klær og sko';
   if (desc.match(/klær/i)) return 'klær og sko';
