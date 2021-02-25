@@ -67,6 +67,8 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/AHUS/i)) return 'helse';
   if (desc.match(/NIMI.*AS/i)) return 'helse';
   if (desc.match(/STOROKLINIKKEN/i)) return 'helse';
+  if (desc.match(/MAMMOGRAFIPROGR TRONDHEIMSVE/i)) return 'helse';
+  if (desc.match(/Convene Collect/i)) return 'helse';
 
   // aviser
   if (desc.match(/aftenposten/i)) return 'aviser';
