@@ -102,6 +102,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/clas ohl/i)) return 'hus og hage';
   if (desc.match(/biltema/i)) return 'hus og hage';
   if (desc.match(/lovenskiold han/i)) return 'hus og hage';
+  if (desc.match(/amundsen blomst/i)) return 'hus og hage';
 
   // vedlikehold
   if (desc.match(/elektro.siver/i)) return 'vedlikehold';
