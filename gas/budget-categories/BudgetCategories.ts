@@ -288,63 +288,6 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   // barnetrygd
   if (desc.match(/barnetrygd/i)) return 'barnetrygd';
 
-  // ====================================================================
-  // Usortert herfra
-
-  if (desc.match(/bilkollektivet/i)) return 'bilkollektivet';
-  if (desc.match(/biltur/i)) return 'bil';
-  if (desc.match(/bilvask/i)) return 'bilservice';
-
-  if (desc.match(/bonus/i)) return 'bonus';
-
-  if (desc.match(/brilleland/i)) return 'briller';
-
-  if (desc.match(/dutyfree/i)) return 'taxfree';
-  if (desc.match(/Fjellinjen/i)) return 'bomringen';
-
-  if (desc.match(/frisør/i)) return 'frisør';
-  if (desc.match(/from .* to .*/i)) return 'overføring';
-
-  if (desc.match(/husholdning/i)) return 'husholdning';
-
-  if (desc.match(/IF SKADEFOR/i)) return 'forsikring';
-  if (desc.match(/intersport/i)) return 'sportsutstyr';
-
-  if (desc.match(/julefeiring/i)) return 'julefeiring';
-  if (desc.match(/julekalender/i)) return 'julekalender';
-
-  if (desc.match(/kantinekortet/i)) return 'lunsjpenger';
-  if (desc.match(/kino/i)) return 'kino';
-
-  if (desc.match(/kirsti/i)) return 'kirsti';
-  if (desc.match(/kredittkort/i)) return 'kredittkort';
-  if (desc.match(/leker/i)) return 'leker';
-  if (desc.match(/linsevann/i)) return 'briller';
-
-  if (desc.match(/matpenger/i)) return 'overføring';
-
-  if (desc.match(/^nettbank$/i)) return 'overføring ukjent';
-
-  if (desc.match(/Nohs Oslo/i)) return 'frisør';
-  if (desc.match(/norges automobi/i)) return 'naf';
-  if (desc.match(/NORLANDIA/i)) return 'barnehage';
-  if (desc.match(/OBOS/i)) return 'obos';
-
-  if (desc.match(/oslo sykkelverksted/i)) return 'sykkel';
-  if (desc.match(/overføring/i)) return 'overføring';
-
-  if (desc.match(/penger til kollektiv/i)) return 'overføring';
-
-  if (desc.match(/RENTER/i)) return 'renter';
-
-  if (desc.match(/santander consu/i)) return 'kredittkort';
-  if (desc.match(/ruter/i)) return 'kollektivtransport';
-  if (desc.match(/sayso/i)) return 'frisør';
-
-  if (desc.match(/småting kjøpt/i)) return 'overføring';
-  if (desc.match(/spotify/i)) return 'musikk';
-  if (desc.match(/taxi/i)) return 'taxi';
-
   // aktivitetsskole - skole
   if (desc.match(/oslo kommune/i)) return 'aktivitetsskole';
 
@@ -352,6 +295,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/stiftelsen sos/i)) return 'filantropi';
   if (desc.match(/filantropi/i)) return 'filantropi';
   if (desc.match(/SOS-BARNEBYER/i)) return 'filantropi';
+  if (desc.match(/vipps.bidra/i)) return 'filantropi';
   if (desc.match(/bidra\.no/i)) return 'filantropi';
 
   // Thomas
@@ -377,6 +321,70 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/KLARNA BANK AB/i)) return 'regning ukjent';
   if (desc.match(/^efaktura nettbank/i)) return 'regning ukjent';
   if (desc.match(/NETTGIRO/i)) return 'regning ukjent';
+
+  // bil
+  if (desc.match(/bilkollektivet/i)) return 'bilkollektivet';
+  if (desc.match(/biltur/i)) return 'bil';
+  if (desc.match(/bilvask/i)) return 'bilservice';
+
+  // bomringen
+  if (desc.match(/Fjellinjen/i)) return 'bomringen';
+
+  // bonus
+  if (desc.match(/bonus/i)) return 'bonus';
+
+  // briller
+  if (desc.match(/brilleland/i)) return 'briller';
+  if (desc.match(/linsevann/i)) return 'briller';
+
+  // taxfree
+  if (desc.match(/dutyfree/i)) return 'taxfree';
+
+  // Frisør
+  if (desc.match(/frisør/i)) return 'frisør';
+  if (desc.match(/sayso/i)) return 'frisør';
+  if (desc.match(/Nohs Oslo/i)) return 'frisør';
+
+  // Overføring
+  if (desc.match(/from .* to .*/i)) return 'overføring';
+  if (desc.match(/matpenger/i)) return 'overføring';
+  if (desc.match(/^nettbank$/i)) return 'overføring ukjent';
+  if (desc.match(/overføring/i)) return 'overføring';
+
+  // ====================================================================
+  // Usortert herfra
+
+  if (desc.match(/husholdning/i)) return 'husholdning';
+
+  if (desc.match(/IF SKADEFOR/i)) return 'forsikring';
+  if (desc.match(/intersport/i)) return 'sportsutstyr';
+
+  if (desc.match(/julefeiring/i)) return 'julefeiring';
+  if (desc.match(/julekalender/i)) return 'julekalender';
+
+  if (desc.match(/kantinekortet/i)) return 'lunsjpenger';
+  if (desc.match(/kino/i)) return 'kino';
+
+  if (desc.match(/kirsti/i)) return 'kirsti';
+  if (desc.match(/kredittkort/i)) return 'kredittkort';
+  if (desc.match(/leker/i)) return 'leker';
+
+  if (desc.match(/norges automobi/i)) return 'naf';
+  if (desc.match(/NORLANDIA/i)) return 'barnehage';
+  if (desc.match(/OBOS/i)) return 'obos';
+
+  if (desc.match(/oslo sykkelverksted/i)) return 'sykkel';
+
+  if (desc.match(/penger til kollektiv/i)) return 'overføring';
+
+  if (desc.match(/RENTER/i)) return 'renter';
+
+  if (desc.match(/santander consu/i)) return 'kredittkort';
+  if (desc.match(/ruter/i)) return 'kollektivtransport';
+
+  if (desc.match(/småting kjøpt/i)) return 'overføring';
+  if (desc.match(/spotify/i)) return 'musikk';
+  if (desc.match(/taxi/i)) return 'taxi';
 
   return '';
 }
