@@ -351,12 +351,21 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/^nettbank$/i)) return 'overføring ukjent';
   if (desc.match(/overføring/i)) return 'overføring';
 
+  // husholdning
+  if (desc.match(/husholdning/i)) return 'husholdning';
+
+  // Forsikring
+  if (desc.match(/IF SKADEFOR/i)) return 'forsikring';
+
+  // Musikk
+  if (desc.match(/spotify/i)) return 'musikk';
+
+  // Taxi
+  if (desc.match(/taxi/i)) return 'taxi';
+
   // ====================================================================
   // Usortert herfra
 
-  if (desc.match(/husholdning/i)) return 'husholdning';
-
-  if (desc.match(/IF SKADEFOR/i)) return 'forsikring';
   if (desc.match(/intersport/i)) return 'sportsutstyr';
 
   if (desc.match(/julefeiring/i)) return 'julefeiring';
@@ -383,8 +392,6 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/ruter/i)) return 'kollektivtransport';
 
   if (desc.match(/småting kjøpt/i)) return 'overføring';
-  if (desc.match(/spotify/i)) return 'musikk';
-  if (desc.match(/taxi/i)) return 'taxi';
 
   return '';
 }
