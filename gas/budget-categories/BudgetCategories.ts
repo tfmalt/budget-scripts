@@ -115,6 +115,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/vipps.*cotrau/i)) return 'hund';
   if (desc.match(/cotrau groomin/i)) return 'hund';
   if (desc.match(/iZ.*Cotrau Grooming/i)) return 'hund';
+  if (desc.match(/DOGGYSTYLE/i)) return 'hund';
 
   // kiosk
   if (desc.match(/7-?eleven/i)) return 'kiosk';
@@ -123,6 +124,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/narvesen/i)) return 'kiosk';
   if (desc.match(/on the track/i)) return 'kiosk';
   if (desc.match(/DRONNINGVEIEN S/i)) return 'kiosk';
+  if (desc.match(/Anders Rønning Dahlen/i)) return 'kiosk';
 
   // Internett
   if (desc.match(/paypal.*privateint/i)) return 'internett';
@@ -137,6 +139,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/nintendo/i)) return 'spill';
   if (desc.match(/UBISOFT/i)) return 'spill';
   if (desc.match(/paypal.*playstation/i)) return 'spill';
+  if (desc.match(/steamgames/i)) return 'spill';
 
   // parkering
   if (desc.match(/parkering/i)) return 'parkering';
@@ -349,6 +352,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/stiftelsen sos/i)) return 'filantropi';
   if (desc.match(/filantropi/i)) return 'filantropi';
   if (desc.match(/SOS-BARNEBYER/i)) return 'filantropi';
+  if (desc.match(/bidra\.no/i)) return 'filantropi';
 
   // Thomas
   if (desc.match(/thomas/i)) return 'thomas';
