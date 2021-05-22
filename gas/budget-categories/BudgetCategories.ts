@@ -27,6 +27,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/kreditering/i)) return 'tilbakeføring';
   if (desc.match(/doc martens egenandel/i)) return 'tilbakeføring';
   if (desc.match(/tilbakebetaling utlegg/i)) return 'tilbakeføring';
+  if (income > 1 && !desc.match(/thomas/i)) return 'tilbakeføring';
 
   // julegaver
   if (desc.match(/julepresang/i)) return 'julegaver';
@@ -154,6 +155,10 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/overført til annen konto/i)) return expense == 180 ? 'lommepenger' : 'overføring';
   if (desc.match(/^nettbank$/i)) return expense == 180 ? 'lommepenger' : 'overføring';
   if (desc.match(/til.*annie therese videsjorden/i)) return 'lommepenger';
+
+  // Overføring
+  if (desc.match(/penger til kollektiv/i)) return 'overføring';
+  if (desc.match(/småting kjøpt/i)) return 'overføring';
 
   // kiosk eller drivstoff
   if (desc.match(/yx sande/i)) return expense > 300 ? 'drivstoff' : 'kiosk';
@@ -385,14 +390,10 @@ function category(desc: string, expense: number = 0, income: number = 0): string
 
   if (desc.match(/oslo sykkelverksted/i)) return 'sykkel';
 
-  if (desc.match(/penger til kollektiv/i)) return 'overføring';
-
   if (desc.match(/RENTER/i)) return 'renter';
 
   if (desc.match(/santander consu/i)) return 'kredittkort';
   if (desc.match(/ruter/i)) return 'kollektivtransport';
-
-  if (desc.match(/småting kjøpt/i)) return 'overføring';
 
   return '';
 }
