@@ -326,6 +326,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/bilkollektivet/i)) return 'bilkollektivet';
   if (desc.match(/biltur/i)) return 'bil';
   if (desc.match(/bilvask/i)) return 'bilservice';
+  if (desc.match(/birger n haug/i)) return 'bilservice';
 
   // bomringen
   if (desc.match(/Fjellinjen/i)) return 'bomringen';
