@@ -96,7 +96,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/Nettgiro til.*Federal Expre Betalt.*22.12.20/)) return 'klær og sko';
   if (desc.match(/b\-young/i)) return 'klær og sko';
 
-  // Hus og hage
+  // Hus og hage - etc
   if (desc.match(/plantasjen/i)) return 'hus og hage';
   if (desc.match(/maxbo/i)) return 'hus og hage';
   if (desc.match(/jula triaden/i)) return 'hus og hage';
