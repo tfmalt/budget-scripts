@@ -94,13 +94,16 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/paypal.*princesspol/i)) return 'klær og sko';
   if (desc.match(/paypal.*bodymod/i)) return 'klær og sko';
   if (desc.match(/Nettgiro til.*Federal Expre Betalt.*22.12.20/)) return 'klær og sko';
+  if (desc.match(/b\-young/i)) return 'klær og sko';
 
   // Hus og hage
   if (desc.match(/plantasjen/i)) return 'hus og hage';
   if (desc.match(/maxbo/i)) return 'hus og hage';
+  if (desc.match(/jula triaden/i)) return 'hus og hage';
   if (desc.match(/jernia/i)) return 'hus og hage';
   if (desc.match(/elkjoep/i)) return 'hus og hage';
   if (desc.match(/clas ohl/i)) return 'hus og hage';
+  if (desc.match(/clasohlson/i)) return 'hus og hage';
   if (desc.match(/biltema/i)) return 'hus og hage';
   if (desc.match(/lovenskiold han/i)) return 'hus og hage';
   if (desc.match(/amundsen blomst/i)) return 'hus og hage';
@@ -368,6 +371,9 @@ function category(desc: string, expense: number = 0, income: number = 0): string
 
   // Taxi
   if (desc.match(/taxi/i)) return 'taxi';
+
+  // Datautstyr
+  if (desc.match(/komplett/i)) return 'datautstyr';
 
   // ====================================================================
   // Usortert herfra
