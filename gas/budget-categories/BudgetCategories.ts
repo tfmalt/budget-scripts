@@ -37,6 +37,8 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/tilbakebetaling utlegg/i)) return 'tilbakeføring';
   if (income > 1 && !desc.match(/thomas/i)) return 'tilbakeføring';
 
+  // utlegg
+
   // julegaver
   if (desc.match(/julepresang/i)) return 'julegaver';
   if (desc.match(/julegaver/i)) return 'julegaver';
@@ -142,6 +144,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
 
   // Internett
   if (desc.match(/paypal.*privateint/i)) return 'internett';
+  if (desc.match(/paypal.*GOOGLE GOOGLE/i)) return 'internett';
   if (desc.match(/domeneshop/i)) return 'internett';
   if (desc.match(/GET AS/i)) return 'internett';
   if (desc.match(/get a\.s\./i)) return 'internett';
@@ -232,6 +235,9 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/pub/i)) return 'restaurant';
   if (desc.match(/tijuana/i)) return 'restaurant';
   if (desc.match(/chopstix/i)) return 'restaurant';
+
+  // utlegg på restaurant
+  if (desc.match(/SUDOEST RESTAURA/i)) return expense > 4000 ? 'utlegg' : 'restaurant';
 
   // bøker
   if (desc.match(/bok/i)) return 'bøker';
