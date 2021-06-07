@@ -21,6 +21,14 @@ function categories(data: Array<[string, number, number]>) {
  */
 function category(desc: string, expense: number = 0, income: number = 0): string {
   // console.log(`desc: ${desc}, exp: ${expense}, inc: ${income}`);
+  // Overføring
+  if (desc.match(/penger til kollektiv/i)) return 'overføring';
+  if (desc.match(/småting kjøpt/i)) return 'overføring';
+  if (desc.match(/from .* to .*/i)) return 'overføring';
+  if (desc.match(/matpenger/i)) return 'overføring';
+  if (desc.match(/^nettbank$/i)) return 'overføring ukjent';
+  if (desc.match(/overføring/i)) return 'overføring';
+  if (desc.match(/from felles sparekonto/i)) return 'overføring';
 
   // tilbakeføring
   if (desc.match(/tilbakeføring/i)) return 'tilbakeføring';
@@ -53,6 +61,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/KARA IMPORT/i)) return 'dagligvarer';
   if (desc.match(/KIWI/i)) return 'dagligvarer';
   if (desc.match(/matvarer/i)) return 'dagligvarer';
+  if (desc.match(/mat/i)) return 'dagligvarer';
   if (desc.match(/nille/i)) return 'dagligvarer';
   if (desc.match(/PRIX/i)) return 'dagligvarer';
   if (desc.match(/REMA/i)) return 'dagligvarer';
@@ -107,6 +116,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/biltema/i)) return 'hus og hage';
   if (desc.match(/lovenskiold han/i)) return 'hus og hage';
   if (desc.match(/amundsen blomst/i)) return 'hus og hage';
+  if (desc.match(/amundsens bloms/i)) return 'hus og hage';
 
   // vedlikehold
   if (desc.match(/elektro.siver/i)) return 'vedlikehold';
@@ -159,10 +169,6 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/^nettbank$/i)) return expense == 180 ? 'lommepenger' : 'overføring';
   if (desc.match(/til.*annie therese videsjorden/i)) return 'lommepenger';
 
-  // Overføring
-  if (desc.match(/penger til kollektiv/i)) return 'overføring';
-  if (desc.match(/småting kjøpt/i)) return 'overføring';
-
   // kiosk eller drivstoff
   if (desc.match(/yx sande/i)) return expense > 300 ? 'drivstoff' : 'kiosk';
   if (desc.match(/circle k/i)) return expense > 300 ? 'drivstoff' : 'kiosk';
@@ -197,6 +203,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/til.*tord fredrik brinch malt/i)) return 'gaver';
   if (desc.match(/til.*jenny/i)) return 'gaver';
   if (desc.match(/til.*lars ivar næss/i)) return 'gaver';
+  if (desc.match(/til.*bård enok singstad/i)) return 'gaver';
   if (desc.match(/til.*anne ånstad/i)) return 'gaver';
   if (desc.match(/til.*jens gislason/i)) return 'gaver';
   if (desc.match(/til.*anders fredrik ulsaker malt/i)) return 'gaver';
@@ -315,6 +322,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/^lån$/i)) return 'boliglån';
   if (desc.match(/SKANDIABANKEN/i)) return 'boliglån';
   if (desc.match(/til:97108091812/i)) return 'boliglån';
+  if (desc.match(/Til:97138810511/i)) return 'boliglån';
 
   // ved
   if (desc.match(/vedhandel/i)) return 'ved';
@@ -353,12 +361,6 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/frisør/i)) return 'frisør';
   if (desc.match(/sayso/i)) return 'frisør';
   if (desc.match(/Nohs Oslo/i)) return 'frisør';
-
-  // Overføring
-  if (desc.match(/from .* to .*/i)) return 'overføring';
-  if (desc.match(/matpenger/i)) return 'overføring';
-  if (desc.match(/^nettbank$/i)) return 'overføring ukjent';
-  if (desc.match(/overføring/i)) return 'overføring';
 
   // husholdning
   if (desc.match(/husholdning/i)) return 'husholdning';
