@@ -91,6 +91,8 @@ function category(desc: string, expense: number = 0, income: number = 0): string
 
   // klær og sko
   if (desc.match(/xxl alna/i)) return 'klær og sko';
+  if (desc.match(/dressmann/i)) return 'klær og sko';
+  if (desc.match(/boys tveita/i)) return 'klær og sko';
   if (desc.match(/klarna.*xxl no/i)) return 'klær og sko';
   if (desc.match(/www.stormberg.com/i)) return 'klær og sko';
   if (desc.match(/lindex/i)) return 'klær og sko';
@@ -218,6 +220,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/KICKS 616 TVEIT TVETENVEIEN/i)) return 'gaver';
   if (desc.match(/BLOMSTERSENTRET HEGDEHAUGSVE/i)) return 'gaver';
   if (desc.match(/skapemer/i)) return 'gaver';
+  if (desc.match(/olsens enke san/i)) return 'gaver';
 
   // tannlege
   if (desc.match(/vitalmolar/i)) return 'tannlege';
