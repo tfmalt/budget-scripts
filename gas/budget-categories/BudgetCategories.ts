@@ -103,6 +103,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/paypal.*zaful/i)) return 'klær og sko';
   if (desc.match(/paypal.*zalando/i)) return 'klær og sko';
   if (desc.match(/paypal.*princesspol/i)) return 'klær og sko';
+  if (desc.match(/paypal.*revoltenter/i)) return 'klær og sko';
   if (desc.match(/paypal.*bodymod/i)) return 'klær og sko';
   if (desc.match(/Nettgiro til.*Federal Expre Betalt.*22.12.20/)) return 'klær og sko';
   if (desc.match(/b\-young/i)) return 'klær og sko';
