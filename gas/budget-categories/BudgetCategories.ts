@@ -221,7 +221,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/KICKS 616 TVEIT TVETENVEIEN/i)) return 'gaver';
   if (desc.match(/BLOMSTERSENTRET HEGDEHAUGSVE/i)) return 'gaver';
   if (desc.match(/skapemer/i)) return 'gaver';
-  if (desc.match(/olsens enke san/i)) return 'gaver';
+  // if (desc.match(/olsens enke san/i)) return 'gaver';
 
   // tannlege
   if (desc.match(/vitalmolar/i)) return 'tannlege';
@@ -281,6 +281,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
 
   // hytte
   if (desc.match(/obs bygg digernes/i)) return 'hytte';
+  if (desc.match(/olsens enke san/i)) return 'hytte';
 
   // ferie
   if (desc.match(/ferie/i)) return 'ferie';
