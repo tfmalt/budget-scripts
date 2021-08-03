@@ -12,13 +12,27 @@ function updateTransactionsCurrentSheet(): void {
   const year: number = parseInt(names[1]);
 
   const from: string = new Date(year, months.indexOf(mon), 1, 2).toISOString().split('T')[0];
+
+  const today: Date = new Date();
+  // get short month name
+  const tMon = months[today.getMonth()];
+  const tYear = today.getFullYear();
+
+  console.log(`Update Transactions Current Sheet: month: ${mon}, year: ${year}`);
+  console.log(`Today: month: ${tMon}, year: ${tYear}`);
+
+  if (tMon === mon && tYear === year) {
+    console.log('Current month, skipping end date');
+    updateSheet(sheet, from);
+    return;
+  }
+
   const to: string =
     new Date(year, months.indexOf(mon) + 1, 0, 2) > new Date()
       ? new Date().toISOString().split('T')[0]
-      : new Date(year, months.indexOf(mon) + 1, 1, 2).toISOString().split('T')[0];
+      : new Date(year, months.indexOf(mon) + 1, 0, 2).toISOString().split('T')[0];
 
-  console.log(`Update Transactions Current Sheet: month: ${mon}, year: ${year}`);
-  console.log({ from }, { to });
+  console.log('Previous month:', { from }, { to });
 
   updateSheet(sheet, from, to);
 }
@@ -148,6 +162,13 @@ function removeInternalTransactions(items: Array<any>, from: string): Array<any>
   // row[1]: interestDate
   return items
     .filter((row) => new Date(row[0]) >= new Date(from))
+    .filter((row) => {
+      if (row[2] === 'Felles bufferkonto' && row[4] === 'OVFNETTB' && row[5].match(/overskudd/i)) {
+        console.log('washing:', row);
+        return false;
+      }
+      return true;
+    })
     .filter((row) => {
       for (let i = 0; i < items.length; i++) {
         if (row[0] === items[i][0] && row[5] === items[i][5] && row[6] === items[i][7] && row[7] === items[i][6]) {

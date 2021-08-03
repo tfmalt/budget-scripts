@@ -59,11 +59,10 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/EUROSPAR/i)) return 'dagligvarer';
   if (desc.match(/extra/i)) return 'dagligvarer';
   if (desc.match(/ICA SUPER/i)) return 'dagligvarer';
-  if (desc.match(/joker teisen/i)) return 'dagligvarer';
+  if (desc.match(/joker/i)) return 'dagligvarer';
   if (desc.match(/KARA IMPORT/i)) return 'dagligvarer';
   if (desc.match(/KIWI/i)) return 'dagligvarer';
   if (desc.match(/matvarer/i)) return 'dagligvarer';
-  if (desc.match(/mat/i)) return 'dagligvarer';
   if (desc.match(/nille/i)) return 'dagligvarer';
   if (desc.match(/PRIX/i)) return 'dagligvarer';
   if (desc.match(/REMA/i)) return 'dagligvarer';
@@ -107,6 +106,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/paypal.*princesspol/i)) return 'klær og sko';
   if (desc.match(/paypal.*revoltenter/i)) return 'klær og sko';
   if (desc.match(/paypal.*bodymod/i)) return 'klær og sko';
+  if (desc.match(/paypal.*shein com/i)) return 'klær og sko';
   if (desc.match(/Nettgiro til.*Federal Expre Betalt.*22.12.20/)) return 'klær og sko';
   if (desc.match(/b\-young/i)) return 'klær og sko';
 
@@ -178,9 +178,11 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   // kiosk eller drivstoff
   if (desc.match(/yx sande/i)) return expense > 300 ? 'drivstoff' : 'kiosk';
   if (desc.match(/circle k/i)) return expense > 300 ? 'drivstoff' : 'kiosk';
+  if (desc.match(/shell/i)) return expense > 300 ? 'drivstoff' : 'kiosk';
 
   // drivstoff
   if (desc.match(/diesel/i)) return 'drivstoff';
+  if (desc.match(/best ulvsvåg 55 best/i)) return 'drivstoff';
   if (desc.match(/automat 1/i)) return 'drivstoff';
   if (desc.match(/UNO-X/i)) return 'drivstoff';
 
@@ -263,6 +265,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   // TV og Streaming
   if (desc.match(/paypal.*crunchyroll/i)) return 'tv og streaming';
   if (desc.match(/NETFLIX/i)) return 'tv og streaming';
+  if (desc.match(/www.f1.com/i)) return 'tv og streaming';
   if (desc.match(/hbo.nordic/i)) return 'tv og streaming';
   if (desc.match(/amazon video/i)) return 'tv og streaming';
   if (desc.match(/NRK LISENS/i)) return 'tv og streaming';
@@ -282,10 +285,25 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   // hytte
   if (desc.match(/obs bygg digernes/i)) return 'hytte';
   if (desc.match(/olsens enke san/i)) return 'hytte';
+  if (desc.match(/spar kjøp diger/i)) return 'hytte';
 
   // ferie
   if (desc.match(/ferie/i)) return 'ferie';
   if (desc.match(/EIDE HANDEL FJORDVEIEN/i)) return 'ferie';
+  if (desc.match(/saama golden kebab/i)) return 'ferie';
+  if (desc.match(/boreal sjø as/i)) return 'ferie';
+  if (desc.match(/ellingsgården/i)) return 'ferie';
+  if (desc.match(/balsfjord arb/i)) return 'ferie';
+  if (desc.match(/fjord1 ferdamat/i)) return 'ferie';
+  if (desc.match(/storforsen camping/i)) return 'ferie';
+  if (desc.match(/tysfjord turistsenter/i)) return 'ferie';
+  if (desc.match(/ellingsgaarden/i)) return 'ferie';
+  if (desc.match(/nidaros domkirk/i)) return 'ferie';
+  if (desc.match(/mcd 009 trondhe/i)) return 'ferie';
+  if (desc.match(/revelveien 1 mo i rana/i)) return 'ferie';
+  if (desc.match(/svenningdal camping/i)) return 'ferie';
+  if (desc.match(/ulvsvaag gjestgiveri/i)) return 'ferie';
+  if (desc.match(/thn catering kirkegata/i)) return 'ferie';
 
   // diverse
   if (desc.match(/til.*kristine westby/i)) return 'diverse';
@@ -413,6 +431,9 @@ function category(desc: string, expense: number = 0, income: number = 0): string
 
   if (desc.match(/santander consu/i)) return 'kredittkort';
   if (desc.match(/ruter/i)) return 'kollektivtransport';
+
+  // Generelle kategorier som må være nederst
+  if (desc.match(/mat/i)) return 'dagligvarer';
 
   return '';
 }
