@@ -24,15 +24,18 @@ function updateTransactionsCurrentSheet(): void {
 }
 
 /**
- * Fetches the latest bank transactions
+ * Fetches the latest bank transactions. Run from trigger.
  */
 function updateTransactions(): void {
   const sheet: GoogleAppsScript.Spreadsheet.Sheet = getOrCreateSheet();
   const now: Date = new Date();
-  const to: string = now.toISOString().split('T')[0];
+  // To is reduntant for current month. We always want the latest.
+  // const to: string = now.toISOString().split('T')[0];
+
+  // from is the beginning of the current month.
   const from: string = now.toISOString().split('-').slice(0, 2).concat(['01']).join('-');
 
-  updateSheet(sheet, from, to);
+  updateSheet(sheet, from);
 }
 
 /**
@@ -93,8 +96,13 @@ interface TransactionsObject {
  * @param {string} to - ISO Date String
  * @return {TransactionsObject}
  */
-function fetchTransactions(from: string, to: string): TransactionsObject | undefined {
-  const res: GoogleAppsScript.URL_Fetch.HTTPResponse = UrlFetchApp.fetch(`${config.url}?from=${from}&to=${to}`, {
+function fetchTransactions(from: string, to?: string): TransactionsObject | undefined {
+  let url = `${config.url}?from=${from}`;
+  if (typeof to !== 'undefined') {
+    url = `${url}&to=${to}`;
+  }
+
+  const res: GoogleAppsScript.URL_Fetch.HTTPResponse = UrlFetchApp.fetch(url, {
     headers: {
       Authorization: `Bearer ${config.apikey}`,
     },
@@ -157,7 +165,7 @@ function removeInternalTransactions(items: Array<any>, from: string): Array<any>
 /**
  * Fetches transactions from webservice and updates the sheet with new data
  */
-function updateSheet(sheet: GoogleAppsScript.Spreadsheet.Sheet, from: string, to: string): void {
+function updateSheet(sheet: GoogleAppsScript.Spreadsheet.Sheet, from: string, to?: string): void {
   console.log('Got Sheet:', sheet.getName());
 
   // Always update the title of the sheet
