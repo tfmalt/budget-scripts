@@ -340,6 +340,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/filantropi/i)) return 'filantropi';
   if (desc.match(/SOS-BARNEBYER/i)) return 'filantropi';
   if (desc.match(/vipps.bidra/i)) return 'filantropi';
+  if (desc.match(/vipps.spleis/i)) return 'filantropi';
   if (desc.match(/bidra\.no/i)) return 'filantropi';
 
   // Thomas

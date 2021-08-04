@@ -214,6 +214,10 @@ function updateSheet(sheet: GoogleAppsScript.Spreadsheet.Sheet, from: string, to
   }
 
   // Set last updated string
+  if (typeof to === 'undefined') {
+    to = 'now';
+  }
+
   sheet
     .getRange(2, 2)
     .setValue(
