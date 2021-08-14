@@ -116,14 +116,13 @@ function updateSheet(sheet: GoogleAppsScript.Spreadsheet.Sheet, from: string, to
   // Always update the title of the sheet
   sheet.getRange(3, 2).setValue(sheet.getName());
 
-  const data: TransactionsObject | undefined = fetchTransactions(from, to);
+  const data = fetchTransactions(from, to);
   if (typeof data === 'undefined') return;
-  // console.log('updateSheet data:', data);
 
   const items: any[] = data.items;
   const washed: any[] = removeInternalTransactions(items, from);
 
-  console.log('washed data:', washed);
+  // console.log('washed data:', washed);
 
   console.log(
     `status: ${data.status}, name: ${data.name}, version: ${data.version}, rows: ${data.items.length}, washed: ${washed.length}`
@@ -137,6 +136,23 @@ function updateSheet(sheet: GoogleAppsScript.Spreadsheet.Sheet, from: string, to
     sheet.getRange(9, 2, rows, cols).setValues(washed.reverse());
   }
 
+  setLastUpdated(sheet, data, from, to);
+}
+
+/**
+ * Set last updated string
+ *
+ * @param {GoogleAppsScript.Spreadsheet.Sheet} sheet
+ * @param {TransactionsObject} data
+ * @param {string} from
+ * @param {string} [to]
+ */
+function setLastUpdated(
+  sheet: GoogleAppsScript.Spreadsheet.Sheet,
+  data: TransactionsObject,
+  from: string,
+  to?: string
+): void {
   // Set last updated string
   if (typeof to === 'undefined') {
     to = 'now';
@@ -205,31 +221,23 @@ function fetchTransactions(from: string, to?: string): TransactionsObject | unde
  *
  * @param {Array<any>} items - The list of transactions
  * @param {string} from - The datestring.
- * @returns {Array<Transaction>}
+ * @returns {Array<any>}
  */
 function removeInternalTransactions(items: any[], from: string): any[] {
-  // console.log('inside removeInternalTransactions:', from);
-  // row[0]: accountingDate
-  // row[1]: interestDate
+  // row: [accountingDate, intersetDate, accountName, null, transactionType, text, expense, income, null, category]
   return items
     .filter((row) => new Date(row[0]) >= new Date(from))
-    .filter((row) => {
-      if (row[2] === 'Felles bufferkonto' && row[4] === 'OVFNETTB' && row[5].match(/overskudd/i)) {
-        // console.log('washing:', row);
-        return false;
-      }
-      return true;
-    })
+    .filter((row) =>
+      row[2] === 'Felles bufferkonto' && row[4] === 'OVFNETTB' && row[5].match(/overskudd/i) ? false : true
+    )
     .filter((row) => {
       for (let i = 0; i < items.length; i++) {
         if (row[0] === items[i][0] && row[5] === items[i][5] && row[6] === items[i][7] && row[7] === items[i][6]) {
-          // console.log('washing:', row);
           // The row is removed from the returned array
           return false;
         }
       }
       // The row is included in the returned array
-      // console.log('keeping:', row);
       return true;
     });
 }
