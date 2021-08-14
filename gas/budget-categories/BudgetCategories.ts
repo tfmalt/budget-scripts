@@ -87,6 +87,11 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/paypal.*washpost/i)) return 'aviser';
   if (desc.match(/paypal.*ny.times/i)) return 'aviser';
   if (desc.match(/paypal.*guardiannew/i)) return 'aviser';
+  if (desc.match(/vipps.*dagens naeringsliv/i)) return 'aviser';
+
+  // kollektivtransport
+  if (desc.match(/ruter/i)) return 'kollektivtransport';
+  if (desc.match(/ruter/i)) return 'kollektivtransport';
 
   // klær og sko
   if (desc.match(/xxl alna/i)) return 'klær og sko';
@@ -135,6 +140,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/cotrau groomin/i)) return 'hund';
   if (desc.match(/iZ.*Cotrau Grooming/i)) return 'hund';
   if (desc.match(/DOGGYSTYLE/i)) return 'hund';
+  if (desc.match(/faste utgifter hund/i)) return 'hund';
 
   // kiosk
   if (desc.match(/7-?eleven/i)) return 'kiosk';
@@ -165,6 +171,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/parkering/i)) return 'parkering';
   if (desc.match(/apcoa flow/i)) return 'parkering';
   if (desc.match(/paypal.*easypark/i)) return 'parkering';
+  if (desc.match(/arvato finance/i)) return 'parkering';
 
   // lommepenger
   if (desc.match(/penger til sjampo/i)) return 'lommepenger';
@@ -241,6 +248,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/pub/i)) return 'restaurant';
   if (desc.match(/tijuana/i)) return 'restaurant';
   if (desc.match(/chopstix/i)) return 'restaurant';
+  if (desc.match(/dominos/i)) return 'restaurant';
 
   // utlegg på restaurant
   if (desc.match(/SUDOEST RESTAURA/i)) return expense > 4000 ? 'utlegg' : 'restaurant';
@@ -257,6 +265,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/flybuss/i)) return 'reise';
   if (desc.match(/caffe ritazza/i)) return 'reise';
   if (desc.match(/vy app/i)) return 'reise';
+  if (desc.match(/vy\.no/i)) return 'reise';
   if (desc.match(/for goahead/i)) return 'reise';
   if (desc.match(/scandinavian ai/i)) return 'reise';
   if (desc.match(/sas airline/i)) return 'reise';
@@ -275,6 +284,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/Hafslund/i)) return 'elektrisitet';
   if (desc.match(/FORTUM TELLIER/i)) return 'elektrisitet';
   if (desc.match(/Tibber/i)) return 'elektrisitet';
+  if (desc.match(/faste utgifter elektrisitet/i)) return 'elektrisitet';
 
   // bankgebyr
   if (desc.match(/kostnader sms/i)) return 'bankgebyr';
@@ -333,7 +343,8 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/barnetrygd/i)) return 'barnetrygd';
 
   // aktivitetsskole - skole
-  if (desc.match(/oslo kommune/i)) return 'aktivitetsskole';
+  if (desc.match(/oslo kommune/i)) return 'skole';
+  if (desc.match(/skoleutstyr/i)) return 'skole';
 
   // Filantropi
   if (desc.match(/stiftelsen sos/i)) return 'filantropi';
@@ -373,6 +384,8 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/biltur/i)) return 'bil';
   if (desc.match(/bilvask/i)) return 'bilservice';
   if (desc.match(/birger n haug/i)) return 'bilservice';
+  if (desc.match(/faste bilutgifter/i)) return 'bil';
+  if (desc.match(/faste utgifter bil/i)) return 'bil';
 
   // bomringen
   if (desc.match(/Fjellinjen/i)) return 'bomringen';
@@ -407,6 +420,12 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   // Datautstyr
   if (desc.match(/komplett/i)) return 'datautstyr';
 
+  // kino
+  if (desc.match(/kino/i)) return 'kino';
+
+  // teater
+  if (desc.match(/ebillett kultur/i)) return 'teater';
+
   // ====================================================================
   // Usortert herfra
 
@@ -416,7 +435,6 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/julekalender/i)) return 'julekalender';
 
   if (desc.match(/kantinekortet/i)) return 'lunsjpenger';
-  if (desc.match(/kino/i)) return 'kino';
 
   if (desc.match(/kirsti/i)) return 'kirsti';
   if (desc.match(/kredittkort/i)) return 'kredittkort';
@@ -431,7 +449,6 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/RENTER/i)) return 'renter';
 
   if (desc.match(/santander consu/i)) return 'kredittkort';
-  if (desc.match(/ruter/i)) return 'kollektivtransport';
 
   // Generelle kategorier som må være nederst
   if (desc.match(/mat/i)) return 'dagligvarer';
