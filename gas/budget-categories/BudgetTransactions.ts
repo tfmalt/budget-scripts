@@ -1,5 +1,25 @@
+/**
+ * Type definition for the returned object from fetchTransactions
+ */
+interface Transaction {
+  accountingDate: string;
+  interestDate: string;
+  accountName: string;
+  transactionType: string;
+  text: string;
+  amount: number;
+}
+
+interface TransactionsObject {
+  items: Array<any>;
+  name: string;
+  version: string;
+  status: number;
+}
+
 type Month = 'Jan' | 'Feb' | 'Mar' | 'Apr' | 'May' | 'Jun' | 'Jul' | 'Aug' | 'Sep' | 'Oct' | 'Nov' | 'Dec';
 type SheetNameList = [Month, string];
+
 const months: Array<Month> = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 /**
@@ -86,23 +106,6 @@ function getOrCreateSheet(): GoogleAppsScript.Spreadsheet.Sheet {
 
   return sheet.copyTo(ss).setName(sName);
 }
-
-interface Transaction {
-  accountingDate: string;
-  interestDate: string;
-  accountName: string;
-  transactionType: string;
-  text: string;
-  amount: number;
-}
-
-interface TransactionsObject {
-  items: Array<Transaction>;
-  name: string;
-  version: string;
-  status: number;
-}
-
 /**
  * Fetch transaction from web service.
  *
@@ -129,8 +132,8 @@ function fetchTransactions(from: string, to?: string): TransactionsObject | unde
   }
 
   const data: TransactionsObject = JSON.parse(res.getContentText());
-  const items: Array<any> = data.items.map((i) => {
-    const r: Array<any> = [
+  const items: any[] = data.items.map((i) => {
+    const r = [
       i.accountingDate.split('T')[0],
       i.interestDate.split('T')[0],
       i.accountName,
@@ -141,6 +144,8 @@ function fetchTransactions(from: string, to?: string): TransactionsObject | unde
 
     const amount: Array<number | null> = i.amount < 0 ? [i.amount * -1, null] : [null, i.amount];
     r.push(...amount);
+    r.push(null);
+    r.push(category(r[5], r[6], r[7]));
 
     return r;
   });
@@ -156,15 +161,15 @@ function fetchTransactions(from: string, to?: string): TransactionsObject | unde
  * @param {string} from - The datestring.
  * @returns {Array<Transaction>}
  */
-function removeInternalTransactions(items: Array<any>, from: string): Array<any> {
-  console.log('inside removeInternalTransactions:', from);
+function removeInternalTransactions(items: any[], from: string): any[] {
+  // console.log('inside removeInternalTransactions:', from);
   // row[0]: accountingDate
   // row[1]: interestDate
   return items
     .filter((row) => new Date(row[0]) >= new Date(from))
     .filter((row) => {
       if (row[2] === 'Felles bufferkonto' && row[4] === 'OVFNETTB' && row[5].match(/overskudd/i)) {
-        console.log('washing:', row);
+        // console.log('washing:', row);
         return false;
       }
       return true;
@@ -172,13 +177,13 @@ function removeInternalTransactions(items: Array<any>, from: string): Array<any>
     .filter((row) => {
       for (let i = 0; i < items.length; i++) {
         if (row[0] === items[i][0] && row[5] === items[i][5] && row[6] === items[i][7] && row[7] === items[i][6]) {
-          console.log('washing:', row);
+          // console.log('washing:', row);
           // The row is removed from the returned array
           return false;
         }
       }
       // The row is included in the returned array
-      console.log('keeping:', row);
+      // console.log('keeping:', row);
       return true;
     });
 }
@@ -193,11 +198,11 @@ function updateSheet(sheet: GoogleAppsScript.Spreadsheet.Sheet, from: string, to
   sheet.getRange(3, 2).setValue(sheet.getName());
 
   const data: TransactionsObject | undefined = fetchTransactions(from, to);
-  console.log('updateSheet data:', data);
   if (typeof data === 'undefined') return;
+  // console.log('updateSheet data:', data);
 
-  const items: Array<any> = data.items;
-  const washed: Array<any> = removeInternalTransactions(items, from);
+  const items: any[] = data.items;
+  const washed: any[] = removeInternalTransactions(items, from);
 
   console.log('washed data:', washed);
 
