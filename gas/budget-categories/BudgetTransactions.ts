@@ -106,6 +106,52 @@ function getOrCreateSheet(): GoogleAppsScript.Spreadsheet.Sheet {
 
   return sheet.copyTo(ss).setName(sName);
 }
+
+/**
+ * Fetches transactions from webservice and updates the sheet with new data
+ */
+function updateSheet(sheet: GoogleAppsScript.Spreadsheet.Sheet, from: string, to?: string): void {
+  console.log('Got Sheet:', sheet.getName());
+
+  // Always update the title of the sheet
+  sheet.getRange(3, 2).setValue(sheet.getName());
+
+  const data: TransactionsObject | undefined = fetchTransactions(from, to);
+  if (typeof data === 'undefined') return;
+  // console.log('updateSheet data:', data);
+
+  const items: any[] = data.items;
+  const washed: any[] = removeInternalTransactions(items, from);
+
+  console.log('washed data:', washed);
+
+  console.log(
+    `status: ${data.status}, name: ${data.name}, version: ${data.version}, rows: ${data.items.length}, washed: ${washed.length}`
+  );
+
+  // Clear the existing data if any and set the new data.
+  if (washed.length > 0) {
+    const rows = washed.length || 0;
+    const cols = washed.length > 0 ? washed[0].length : 0;
+    sheet.getRange(9, 2, sheet.getLastRow(), cols).clear({ contentsOnly: true });
+    sheet.getRange(9, 2, rows, cols).setValues(washed.reverse());
+  }
+
+  // Set last updated string
+  if (typeof to === 'undefined') {
+    to = 'now';
+  }
+
+  sheet
+    .getRange(2, 2)
+    .setValue(
+      `Last Updated: ${new Date().toLocaleString('se')}, status: ${data.status}, version: ${
+        data.version
+      }, range: ${from} - ${to}`
+    );
+  sheet.getRange(1, 2).setValue(new Date(from));
+}
+
 /**
  * Fetch transaction from web service.
  *
@@ -186,49 +232,4 @@ function removeInternalTransactions(items: any[], from: string): any[] {
       // console.log('keeping:', row);
       return true;
     });
-}
-
-/**
- * Fetches transactions from webservice and updates the sheet with new data
- */
-function updateSheet(sheet: GoogleAppsScript.Spreadsheet.Sheet, from: string, to?: string): void {
-  console.log('Got Sheet:', sheet.getName());
-
-  // Always update the title of the sheet
-  sheet.getRange(3, 2).setValue(sheet.getName());
-
-  const data: TransactionsObject | undefined = fetchTransactions(from, to);
-  if (typeof data === 'undefined') return;
-  // console.log('updateSheet data:', data);
-
-  const items: any[] = data.items;
-  const washed: any[] = removeInternalTransactions(items, from);
-
-  console.log('washed data:', washed);
-
-  console.log(
-    `status: ${data.status}, name: ${data.name}, version: ${data.version}, rows: ${data.items.length}, washed: ${washed.length}`
-  );
-
-  // Clear the existing data if any and set the new data.
-  if (washed.length > 0) {
-    const rows = washed.length || 0;
-    const cols = washed.length > 0 ? washed[0].length : 0;
-    sheet.getRange(9, 2, sheet.getLastRow(), cols).clear({ contentsOnly: true });
-    sheet.getRange(9, 2, rows, cols).setValues(washed.reverse());
-  }
-
-  // Set last updated string
-  if (typeof to === 'undefined') {
-    to = 'now';
-  }
-
-  sheet
-    .getRange(2, 2)
-    .setValue(
-      `Last Updated: ${new Date().toLocaleString('se')}, status: ${data.status}, version: ${
-        data.version
-      }, range: ${from} - ${to}`
-    );
-  sheet.getRange(1, 2).setValue(new Date(from));
 }
