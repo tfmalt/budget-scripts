@@ -319,6 +319,8 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/til.*kristine westby/i)) return 'diverse';
   if (desc.match(/vipps.*posten.*norge/i)) return 'diverse';
   if (desc.match(/7125 09.12 NOK 15.00 POSTEN/i)) return 'diverse';
+  if (desc.match(/grønland politi/i)) return 'diverse';
+  if (desc.match(/skatteetaten/i)) return 'diverse';
 
   // konfirmasjon
   if (desc.match(/HUMAN ETISK FOR/i)) return 'konfirmasjon';
