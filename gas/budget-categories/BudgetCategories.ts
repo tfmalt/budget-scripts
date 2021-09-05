@@ -181,6 +181,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/overført til annen konto/i)) return expense == 180 ? 'lommepenger' : 'overføring';
   if (desc.match(/^nettbank$/i)) return expense == 180 ? 'lommepenger' : 'overføring';
   if (desc.match(/til.*annie therese videsjorden/i)) return 'lommepenger';
+  if (desc.match(/vipps.*martha elin anstad/i)) return 'lommepenger';
 
   // kiosk eller drivstoff
   if (desc.match(/yx sande/i)) return expense > 300 ? 'drivstoff' : 'kiosk';
@@ -330,7 +331,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   // kontanter
   if (desc.match(/kontanter/i)) return 'kontanter';
   if (desc.match(/NORDEA TVEITA LOBBY/i)) return 'kontanter';
-  if (desc.match(/bank1 - Tveita/i)) return expense == 800 ? 'kontanter' : '';
+  if (desc.match(/bank1 - Tveita/i)) return expense >= 800 ? 'kontanter' : 'lommepenger';
 
   // drikkevarer
   if (desc.match(/VINMONOPO/i)) return 'drikkevarer';
