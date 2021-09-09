@@ -207,6 +207,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/PANDURO KARL JOHANS/i)) return 'hobby';
   if (desc.match(/kjell.*company/i)) return 'hobby';
   if (desc.match(/PAYPAL.*SFE/i)) return 'hobby';
+  if (desc.match(/STOFF OG STIL/i)) return 'hobby';
 
   // apper
   if (desc.match(/microsoft sto/i)) return 'apper';
