@@ -95,6 +95,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
 
   // klær og sko
   if (desc.match(/xxl alna/i)) return 'klær og sko';
+  if (desc.match(/XXL NOR 303 ALN/i)) return 'klær og sko';
   if (desc.match(/dressmann/i)) return 'klær og sko';
   if (desc.match(/boys tveita/i)) return 'klær og sko';
   if (desc.match(/klarna.*xxl no/i)) return 'klær og sko';
@@ -273,6 +274,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/scandinavian ai/i)) return 'reise';
   if (desc.match(/sas airline/i)) return 'reise';
   if (desc.match(/flytoget/i)) return 'reise';
+  if (desc.match(/the thief/i)) return 'reise';
 
   // TV og Streaming
   if (desc.match(/paypal.*crunchyroll/i)) return 'tv og streaming';
