@@ -434,6 +434,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
 
   // kino
   if (desc.match(/kino/i)) return 'kino';
+  if (desc.match(/Silje Isabelle Cocozza/i) && expense == 140) return 'kino';
 
   // teater
   if (desc.match(/ebillett kultur/i)) return 'teater';
