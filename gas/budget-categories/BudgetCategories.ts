@@ -253,6 +253,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/tijuana/i)) return 'restaurant';
   if (desc.match(/chopstix/i)) return 'restaurant';
   if (desc.match(/dominos/i)) return 'restaurant';
+  if (desc.match(/appless.no/i)) return 'restaurant';
 
   // utlegg på restaurant
   if (desc.match(/SUDOEST RESTAURA/i)) return expense > 4000 ? 'utlegg' : 'restaurant';
@@ -353,6 +354,8 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   // aktivitetsskole - skole
   if (desc.match(/oslo kommune/i)) return 'skole';
   if (desc.match(/skoleutstyr/i)) return 'skole';
+  if (desc.match(/Lasse Feyling-Gruber/i)) return 'skole';
+  if (desc.match(/Leif Inge Dahl Thom/i)) return 'skole';
 
   // Filantropi
   if (desc.match(/stiftelsen sos/i)) return 'filantropi';
@@ -366,6 +369,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/thomas/i)) return 'thomas';
   if (desc.match(/prince lunchbar/i)) return 'lunch thomas';
   if (desc.match(/ram thai/i)) return 'lunch thomas';
+  if (desc.match(/EUREST 3393 ENTRA SUNDTKV/i)) return 'lunch thomas';
 
   // boliglån
   if (desc.match(/^lån$/i)) return 'boliglån';
