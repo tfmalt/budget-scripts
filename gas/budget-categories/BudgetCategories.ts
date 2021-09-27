@@ -285,6 +285,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/amazon video/i)) return 'tv og streaming';
   if (desc.match(/NRK LISENS/i)) return 'tv og streaming';
   if (desc.match(/paypal.*disneyplus/i)) return 'tv og streaming';
+  if (desc.match(/PAYPAL.*WALTDISNEYC/i)) return 'tv og streaming';
   if (desc.match(/usd.*audible/i)) return 'tv og streaming';
 
   // Elektrisitet
