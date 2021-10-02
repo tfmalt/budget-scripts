@@ -385,6 +385,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/Spareavtale/i)) return 'sparing';
   if (desc.match(/Til aksjedepot/i)) return 'sparing';
   if (desc.match(/verdipapirhandel/i)) return 'sparing';
+  if (desc.match(/til sparing/i)) return 'sparing';
 
   // Regning ukjent
   if (desc.match(/^avtalegiro$/i)) return 'regning ukjent';
