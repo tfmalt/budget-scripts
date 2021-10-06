@@ -225,7 +225,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/til.*anne ånstad/i)) return 'gaver';
   if (desc.match(/til.*jens gislason/i)) return 'gaver';
   if (desc.match(/til.*anders fredrik ulsaker malt/i)) return 'gaver';
-  if (desc.match(/til.*martha elin ånstad malt/i)) return 'gaver';
+  if (desc.match(/til.*martha elin ånstad malt/i)) return expense >= 1000 ? 'gaver' : 'lommepenger';
   if (desc.match(/vipps.*brikt kare dahl/i)) return 'gaver';
   if (desc.match(/mester gr.nn/i)) return 'gaver';
   if (desc.match(/japan photo/i)) return 'gaver';
