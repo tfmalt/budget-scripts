@@ -240,5 +240,5 @@ function removeInternalTransactions(items: any[], from: string): any[] {
       // The row is included in the returned array
       return true;
     })
-    .filter((row) => row[9] === 'sparing');
+    .filter((row) => row[9] !== 'sparing');
 }
