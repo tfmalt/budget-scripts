@@ -115,6 +115,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/paypal.*shein com/i)) return 'klær og sko';
   if (desc.match(/Nettgiro til.*Federal Expre Betalt.*22.12.20/)) return 'klær og sko';
   if (desc.match(/b\-young/i)) return 'klær og sko';
+  if (desc.match(/Til.*Anna Volagura/i)) return 'klær og sko';
 
   // Hus og hage - etc
   if (desc.match(/plantasjen/i)) return 'hus og hage';
@@ -128,6 +129,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/lovenskiold han/i)) return 'hus og hage';
   if (desc.match(/amundsen blomst/i)) return 'hus og hage';
   if (desc.match(/amundsens bloms/i)) return 'hus og hage';
+  if (desc.match(/TILBORDS TVEITA ANNA ROGSTAD OSLO/i)) return 'hus og hage';
 
   // vedlikehold
   if (desc.match(/elektro.siver/i)) return 'vedlikehold';
