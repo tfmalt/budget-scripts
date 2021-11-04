@@ -335,6 +335,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
 
   // konfirmasjon
   if (desc.match(/HUMAN ETISK FOR/i)) return 'konfirmasjon';
+  if (desc.match(/cakeiteasy.no/i)) return 'konfirmasjon';
 
   // kontanter
   if (desc.match(/kontanter/i)) return 'kontanter';
@@ -372,6 +373,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   // Thomas
   if (desc.match(/thomas/i)) return 'thomas';
   if (desc.match(/prince lunchbar/i)) return 'lunch thomas';
+  if (desc.match(/backstube gronland/i)) return 'lunch thomas';
   if (desc.match(/ram thai/i)) return 'lunch thomas';
   if (desc.match(/EUREST 3393 ENTRA SUNDTKV/i)) return 'lunch thomas';
 
