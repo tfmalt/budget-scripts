@@ -38,6 +38,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (income > 1 && !desc.match(/thomas/i)) return 'tilbakeføring';
 
   // utlegg
+  if (desc.match(/stockholm fisk/i)) return 'utlegg';
 
   // julegaver
   if (desc.match(/julepresang/i)) return 'julegaver';
@@ -154,6 +155,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/on the track/i)) return 'kiosk';
   if (desc.match(/DRONNINGVEIEN S/i)) return 'kiosk';
   if (desc.match(/Anders Rønning Dahlen/i)) return 'kiosk';
+  if (desc.match(/bit osl gardermoen/i)) return 'kiosk';
 
   // Internett
   if (desc.match(/paypal.*privateint/i)) return 'internett';
@@ -257,6 +259,8 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/chopstix/i)) return 'restaurant';
   if (desc.match(/dominos/i)) return 'restaurant';
   if (desc.match(/appless.no/i)) return 'restaurant';
+  if (desc.match(/o learys order at tab/i)) return 'restaurant';
+  if (desc.match(/scandic contine/i)) return 'restaurant';
 
   // utlegg på restaurant
   if (desc.match(/SUDOEST RESTAURA/i)) return expense > 4000 ? 'utlegg' : 'restaurant';
@@ -336,6 +340,8 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   // konfirmasjon
   if (desc.match(/HUMAN ETISK FOR/i)) return 'konfirmasjon';
   if (desc.match(/cakeiteasy.no/i)) return 'konfirmasjon';
+  if (desc.match(/heimen husflid/i)) return 'konfirmasjon';
+  if (desc.match(/konfirmasjon/i)) return 'konfirmasjon';
 
   // kontanter
   if (desc.match(/kontanter/i)) return 'kontanter';
@@ -418,6 +424,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
 
   // taxfree
   if (desc.match(/dutyfree/i)) return 'taxfree';
+  if (desc.match(/duty-free/i)) return 'taxfree';
 
   // Frisør
   if (desc.match(/frisør/i)) return 'frisør';
@@ -426,6 +433,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
 
   // husholdning
   if (desc.match(/husholdning/i)) return 'husholdning';
+  if (desc.match(/no1019/i)) return 'husholdning';
 
   // Forsikring
   if (desc.match(/IF SKADEFOR/i)) return 'forsikring';
