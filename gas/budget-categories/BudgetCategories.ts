@@ -119,6 +119,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/b\-young/i)) return 'klær og sko';
   if (desc.match(/Til.*Anna Volagura/i)) return 'klær og sko';
   if (desc.match(/tveita rens/i)) return 'klær og sko';
+  if (desc.match(/svea finans nuf/i)) return 'klær og sko';
 
   // Hus og hage - etc
   if (desc.match(/plantasjen/i)) return 'hus og hage';
