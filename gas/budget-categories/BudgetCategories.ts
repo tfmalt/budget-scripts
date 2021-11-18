@@ -39,6 +39,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
 
   // utlegg
   if (desc.match(/stockholm fisk/i)) return 'utlegg';
+  if (desc.match(/LAKRIDS BY JOHAN BUELOW/i)) return 'utlegg';
 
   // julegaver
   if (desc.match(/julepresang/i)) return 'julegaver';
@@ -260,7 +261,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/dominos/i)) return 'restaurant';
   if (desc.match(/appless.no/i)) return 'restaurant';
   if (desc.match(/o learys order at tab/i)) return 'restaurant';
-  if (desc.match(/scandic contine/i)) return 'restaurant';
+  if (desc.match(/scandic.*contine/i)) return 'restaurant';
 
   // utlegg på restaurant
   if (desc.match(/SUDOEST RESTAURA/i)) return expense > 4000 ? 'utlegg' : 'restaurant';
