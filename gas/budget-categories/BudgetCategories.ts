@@ -263,6 +263,8 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/appless.no/i)) return 'restaurant';
   if (desc.match(/o learys order at tab/i)) return 'restaurant';
   if (desc.match(/scandic.*contine/i)) return 'restaurant';
+  if (desc.match(/sundvolden hotel/i)) return 'restaurant';
+  if (desc.match(/ordr kurs/i)) return 'restaurant';
 
   // utlegg på restaurant
   if (desc.match(/SUDOEST RESTAURA/i)) return expense > 4000 ? 'utlegg' : 'restaurant';
