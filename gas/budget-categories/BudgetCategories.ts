@@ -134,6 +134,10 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/amundsen blomst/i)) return 'hus og hage';
   if (desc.match(/amundsens bloms/i)) return 'hus og hage';
   if (desc.match(/TILBORDS TVEITA ANNA ROGSTAD OSLO/i)) return 'hus og hage';
+  if (desc.match(/LAMPEHUSET/i)) return 'hus og hage';
+  if (desc.match(/husholdning/i)) return 'hus og hage';
+  if (desc.match(/no1019/i)) return 'hus og hage';
+  if (desc.match(/nets.*parkett/i)) return 'hus og hage';
 
   // vedlikehold
   if (desc.match(/elektro.siver/i)) return 'vedlikehold';
@@ -346,6 +350,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/cakeiteasy.no/i)) return 'konfirmasjon';
   if (desc.match(/heimen husflid/i)) return 'konfirmasjon';
   if (desc.match(/konfirmasjon/i)) return 'konfirmasjon';
+  if (desc.match(/kreativ cateeri/i)) return 'konfirmasjon';
 
   // kontanter
   if (desc.match(/kontanter/i)) return 'kontanter';
@@ -436,8 +441,6 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/Nohs Oslo/i)) return 'frisør';
 
   // husholdning
-  if (desc.match(/husholdning/i)) return 'husholdning';
-  if (desc.match(/no1019/i)) return 'husholdning';
 
   // Forsikring
   if (desc.match(/IF SKADEFOR/i)) return 'forsikring';
