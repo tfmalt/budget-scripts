@@ -308,6 +308,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/FORTUM TELLIER/i)) return 'elektrisitet';
   if (desc.match(/Tibber/i)) return 'elektrisitet';
   if (desc.match(/faste utgifter elektrisitet/i)) return 'elektrisitet';
+  if (desc.match(/elektrisitet/i)) return 'elektrisitet';
 
   // bankgebyr
   if (desc.match(/kostnader sms/i)) return 'bankgebyr';
