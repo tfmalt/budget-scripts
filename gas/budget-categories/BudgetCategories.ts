@@ -44,6 +44,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   // julegaver
   if (desc.match(/julepresang/i)) return 'julegaver';
   if (desc.match(/julegaver/i)) return 'julegaver';
+  if (desc.match(/02.12 NOK 1773.41 PAYPAL.*POLAROID/i)) return 'julegaver';
   if (desc.match(/7125 15.12 NOK 926.00 VIPPS.*KOMPLETT.NO/i)) return 'julegaver';
   if (desc.match(/21.12 Bank1 - Tveita.*0671 Oslo/i)) return expense == 1200 ? 'julegaver' : 'kontanter';
   if (desc.match(/22.12 Bank1 - Tveita.*0671 Oslo/i)) return expense == 400 ? 'julegaver' : 'kontanter';
@@ -126,6 +127,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/maxbo/i)) return 'hus og hage';
   if (desc.match(/jula triaden/i)) return 'hus og hage';
   if (desc.match(/jernia/i)) return 'hus og hage';
+  if (desc.match(/jysk/i)) return 'hus og hage';
   if (desc.match(/elkjoep/i)) return 'hus og hage';
   if (desc.match(/clas ohl/i)) return 'hus og hage';
   if (desc.match(/clasohlson/i)) return 'hus og hage';
@@ -188,6 +190,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   // lommepenger
   if (desc.match(/penger til sjampo/i)) return 'lommepenger';
   if (desc.match(/lommepenger/i)) return 'lommepenger';
+  if (desc.match(/tentamen/i)) return 'lommepenger';
   if (desc.match(/til.*martha brukskon/i)) return 'lommepenger';
   if (desc.match(/Nettgiro til: Malt Martha/i)) return 'lommepenger';
   if (desc.match(/overført til annen konto/i)) return expense == 180 ? 'lommepenger' : 'overføring';
