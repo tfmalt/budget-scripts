@@ -348,6 +348,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/7125 09.12 NOK 15.00 POSTEN/i)) return 'diverse';
   if (desc.match(/grønland politi/i)) return 'diverse';
   if (desc.match(/skatteetaten/i)) return 'diverse';
+  if (desc.match(/KLARNA BANK AB/i)) return 'diverse';
 
   // konfirmasjon
   if (desc.match(/HUMAN ETISK FOR/i)) return 'konfirmasjon';
@@ -413,7 +414,6 @@ function category(desc: string, expense: number = 0, income: number = 0): string
 
   // Regning ukjent
   if (desc.match(/^avtalegiro$/i)) return 'regning ukjent';
-  if (desc.match(/KLARNA BANK AB/i)) return 'regning ukjent';
   if (desc.match(/^efaktura nettbank/i)) return 'regning ukjent';
   if (desc.match(/NETTGIRO/i)) return 'regning ukjent';
 
