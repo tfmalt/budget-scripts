@@ -1,25 +1,3 @@
-/**
- * Type definition for the returned object from fetchTransactions
- */
-interface Transaction {
-  accountingDate: string;
-  interestDate: string;
-  accountName: string;
-  transactionType: string;
-  text: string;
-  amount: number;
-}
-
-interface TransactionsObject {
-  items: Array<any>;
-  name: string;
-  version: string;
-  status: number;
-}
-
-type Month = 'Jan' | 'Feb' | 'Mar' | 'Apr' | 'May' | 'Jun' | 'Jul' | 'Aug' | 'Sep' | 'Oct' | 'Nov' | 'Dec';
-type SheetNameList = [Month, string];
-
 const months: Array<Month> = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 /**
@@ -207,7 +185,7 @@ function fetchTransactions(from: string, to?: string): TransactionsObject | unde
     const amount: Array<number | null> = i.amount < 0 ? [i.amount * -1, null] : [null, i.amount];
     r.push(...amount);
     r.push(null);
-    r.push(category(r[5], r[6], r[7]));
+    r.push(category({ date: new Date(`${r[0]}T12:00`), desc: r[5], expense: r[6], income: r[7] }));
 
     return r;
   });

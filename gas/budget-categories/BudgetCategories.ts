@@ -7,10 +7,10 @@
  * @return array of values
  * @customfunction
  */
-function categories(data: Array<[string, number, number]>) {
-  // console.log(typeof data, data.length);
+/* function categories(data: Array<[string, number, number]>) {
+  console.log(typeof data, data.length);
   return data.map((r) => [category(r[0], r[1], r[2])]);
-}
+} */
 
 /**
  * Simple function to map descriptive fields automatically with categories.
@@ -19,8 +19,9 @@ function categories(data: Array<[string, number, number]>) {
  * @returns desc the correct category for the input desc
  * @customfunction
  */
-function category(desc: string, expense: number = 0, income: number = 0): string {
-  // console.log(`desc: ${desc}, exp: ${expense}, inc: ${income}`);
+function category(options: CategoryOptions): string {
+  const { date, desc, income, expense } = options;
+
   // Overføring
   if (desc.match(/penger til kollektiv/i)) return 'overføring';
   if (desc.match(/småting kjøpt/i)) return 'overføring';
@@ -42,12 +43,21 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/LAKRIDS BY JOHAN BUELOW/i)) return 'utlegg';
 
   // julegaver
+  if (desc.match(/gebyr vipps/i)) return 'julegaver';
   if (desc.match(/julepresang/i)) return 'julegaver';
   if (desc.match(/julegaver/i)) return 'julegaver';
   if (desc.match(/02.12 NOK 1773.41 PAYPAL.*POLAROID/i)) return 'julegaver';
   if (desc.match(/7125 15.12 NOK 926.00 VIPPS.*KOMPLETT.NO/i)) return 'julegaver';
   if (desc.match(/21.12 Bank1 - Tveita.*0671 Oslo/i)) return expense == 1200 ? 'julegaver' : 'kontanter';
   if (desc.match(/22.12 Bank1 - Tveita.*0671 Oslo/i)) return expense == 400 ? 'julegaver' : 'kontanter';
+  if (desc.match(/paypal.*paperlike/i)) return date.getMonth() == 11 ? 'julegaver' : 'datautstyr';
+  if (desc.match(/outland as grensen/i)) return date.getMonth() == 11 ? 'julegaver' : 'bøker';
+  if (desc.match(/norli/i)) return date.getMonth() == 11 ? 'julegaver' : 'bøker';
+  if (desc.match(/carl heftye/i)) return date.getMonth() == 11 ? 'julegaver' : 'dagligvarer';
+  if (desc.match(/NO1089 jernbanetorg/i)) return date.getMonth() == 11 ? 'julegaver' : 'hus og hage';
+  if (desc.match(/kitchn tveita/i)) return date.getMonth() == 11 ? 'julegaver' : 'hus og hage';
+  if (desc.match(/dhl express/i)) return date.getMonth() == 11 ? 'julegaver' : 'hus og hage';
+  if (desc.match(/body shop tveit/i)) return date.getMonth() == 11 ? 'julegaver' : 'hus og hage';
 
   // julefeiring
   if (desc.match(/Gjermund Sveen/i)) return 'julefeiring';
@@ -164,6 +174,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/DRONNINGVEIEN S/i)) return 'kiosk';
   if (desc.match(/Anders Rønning Dahlen/i)) return 'kiosk';
   if (desc.match(/bit osl gardermoen/i)) return 'kiosk';
+  if (desc.match(/mix tveita/i)) return 'kiosk';
 
   // Internett
   if (desc.match(/paypal.*privateint/i)) return 'internett';
@@ -226,20 +237,21 @@ function category(desc: string, expense: number = 0, income: number = 0): string
 
   // apper
   if (desc.match(/microsoft sto/i)) return 'apper';
-  if (desc.match(/apple\.com/i)) return expense > 600 ? 'apple' : 'apper';
+  if (desc.match(/apple\.com/i)) return expense > 600 ? (date.getMonth() == 11 ? 'julegaver' : 'apple') : 'apper';
   if (desc.match(/paypal.*evernote/i)) return 'apper';
   if (desc.match(/itunes/i)) return 'apper';
 
   // Gaver
-  if (desc.match(/til.*eira.*gunvor/i)) return 'gaver';
-  if (desc.match(/til.*tord fredrik brinch malt/i)) return 'gaver';
-  if (desc.match(/til.*jenny/i)) return 'gaver';
+  if (desc.match(/til.*eira.*gunvor/i)) return date.getMonth() == 11 ? 'julegaver' : 'gaver';
+  if (desc.match(/til.*tord fredrik brinch malt/i)) return date.getMonth() == 11 ? 'julegaver' : 'gaver';
+  if (desc.match(/til.*jenny/i)) return date.getMonth() == 11 ? 'julegaver' : 'gaver';
   if (desc.match(/til.*lars ivar næss/i)) return 'gaver';
   if (desc.match(/til.*bård enok singstad/i)) return 'gaver';
   if (desc.match(/til.*anne ånstad/i)) return 'gaver';
   if (desc.match(/til.*jens gislason/i)) return 'gaver';
   if (desc.match(/til.*anders fredrik ulsaker malt/i)) return 'gaver';
-  if (desc.match(/til.*martha elin ånstad malt/i)) return expense >= 1000 ? 'gaver' : 'lommepenger';
+  if (desc.match(/til.*martha elin ånstad malt/i))
+    return expense >= 1000 ? (date.getMonth() == 11 ? 'julegaver' : 'gaver') : 'lommepenger';
   if (desc.match(/vipps.*brikt kare dahl/i)) return 'gaver';
   if (desc.match(/mester gr.nn/i)) return 'gaver';
   if (desc.match(/japan photo/i)) return 'gaver';
@@ -248,6 +260,7 @@ function category(desc: string, expense: number = 0, income: number = 0): string
   if (desc.match(/KICKS 616 TVEIT TVETENVEIEN/i)) return 'gaver';
   if (desc.match(/BLOMSTERSENTRET HEGDEHAUGSVE/i)) return 'gaver';
   if (desc.match(/skapemer/i)) return 'gaver';
+  if (desc.match(/bjørklund tveit/i)) return date.getMonth() == 11 ? 'julegaver' : 'gaver';
   // if (desc.match(/olsens enke san/i)) return 'gaver';
 
   // tannlege
