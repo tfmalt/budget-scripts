@@ -187,6 +187,7 @@ function category(options: CategoryOptions): string {
 
   // Spill
   if (desc.match(/paypal.*steam games/i)) return 'spill';
+  if (desc.match(/paypal.*iracingcomm/i)) return 'spill';
   if (desc.match(/nintendo/i)) return 'spill';
   if (desc.match(/UBISOFT/i)) return 'spill';
   if (desc.match(/paypal.*playstation/i)) return 'spill';
@@ -234,6 +235,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/kjell.*company/i)) return 'hobby';
   if (desc.match(/PAYPAL.*SFE/i)) return 'hobby';
   if (desc.match(/STOFF OG STIL/i)) return 'hobby';
+  if (desc.match(/MINGZHANXIN/i)) return 'hobby';
 
   // apper
   if (desc.match(/microsoft sto/i)) return 'apper';
@@ -418,6 +420,7 @@ function category(options: CategoryOptions): string {
 
   // ved
   if (desc.match(/vedhandel/i)) return 'ved';
+  if (desc.match(/kortreistved/i)) return 'ved';
 
   // sparing
   if (desc.match(/Spareavtale/i)) return 'sparing';
