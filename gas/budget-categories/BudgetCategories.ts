@@ -89,6 +89,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/apotek/i)) return 'helse';
   if (desc.match(/gastro poliklinikk/i)) return 'helse';
   if (desc.match(/AHUS/i)) return 'helse';
+  if (desc.match(/DKS SKI/i)) return 'helse';
   if (desc.match(/NIMI.*AS/i)) return 'helse';
   if (desc.match(/STOROKLINIKKEN/i)) return 'helse';
   if (desc.match(/MAMMOGRAFIPROGR TRONDHEIMSVE/i)) return 'helse';
@@ -131,6 +132,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/Til.*Anna Volagura/i)) return 'klær og sko';
   if (desc.match(/tveita rens/i)) return 'klær og sko';
   if (desc.match(/svea finans nuf/i)) return 'klær og sko';
+  if (desc.match(/jk barber shop/i)) return 'klær og sko';
 
   // Hus og hage - etc
   if (desc.match(/plantasjen/i)) return 'hus og hage';
@@ -188,6 +190,7 @@ function category(options: CategoryOptions): string {
   // Spill
   if (desc.match(/paypal.*steam games/i)) return 'spill';
   if (desc.match(/paypal.*iracingcomm/i)) return 'spill';
+  if (desc.match(/paypal.*facebook/i)) return 'spill';
   if (desc.match(/nintendo/i)) return 'spill';
   if (desc.match(/UBISOFT/i)) return 'spill';
   if (desc.match(/paypal.*playstation/i)) return 'spill';
@@ -287,6 +290,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/scandic.*contine/i)) return 'restaurant';
   if (desc.match(/sundvolden hotel/i)) return 'restaurant';
   if (desc.match(/ordr kurs/i)) return 'restaurant';
+  if (desc.match(/cafe sjarm/i)) return 'restaurant';
 
   // utlegg på restaurant
   if (desc.match(/SUDOEST RESTAURA/i)) return expense > 4000 ? 'utlegg' : 'restaurant';
@@ -470,6 +474,7 @@ function category(options: CategoryOptions): string {
 
   // Taxi
   if (desc.match(/taxi/i)) return 'taxi';
+  if (desc.match(/christiania tax/i)) return 'taxi';
 
   // Datautstyr
   if (desc.match(/komplett/i)) return 'datautstyr';
