@@ -7,7 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Push to Google
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+      - run: 'npm install'
       - uses: daikikatsuragawa/clasp-action@v1.1.0
         with:
           accessToken: ${{ secrets.BUDGET_CATEGORIES_ACCESS_TOKEN }}
