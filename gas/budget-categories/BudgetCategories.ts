@@ -30,6 +30,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/^nettbank$/i)) return 'overføring ukjent';
   if (desc.match(/overføring/i)) return 'overføring';
   if (desc.match(/from felles sparekonto/i)) return 'overføring';
+  if (desc.match(/nettbank til: 9713.44.86531/i)) return 'overføring';
 
   // tilbakeføring
   if (desc.match(/tilbakeføring/i)) return 'tilbakeføring';
@@ -83,6 +84,8 @@ function category(options: CategoryOptions): string {
   if (desc.match(/sande meieri/i)) return 'dagligvarer';
   if (desc.match(/metro buga trygve lies/i)) return 'dagligvarer';
   if (desc.match(/manglerud frukt/i)) return 'dagligvarer';
+  if (desc.match(/w b samson/i)) return 'dagligvarer';
+  if (desc.match(/NO\d+ stenersgaten/i)) return 'dagligvarer';
 
   // helse
   if (desc.match(/helse/i)) return 'helse';
@@ -133,6 +136,9 @@ function category(options: CategoryOptions): string {
   if (desc.match(/tveita rens/i)) return 'klær og sko';
   if (desc.match(/svea finans nuf/i)) return 'klær og sko';
   if (desc.match(/jk barber shop/i)) return 'klær og sko';
+  if (desc.match(/paypal.*beautycosap/i)) return 'klær og sko';
+  if (desc.match(/paypal.*wickedragon/i)) return 'klær og sko';
+  if (desc.match(/spar kjop metro/i)) return 'klær og sko';
 
   // Hus og hage - etc
   if (desc.match(/plantasjen/i)) return 'hus og hage';
@@ -190,6 +196,7 @@ function category(options: CategoryOptions): string {
   // Spill
   if (desc.match(/paypal.*steam games/i)) return 'spill';
   if (desc.match(/paypal.*iracingcomm/i)) return 'spill';
+  if (desc.match(/paypal.*nicolasguil/i)) return 'spill';
   if (desc.match(/paypal.*facebook/i)) return 'spill';
   if (desc.match(/nintendo/i)) return 'spill';
   if (desc.match(/UBISOFT/i)) return 'spill';
@@ -223,11 +230,14 @@ function category(options: CategoryOptions): string {
   if (desc.match(/best ulvsvåg 55 best/i)) return 'drivstoff';
   if (desc.match(/automat 1/i)) return 'drivstoff';
   if (desc.match(/UNO-X/i)) return 'drivstoff';
+  if (desc.match(/esso tveita/i)) return 'drivstoff';
 
   // aktiviteter
   if (desc.match(/aktiviteter/i)) return 'aktiviteter';
   if (desc.match(/museum/i)) return 'aktiviteter';
   if (desc.match(/NEBBURSVOLLEN/i)) return 'aktiviteter';
+  if (desc.match(/billettservice as/i)) return 'aktiviteter';
+  if (desc.match(/kulturetaten/i)) return 'aktiviteter';
 
   // hobby
   if (desc.match(/trg norge/i)) return 'hobby';
@@ -242,6 +252,7 @@ function category(options: CategoryOptions): string {
 
   // apper
   if (desc.match(/microsoft sto/i)) return 'apper';
+  if (desc.match(/paypal.*microsoft/i)) return 'apper';
   if (desc.match(/apple\.com/i)) return expense > 600 ? (date.getMonth() == 11 ? 'julegaver' : 'apple') : 'apper';
   if (desc.match(/paypal.*evernote/i)) return 'apper';
   if (desc.match(/itunes/i)) return 'apper';
@@ -279,6 +290,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/postkontoret/i)) return 'restaurant';
   if (desc.match(/kaffebrenneriet/i)) return 'restaurant';
   if (desc.match(/hai sushi/i)) return 'restaurant';
+  if (desc.match(/sushi.*asian tv/i)) return 'restaurant';
   if (desc.match(/byteraffinerie/i)) return 'restaurant';
   if (desc.match(/bad bishop/i)) return 'restaurant';
   if (desc.match(/pub/i)) return 'restaurant';
@@ -291,6 +303,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/sundvolden hotel/i)) return 'restaurant';
   if (desc.match(/ordr kurs/i)) return 'restaurant';
   if (desc.match(/cafe sjarm/i)) return 'restaurant';
+  if (desc.match(/iss.*ulle kirkeveien/i)) return 'restaurant';
 
   // utlegg på restaurant
   if (desc.match(/SUDOEST RESTAURA/i)) return expense > 4000 ? 'utlegg' : 'restaurant';
@@ -313,6 +326,10 @@ function category(options: CategoryOptions): string {
   if (desc.match(/sas airline/i)) return 'reise';
   if (desc.match(/flytoget/i)) return 'reise';
   if (desc.match(/the thief/i)) return 'reise';
+  if (desc.match(/parken 501/i)) return 'reise';
+  if (desc.match(/fiskeriet 1914/i)) return 'reise';
+  if (desc.match(/quality fredrik/i)) return 'reise';
+  if (desc.match(/flyr as/i)) return 'reise';
 
   // TV og Streaming
   if (desc.match(/paypal.*crunchyroll/i)) return 'tv og streaming';
@@ -430,12 +447,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/Spareavtale/i)) return 'sparing';
   if (desc.match(/Til aksjedepot/i)) return 'sparing';
   if (desc.match(/verdipapirhandel/i)) return 'sparing';
-  if (desc.match(/til sparing/i)) return 'sparing';
-
-  // Regning ukjent
-  if (desc.match(/^avtalegiro$/i)) return 'regning ukjent';
-  if (desc.match(/^efaktura nettbank/i)) return 'regning ukjent';
-  if (desc.match(/NETTGIRO/i)) return 'regning ukjent';
+  if (desc.match(/.*sparing/i)) return 'sparing';
 
   // bil
   if (desc.match(/bilkollektivet/i)) return 'bilkollektivet';
@@ -497,7 +509,10 @@ function category(options: CategoryOptions): string {
   if (desc.match(/kantinekortet/i)) return 'lunsjpenger';
 
   if (desc.match(/kirsti/i)) return 'kirsti';
+
   if (desc.match(/kredittkort/i)) return 'kredittkort';
+  if (desc.match(/santander consumer bank/i)) return 'kredittkort';
+
   if (desc.match(/leker/i)) return 'leker';
 
   if (desc.match(/norges automobi/i)) return 'naf';
@@ -512,6 +527,11 @@ function category(options: CategoryOptions): string {
 
   // Generelle kategorier som må være nederst
   if (desc.match(/mat/i)) return 'dagligvarer';
+
+  // Regning ukjent
+  if (desc.match(/^avtalegiro$/i)) return 'regning ukjent';
+  if (desc.match(/^efaktura nettbank/i)) return 'regning ukjent';
+  if (desc.match(/NETTGIRO/i)) return 'regning ukjent';
 
   return '';
 }
