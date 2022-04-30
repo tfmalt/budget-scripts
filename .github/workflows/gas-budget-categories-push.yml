@@ -1,13 +1,13 @@
 name: Push Budget Categories
 on:
   push:
-    branches:
-      - master
+    branches: [master]
 jobs:
   push_to_google:
     runs-on: ubuntu-latest
     name: Push to Google
     steps:
+      - uses: actions/checkout@v2
       - uses: daikikatsuragawa/clasp-action@v1.1.0
         with:
           accessToken: ${{ secrets.BUDGET_CATEGORIES_ACCESS_TOKEN }}

@@ -7,3 +7,4 @@ etc/token.json
 gas/budget-categories/.clasp.json
 gas/budget-categories/Config.ts
 gas/budget-web-service/Config.js
+.clasp.json
