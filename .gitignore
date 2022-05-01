@@ -4,7 +4,7 @@ clasprc.malt.json
 client_secret_778520944234-sti773lr2bom5ub1fqe57l3fld3si8me.apps.googleusercontent.com.json
 etc/credentials.json
 etc/token.json
-gas/budget-categories/.clasp.json
-gas/budget-categories/Config.ts
-gas/budget-web-service/Config.js
+budget-categories/.clasp.json
+budget-categories/Config.ts
+budget-web-service/Config.js
 .clasp.json
