@@ -17,5 +17,5 @@ jobs:
           clientId: ${{ secrets.BUDGET_CATEGORIES_CLIENT_ID }}
           clientSecret: ${{ secrets.BUDGET_CATEGORIES_CLIENT_SECRET }}
           scriptId: ${{ secrets.BUDGET_CATEGORIES_SCRIPT_ID }}
-          rootDir: '/gas/budget-categories'
+          rootDir: './gas/budget-categories'
           command: 'push'
