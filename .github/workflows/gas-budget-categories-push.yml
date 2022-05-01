@@ -1,7 +1,8 @@
 name: Push Budget Categories
 on:
   push:
-    branches: [master]
+    branches:
+      - master
 jobs:
   push_to_google:
     runs-on: ubuntu-latest
