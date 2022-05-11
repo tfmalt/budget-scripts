@@ -11,9 +11,9 @@ jobs:
       - uses: actions/checkout@v3
       - name: Generate Config.ts
         env:
-          BUDGET_CATEGORIES_CONFIG_TS: ${{ secrets.BUDGET_CATEGORIES_CONFIG_TS }}
+          BUDGET_CATEGORIES_CONFIG: ${{ secrets.BUDGET_CATEGORIES_CONFIG_TS }}
         run: |
-          echo $BUDGET_CATEGORIES_CONFIG_TS | base64 --decode > budget-categories/Config.ts
+          echo $BUDGET_CATEGORIES_CONFIG | base64 --decode > budget-categories/Config.ts
       - uses: daikikatsuragawa/clasp-action@v1.1.0
         with:
           accessToken: ${{ secrets.BUDGET_CATEGORIES_ACCESS_TOKEN }}
