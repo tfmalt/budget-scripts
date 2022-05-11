@@ -27,10 +27,12 @@ function category(options: CategoryOptions): string {
   if (desc.match(/småting kjøpt/i)) return 'overføring';
   if (desc.match(/from .* to .*/i)) return 'overføring';
   if (desc.match(/matpenger/i)) return 'overføring';
-  if (desc.match(/^nettbank$/i)) return 'overføring ukjent';
   if (desc.match(/overføring/i)) return 'overføring';
   if (desc.match(/from felles sparekonto/i)) return 'overføring';
   if (desc.match(/nettbank til: 9713.44.86531/i)) return 'overføring';
+
+  if (desc.match(/^nettbank$/i)) return 'overføring ukjent';
+  if (desc.match(/^Giro$/i)) return 'overføring ukjent';
 
   // tilbakeføring
   if (desc.match(/tilbakeføring/i)) return 'tilbakeføring';
@@ -97,6 +99,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/STOROKLINIKKEN/i)) return 'helse';
   if (desc.match(/MAMMOGRAFIPROGR TRONDHEIMSVE/i)) return 'helse';
   if (desc.match(/Convene Collect/i)) return 'helse';
+  if (desc.match(/riks sognsvannsvn/i)) return 'helse';
 
   // aviser
   if (desc.match(/aftenposten/i)) return 'aviser';
@@ -139,6 +142,9 @@ function category(options: CategoryOptions): string {
   if (desc.match(/paypal.*beautycosap/i)) return 'klær og sko';
   if (desc.match(/paypal.*wickedragon/i)) return 'klær og sko';
   if (desc.match(/spar kjop metro/i)) return 'klær og sko';
+  if (desc.match(/skorep as tvetenveien/i)) return 'klær og sko';
+  if (desc.match(/match tveita/i)) return 'klær og sko';
+  if (desc.match(/zizzi tveita/i)) return 'klær og sko';
 
   // Hus og hage - etc
   if (desc.match(/plantasjen/i)) return 'hus og hage';
@@ -316,7 +322,8 @@ function category(options: CategoryOptions): string {
   if (desc.match(/kindle/i)) return 'bøker';
 
   // reise
-  if (desc.match(/gbp [0-9]/i)) return 'reise';
+  if (desc.match(/gbp \d+/i)) return 'reise';
+  if (desc.match(/EUR \d+/i)) return 'reise';
   if (desc.match(/flybuss/i)) return 'reise';
   if (desc.match(/caffe ritazza/i)) return 'reise';
   if (desc.match(/vy app/i)) return 'reise';
@@ -330,6 +337,25 @@ function category(options: CategoryOptions): string {
   if (desc.match(/fiskeriet 1914/i)) return 'reise';
   if (desc.match(/quality fredrik/i)) return 'reise';
   if (desc.match(/flyr as/i)) return 'reise';
+  if (desc.match(/flyr.no/i)) return 'reise';
+
+  // ferie
+  if (desc.match(/ferie/i)) return 'ferie';
+  if (desc.match(/EIDE HANDEL FJORDVEIEN/i)) return 'ferie';
+  if (desc.match(/saama golden kebab/i)) return 'ferie';
+  if (desc.match(/boreal sjø as/i)) return 'ferie';
+  if (desc.match(/ellingsgården/i)) return 'ferie';
+  if (desc.match(/balsfjord arb/i)) return 'ferie';
+  if (desc.match(/fjord1 ferdamat/i)) return 'ferie';
+  if (desc.match(/storforsen camping/i)) return 'ferie';
+  if (desc.match(/tysfjord turistsenter/i)) return 'ferie';
+  if (desc.match(/ellingsgaarden/i)) return 'ferie';
+  if (desc.match(/nidaros domkirk/i)) return 'ferie';
+  if (desc.match(/mcd 009 trondhe/i)) return 'ferie';
+  if (desc.match(/revelveien 1 mo i rana/i)) return 'ferie';
+  if (desc.match(/svenningdal camping/i)) return 'ferie';
+  if (desc.match(/ulvsvaag gjestgiveri/i)) return 'ferie';
+  if (desc.match(/thn catering kirkegata/i)) return 'ferie';
 
   // TV og Streaming
   if (desc.match(/paypal.*crunchyroll/i)) return 'tv og streaming';
@@ -359,24 +385,6 @@ function category(options: CategoryOptions): string {
   if (desc.match(/obs bygg digernes/i)) return 'hytte';
   if (desc.match(/olsens enke san/i)) return 'hytte';
   if (desc.match(/spar kjøp diger/i)) return 'hytte';
-
-  // ferie
-  if (desc.match(/ferie/i)) return 'ferie';
-  if (desc.match(/EIDE HANDEL FJORDVEIEN/i)) return 'ferie';
-  if (desc.match(/saama golden kebab/i)) return 'ferie';
-  if (desc.match(/boreal sjø as/i)) return 'ferie';
-  if (desc.match(/ellingsgården/i)) return 'ferie';
-  if (desc.match(/balsfjord arb/i)) return 'ferie';
-  if (desc.match(/fjord1 ferdamat/i)) return 'ferie';
-  if (desc.match(/storforsen camping/i)) return 'ferie';
-  if (desc.match(/tysfjord turistsenter/i)) return 'ferie';
-  if (desc.match(/ellingsgaarden/i)) return 'ferie';
-  if (desc.match(/nidaros domkirk/i)) return 'ferie';
-  if (desc.match(/mcd 009 trondhe/i)) return 'ferie';
-  if (desc.match(/revelveien 1 mo i rana/i)) return 'ferie';
-  if (desc.match(/svenningdal camping/i)) return 'ferie';
-  if (desc.match(/ulvsvaag gjestgiveri/i)) return 'ferie';
-  if (desc.match(/thn catering kirkegata/i)) return 'ferie';
 
   // diverse
   if (desc.match(/til.*kristine westby/i)) return 'diverse';
