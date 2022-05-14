@@ -327,7 +327,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/EUR \d+/i)) return 'reise';
   if (desc.match(/flybuss/i)) return 'reise';
   if (desc.match(/caffe ritazza/i)) return 'reise';
-  if (desc.match(/vy?app/i)) return 'reise';
+  if (desc.match(/vy.?app/i)) return 'reise';
   if (desc.match(/vy\.no/i)) return 'reise';
   if (desc.match(/for goahead/i)) return 'reise';
   if (desc.match(/scandinavian ai/i)) return 'reise';
