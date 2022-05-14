@@ -28,6 +28,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/from .* to .*/i)) return 'overføring';
   if (desc.match(/matpenger/i)) return 'overføring';
   if (desc.match(/overføring/i)) return 'overføring';
+  if (desc.match(/overførsel/i)) return 'overføring';
   if (desc.match(/from felles sparekonto/i)) return 'overføring';
   if (desc.match(/nettbank til: 9713.44.86531/i)) return 'overføring';
 
@@ -326,7 +327,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/EUR \d+/i)) return 'reise';
   if (desc.match(/flybuss/i)) return 'reise';
   if (desc.match(/caffe ritazza/i)) return 'reise';
-  if (desc.match(/vy app/i)) return 'reise';
+  if (desc.match(/vy?app/i)) return 'reise';
   if (desc.match(/vy\.no/i)) return 'reise';
   if (desc.match(/for goahead/i)) return 'reise';
   if (desc.match(/scandinavian ai/i)) return 'reise';
