@@ -226,6 +226,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/^nettbank$/i)) return expense == 180 ? 'lommepenger' : 'overføring';
   if (desc.match(/til.*annie therese videsjorden/i)) return 'lommepenger';
   if (desc.match(/vipps.*martha elin anstad/i)) return 'lommepenger';
+  if (desc.match(/nettbank til.*9801.61.97645/i)) return 'lommepenger';
 
   // kiosk eller drivstoff
   if (desc.match(/yx sande/i)) return expense > 300 ? 'drivstoff' : 'kiosk';
@@ -245,6 +246,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/NEBBURSVOLLEN/i)) return 'aktiviteter';
   if (desc.match(/billettservice as/i)) return 'aktiviteter';
   if (desc.match(/kulturetaten/i)) return 'aktiviteter';
+  if (desc.match(/paypal.*billettserv/i)) return 'aktiviteter';
 
   // hobby
   if (desc.match(/trg norge/i)) return 'hobby';
