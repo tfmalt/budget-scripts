@@ -313,6 +313,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/ordr kurs/i)) return 'restaurant';
   if (desc.match(/cafe sjarm/i)) return 'restaurant';
   if (desc.match(/iss.*ulle kirkeveien/i)) return 'restaurant';
+  if (desc.match(/backstube u8/i)) return 'restaurant';
 
   // utlegg på restaurant
   if (desc.match(/SUDOEST RESTAURA/i)) return expense > 4000 ? 'utlegg' : 'restaurant';
