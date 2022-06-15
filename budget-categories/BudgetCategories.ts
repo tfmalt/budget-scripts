@@ -146,6 +146,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/skorep as tvetenveien/i)) return 'klær og sko';
   if (desc.match(/match tveita/i)) return 'klær og sko';
   if (desc.match(/zizzi tveita/i)) return 'klær og sko';
+  if (desc.match(/bogerud tekstil/i)) return 'klær og sko';
 
   // Hus og hage - etc
   if (desc.match(/plantasjen/i)) return 'hus og hage';
@@ -314,6 +315,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/cafe sjarm/i)) return 'restaurant';
   if (desc.match(/iss.*ulle kirkeveien/i)) return 'restaurant';
   if (desc.match(/backstube u8/i)) return 'restaurant';
+  if (desc.match(/cafe amsterdam/i)) return 'restaurant';
 
   // utlegg på restaurant
   if (desc.match(/SUDOEST RESTAURA/i)) return expense > 4000 ? 'utlegg' : 'restaurant';
