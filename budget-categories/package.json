@@ -1,6 +1,6 @@
 {
   "name": "budget-categories",
-  "version": "22.6.901",
+  "version": "22.6.1501",
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
