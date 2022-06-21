@@ -248,6 +248,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/billettservice as/i)) return 'aktiviteter';
   if (desc.match(/kulturetaten/i)) return 'aktiviteter';
   if (desc.match(/paypal.*billettserv/i)) return 'aktiviteter';
+  if (desc.match(/glenn.sverre.gulbrandsen/i)) return 'aktiviteter';
 
   // hobby
   if (desc.match(/trg norge/i)) return 'hobby';
@@ -316,6 +317,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/iss.*ulle kirkeveien/i)) return 'restaurant';
   if (desc.match(/backstube u8/i)) return 'restaurant';
   if (desc.match(/cafe amsterdam/i)) return 'restaurant';
+  if (desc.match(/grunerhaven/i)) return 'restaurant';
 
   // utlegg på restaurant
   if (desc.match(/SUDOEST RESTAURA/i)) return expense > 4000 ? 'utlegg' : 'restaurant';
