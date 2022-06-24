@@ -479,6 +479,7 @@ function category(options: CategoryOptions): string {
 
   // bomringen
   if (desc.match(/Fjellinjen/i)) return 'bomringen';
+  if (desc.match(/Fremtind service/i)) return 'bomringen';
 
   // bonus
   if (desc.match(/bonus/i)) return 'bonus';
