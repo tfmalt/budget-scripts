@@ -4,6 +4,6 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "@types/google-apps-script": "^1.0.46"
+    "@types/google-apps-script": "^1.0.49"
   }
 }
