@@ -214,6 +214,7 @@ function category(options: CategoryOptions): string {
   // parkering
   if (desc.match(/parkering/i)) return 'parkering';
   if (desc.match(/apcoa flow/i)) return 'parkering';
+  if (desc.match(/apcoa p/i)) return 'parkering';
   if (desc.match(/paypal.*easypark/i)) return 'parkering';
   if (desc.match(/arvato finance/i)) return 'parkering';
 
@@ -444,6 +445,7 @@ function category(options: CategoryOptions): string {
 
   // Thomas
   if (desc.match(/thomas/i)) return 'thomas';
+  if (desc.match(/fra.*elvia.*betalt/i)) return 'strømstøtte';
   if (desc.match(/prince lunchbar/i)) return 'lunch thomas';
   if (desc.match(/backstube gronland/i)) return 'lunch thomas';
   if (desc.match(/ram thai/i)) return 'lunch thomas';
