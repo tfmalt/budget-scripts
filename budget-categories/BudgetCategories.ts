@@ -22,6 +22,16 @@
 function category(options: CategoryOptions): string {
   const { date, desc, income, expense } = options;
 
+  // tilbakeføring
+  if (income > 1) {
+    if (desc.match(/fra.*elvia.*betalt/i)) return 'strømstøtte';
+    if (desc.match(/tilbakeføring/i)) return 'tilbakeføring';
+    if (desc.match(/kreditering/i)) return 'tilbakeføring';
+    if (desc.match(/doc martens egenandel/i)) return 'tilbakeføring';
+    if (desc.match(/tilbakebetaling utlegg/i)) return 'tilbakeføring';
+    if (!desc.match(/thomas/i)) return 'tilbakeføring';
+  }
+
   // Overføring
   if (desc.match(/penger til kollektiv/i)) return 'overføring';
   if (desc.match(/småting kjøpt/i)) return 'overføring';
@@ -34,13 +44,6 @@ function category(options: CategoryOptions): string {
 
   if (desc.match(/^nettbank$/i)) return 'overføring ukjent';
   if (desc.match(/^Giro$/i)) return 'overføring ukjent';
-
-  // tilbakeføring
-  if (desc.match(/tilbakeføring/i)) return 'tilbakeføring';
-  if (desc.match(/kreditering/i)) return 'tilbakeføring';
-  if (desc.match(/doc martens egenandel/i)) return 'tilbakeføring';
-  if (desc.match(/tilbakebetaling utlegg/i)) return 'tilbakeføring';
-  if (income > 1 && !desc.match(/thomas/i)) return 'tilbakeføring';
 
   // utlegg
   if (desc.match(/stockholm fisk/i)) return 'utlegg';
@@ -445,7 +448,6 @@ function category(options: CategoryOptions): string {
 
   // Thomas
   if (desc.match(/thomas/i)) return 'thomas';
-  if (desc.match(/fra.*elvia.*betalt/i)) return 'strømstøtte';
   if (desc.match(/prince lunchbar/i)) return 'lunch thomas';
   if (desc.match(/backstube gronland/i)) return 'lunch thomas';
   if (desc.match(/ram thai/i)) return 'lunch thomas';
