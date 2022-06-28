@@ -177,6 +177,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/buddy tveita/i)) return 'hund';
   if (desc.match(/vipps.*cotrau/i)) return 'hund';
   if (desc.match(/cotrau groomin/i)) return 'hund';
+  if (desc.match(/hundeklipp/i)) return 'hund';
   if (desc.match(/iZ.*Cotrau Grooming/i)) return 'hund';
   if (desc.match(/DOGGYSTYLE/i)) return 'hund';
   if (desc.match(/faste utgifter hund/i)) return 'hund';
@@ -222,6 +223,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/lommepenger/i)) return 'lommepenger';
   if (desc.match(/tentamen/i)) return 'lommepenger';
   if (desc.match(/til.*martha brukskon/i)) return 'lommepenger';
+  if (desc.match(/til.*martha malt/i)) return 'lommepenger';
   if (desc.match(/Nettgiro til: Malt Martha/i)) return 'lommepenger';
   if (desc.match(/overført til annen konto/i)) return expense == 180 ? 'lommepenger' : 'overføring';
   if (desc.match(/^nettbank$/i)) return expense == 180 ? 'lommepenger' : 'overføring';
