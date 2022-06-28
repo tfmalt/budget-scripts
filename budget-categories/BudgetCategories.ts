@@ -22,6 +22,16 @@
 function category(options: CategoryOptions): string {
   const { date, desc, income, expense } = options;
 
+  // tilbakeføring
+  if (income > 1) {
+    if (desc.match(/fra.*elvia.*betalt/i)) return 'strømstøtte';
+    if (desc.match(/tilbakeføring/i)) return 'tilbakeføring';
+    if (desc.match(/kreditering/i)) return 'tilbakeføring';
+    if (desc.match(/doc martens egenandel/i)) return 'tilbakeføring';
+    if (desc.match(/tilbakebetaling utlegg/i)) return 'tilbakeføring';
+    if (!desc.match(/thomas/i)) return 'tilbakeføring';
+  }
+
   // Overføring
   if (desc.match(/penger til kollektiv/i)) return 'overføring';
   if (desc.match(/småting kjøpt/i)) return 'overføring';
@@ -34,13 +44,6 @@ function category(options: CategoryOptions): string {
 
   if (desc.match(/^nettbank$/i)) return 'overføring ukjent';
   if (desc.match(/^Giro$/i)) return 'overføring ukjent';
-
-  // tilbakeføring
-  if (desc.match(/tilbakeføring/i)) return 'tilbakeføring';
-  if (desc.match(/kreditering/i)) return 'tilbakeføring';
-  if (desc.match(/doc martens egenandel/i)) return 'tilbakeføring';
-  if (desc.match(/tilbakebetaling utlegg/i)) return 'tilbakeføring';
-  if (income > 1 && !desc.match(/thomas/i)) return 'tilbakeføring';
 
   // utlegg
   if (desc.match(/stockholm fisk/i)) return 'utlegg';
@@ -215,6 +218,7 @@ function category(options: CategoryOptions): string {
   // parkering
   if (desc.match(/parkering/i)) return 'parkering';
   if (desc.match(/apcoa flow/i)) return 'parkering';
+  if (desc.match(/apcoa p/i)) return 'parkering';
   if (desc.match(/paypal.*easypark/i)) return 'parkering';
   if (desc.match(/arvato finance/i)) return 'parkering';
 
@@ -246,6 +250,7 @@ function category(options: CategoryOptions): string {
   // aktiviteter
   if (desc.match(/aktiviteter/i)) return 'aktiviteter';
   if (desc.match(/museum/i)) return 'aktiviteter';
+  if (desc.match(/Nettgiro til.*Su Betalt/i)) return 'aktiviteter';
   if (desc.match(/NEBBURSVOLLEN/i)) return 'aktiviteter';
   if (desc.match(/billettservice as/i)) return 'aktiviteter';
   if (desc.match(/kulturetaten/i)) return 'aktiviteter';
@@ -477,6 +482,7 @@ function category(options: CategoryOptions): string {
 
   // bomringen
   if (desc.match(/Fjellinjen/i)) return 'bomringen';
+  if (desc.match(/Fremtind service/i)) return 'bomringen';
 
   // bonus
   if (desc.match(/bonus/i)) return 'bonus';

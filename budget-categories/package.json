@@ -1,9 +1,9 @@
 {
   "name": "budget-categories",
-  "version": "22.6.2101",
+  "version": "22.6.2405",
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "@types/google-apps-script": "^1.0.46"
+    "@types/google-apps-script": "^1.0.49"
   }
 }
