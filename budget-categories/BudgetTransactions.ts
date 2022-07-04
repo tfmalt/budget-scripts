@@ -212,11 +212,22 @@ function removeInternalTransactions(items: any[], from: string): any[] {
   const income = 7;
   const category = 9;
 
+  const internalTransfers = [
+    'matpenger',
+    'faste utgifter bil',
+    'faste utgifter hund miyo',
+    'faste utgifter elektrisitet',
+  ];
+
   return items
     .filter((row) => new Date(row[accountingDate]) >= new Date(from))
-    .filter((row) =>
-      row[2] === 'Felles bufferkonto' && row[5] === 'OVFNETTB' && row[5].match(/overskudd/i) ? false : true
-    )
+    .filter((row) => {
+      if (row[2] === 'Felles bufferkonto' && row[5] === 'OVFNETTB' && row[5].match(/overskudd/i)) {
+        console.log('Removed transaction:', row);
+        return false;
+      }
+      return true;
+    })
     .filter((row) => {
       for (let i = 0; i < items.length; i++) {
         if (
@@ -225,13 +236,22 @@ function removeInternalTransactions(items: any[], from: string): any[] {
           row[expense] === items[i][income] &&
           row[income] === items[i][expense]
         ) {
-          // The row is removed from the returned array
+          console.log('Removed transaction:', row);
           return false;
         }
-        // catch internal account transfers
+        // ------------------------------------------------------------------
+        // Catch internal account transfers
         if (row[accountingDate] === items[i][accountingDate] && row[expense] === items[i][income]) {
           if (row[text].match(/nettbank/i) && items[i][text].match(/nettbank/i)) {
-            // The row is removed from the returned array
+            console.log('Removed transaction:', row);
+            return false;
+          }
+          if (row[text].match(/OVERFØRT TIL ANNEN KONTO/i) && internalTransfers.includes(items[i][text])) {
+            console.log('Removed transaction:', row);
+            return false;
+          }
+          if (internalTransfers.includes(row[text]) && items[i][text].match(/OVERFØRT TIL ANNEN KONTO/i)) {
+            console.log('Removed transaction:', row);
             return false;
           }
         }

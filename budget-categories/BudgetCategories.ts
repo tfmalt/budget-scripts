@@ -157,7 +157,6 @@ function category(options: CategoryOptions): string {
   if (desc.match(/jula triaden/i)) return 'hus og hage';
   if (desc.match(/jernia/i)) return 'hus og hage';
   if (desc.match(/jysk/i)) return 'hus og hage';
-  if (desc.match(/elkjoep/i)) return 'hus og hage';
   if (desc.match(/clas ohl/i)) return 'hus og hage';
   if (desc.match(/clasohlson/i)) return 'hus og hage';
   if (desc.match(/biltema/i)) return 'hus og hage';
@@ -172,6 +171,7 @@ function category(options: CategoryOptions): string {
 
   // vedlikehold
   if (desc.match(/elektro.siver/i)) return 'vedlikehold';
+  if (desc.match(/FARGERIKE ALNAB/i)) return 'vedlikehold';
 
   // hund
   if (desc.match(/1503.17.34573/i)) return 'hund';
@@ -427,6 +427,11 @@ function category(options: CategoryOptions): string {
   // møbler og interiør
   if (desc.match(/ikea/i)) return 'møbler og interiør';
   if (desc.match(/kid.*interiør/i)) return 'møbler og interiør';
+  if (desc.match(/elkjoep/i)) return 'møbler og interiør';
+  if (desc.match(/elkjøp alna/i)) {
+    if (expense === 239) return 'datautstyr';
+    return 'møbler og interiør';
+  }
 
   // Telefon
   if (desc.match(/TELENOR/i)) return 'telefon';
@@ -551,6 +556,7 @@ function category(options: CategoryOptions): string {
 
   // Generelle kategorier som må være nederst
   if (desc.match(/mat/i)) return 'dagligvarer';
+  if (desc.match(/handletur/i)) return 'dagligvarer';
 
   // Regning ukjent
   if (desc.match(/^avtalegiro$/i)) return 'regning ukjent';
