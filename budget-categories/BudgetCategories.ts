@@ -283,6 +283,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/til.*bård enok singstad/i)) return 'gaver';
   if (desc.match(/til.*anne ånstad/i)) return 'gaver';
   if (desc.match(/til.*jens gislason/i)) return 'gaver';
+  if (desc.match(/Til.*Brikt Kåre Dahl/i)) return 'gaver';
   if (desc.match(/til.*anders fredrik ulsaker malt/i)) return 'gaver';
   if (desc.match(/til.*martha elin ånstad malt/i))
     return expense >= 1000 ? (date.getMonth() == 11 ? 'julegaver' : 'gaver') : 'lommepenger';
