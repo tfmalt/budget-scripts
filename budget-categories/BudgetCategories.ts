@@ -194,6 +194,8 @@ function category(options: CategoryOptions): string {
   // vedlikehold
   if (desc.match(/elektro.siver/i)) return 'vedlikehold';
   if (desc.match(/FARGERIKE ALNAB/i)) return 'vedlikehold';
+  if (desc.match(/lønn for maling/i)) return 'vedlikehold';
+  if (desc.match(/Glass-Service Svendsen Og Sønn/i)) return 'vedlikehold';
 
   // hund
   if (desc.match(/1503.17.34573/i)) return 'hund';
