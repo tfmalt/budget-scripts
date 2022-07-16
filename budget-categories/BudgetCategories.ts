@@ -23,18 +23,31 @@ function category(options: CategoryOptions): string {
   const { date, desc, income, expense } = options;
 
   // ferie 2022
-  const from2022 = new Date('2022-07-12');
-  const to2022 = new Date('2022-07-24');
-  if (date >= from2022 && date <= to2022) {
+  if (date >= new Date('2022-07-12') && date <= new Date('2022-07-24')) {
     if (desc.match(/Galleriet Kjopesen/i)) return 'ferieaktiviteter';
     if (desc.match(/Grieggarasjen/i)) return 'bilferie';
+    if (desc.match(/SOLAVAGEN/i)) return 'bilferie';
+    if (desc.match(/NYA.Bane Nor SF/i)) return 'ferieaktiviteter';
+    if (desc.match(/STIFTELSEN LIND/i)) return 'severdigheter';
+    if (desc.match(/NYA.Offentlig WC/i)) return 'ferieaktiviteter';
+    if (desc.match(/KICKS 670 TORGT KIRKEGATEN/i)) return 'ferieaktiviteter';
+    if (desc.match(/ROMØES I ROMSØE HAAKON VIISG STAVANGER/i)) return 'ferieaktiviteter';
     if (desc.match(/rema/i)) return 'feriemat';
+    if (desc.match(/kiwi/i)) return 'feriemat';
+    if (desc.match(/CAMPING/i)) return 'camping';
+    if (desc.match(/SOLSTRAND CAMPI/i)) return 'camping';
+    if (desc.match(/Vipps.Solstrand Grill/i)) return 'camping';
+    if (desc.match(/UNO-X/i)) return 'bilferie';
+    if (desc.match(/Vipps.Overnatting/i)) return 'overnatting';
+    if (desc.match(/Martha brukskonto/i)) 'ekstra lommepenger';
+    if (desc.match(/Nettbank til: 9801.61.97645 Betalt/i)) 'ekstra lommepenger';
   }
 
   // tilbakeføring
   if (income > 1) {
     if (desc.match(/fra.*elvia.*betalt/i)) return 'strømstøtte';
     if (desc.match(/tilbakeføring/i)) return 'tilbakeføring';
+    if (desc.match(/feriepenger/i)) return 'feriepenger';
     if (desc.match(/kreditering/i)) return 'tilbakeføring';
     if (desc.match(/doc martens egenandel/i)) return 'tilbakeføring';
     if (desc.match(/tilbakebetaling utlegg/i)) return 'tilbakeføring';
