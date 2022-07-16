@@ -38,12 +38,13 @@ function category(options: CategoryOptions): string {
     if (desc.match(/SOLSTRAND CAMPI/i)) return 'camping';
     if (desc.match(/Vipps.Solstrand Grill/i)) return 'camping';
     if (desc.match(/UNO-X/i)) return 'bilferie';
+    if (desc.match(/CIRCLE K/i)) return 'bilferie';
     if (desc.match(/Vipps.Overnatting/i)) return 'overnatting';
-    if (desc.match(/Martha brukskonto/i)) 'ekstra lommepenger';
-    if (desc.match(/Nettbank til: 9801.61.97645 Betalt/i)) 'ekstra lommepenger';
+    if (desc.match(/Martha brukskonto/i)) return 'ekstra lommepenger';
+    if (desc.match(/Nettbank til: 9801.61.97645 Betalt/i)) return 'ekstra lommepenger';
   }
 
-  // tilbakeføring
+  // tilbakeføring og inntekter
   if (income > 1) {
     if (desc.match(/fra.*elvia.*betalt/i)) return 'strømstøtte';
     if (desc.match(/tilbakeføring/i)) return 'tilbakeføring';
