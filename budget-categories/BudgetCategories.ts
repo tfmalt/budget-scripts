@@ -27,6 +27,7 @@ function category(options: CategoryOptions): string {
     if (desc.match(/Galleriet Kjopesen/i)) return 'ferieaktiviteter';
     if (desc.match(/Grieggarasjen/i)) return 'bilferie';
     if (desc.match(/SOLAVAGEN/i)) return 'bilferie';
+    if (desc.match(/SOLAVAAGEN/i)) return 'bilferie';
     if (desc.match(/NYA.Bane Nor SF/i)) return 'ferieaktiviteter';
     if (desc.match(/STIFTELSEN LIND/i)) return 'severdigheter';
     if (desc.match(/NYA.Offentlig WC/i)) return 'ferieaktiviteter';
@@ -34,6 +35,7 @@ function category(options: CategoryOptions): string {
     if (desc.match(/ROMØES I ROMSØE HAAKON VIISG STAVANGER/i)) return 'ferieaktiviteter';
     if (desc.match(/rema/i)) return 'feriemat';
     if (desc.match(/kiwi/i)) return 'feriemat';
+    if (desc.match(/SPAR KJOP/i)) return 'ferieutstyr';
     if (desc.match(/CAMPING/i)) return 'camping';
     if (desc.match(/SOLSTRAND CAMPI/i)) return 'camping';
     if (desc.match(/Vipps.Solstrand Grill/i)) return 'camping';
