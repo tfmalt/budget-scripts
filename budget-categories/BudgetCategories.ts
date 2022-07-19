@@ -35,6 +35,7 @@ function category(options: CategoryOptions): string {
     if (desc.match(/ROMØES I ROMSØE HAAKON VIISG STAVANGER/i)) return 'ferieaktiviteter';
     if (desc.match(/rema/i)) return 'feriemat';
     if (desc.match(/kiwi/i)) return 'feriemat';
+    if (desc.match(/coop prix/i)) return 'feriemat';
     if (desc.match(/SPAR KJOP/i)) return 'ferieutstyr';
     if (desc.match(/CAMPING/i)) return 'camping';
     if (desc.match(/SOLSTRAND CAMPI/i)) return 'camping';
@@ -230,7 +231,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/GET AS/i)) return 'internett';
   if (desc.match(/get a\.s\./i)) return 'internett';
   if (desc.match(/get/i) && expense == 539) return 'internett';
-  if (desc.match(/Telia TV og int/i)) return 'internett';
+  if (desc.match(/Telia.*TV og int/i)) return 'internett';
 
   // Spill
   if (desc.match(/paypal.*steam games/i)) return 'spill';
