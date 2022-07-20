@@ -318,7 +318,6 @@ function category(options: CategoryOptions): string {
   if (desc.match(/vipps.*brikt kare dahl/i)) return 'gaver';
   if (desc.match(/mester gr.nn/i)) return 'gaver';
   if (desc.match(/japan photo/i)) return 'gaver';
-  if (desc.match(/gaver?/i)) return 'gaver';
   if (desc.match(/glitter/i)) return 'gaver';
   if (desc.match(/KICKS 616 TVEIT TVETENVEIEN/i)) return 'gaver';
   if (desc.match(/BLOMSTERSENTRET HEGDEHAUGSVE/i)) return 'gaver';
