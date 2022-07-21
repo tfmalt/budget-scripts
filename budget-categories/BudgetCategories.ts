@@ -23,7 +23,7 @@ function category(options: CategoryOptions): string {
   const { date, desc, income, expense } = options;
 
   // ferie 2022
-  if (date >= new Date('2022-07-12') && date <= new Date('2022-07-24')) {
+  if (date >= new Date('2022-07-12') && date <= new Date('2022-07-21')) {
     if (desc.match(/Galleriet Kjopesen/i)) return 'ferieaktiviteter';
     if (desc.match(/Grieggarasjen/i)) return 'bilferie';
     if (desc.match(/SOLAVAGEN/i)) return 'bilferie';
@@ -37,6 +37,7 @@ function category(options: CategoryOptions): string {
     if (desc.match(/kiwi/i)) return 'feriemat';
     if (desc.match(/coop prix/i)) return 'feriemat';
     if (desc.match(/SPAR KJOP/i)) return 'ferieutstyr';
+    if (desc.match(/klarna/i)) return 'ferieutstyr';
     if (desc.match(/CAMPING/i)) return 'camping';
     if (desc.match(/SOLSTRAND CAMPI/i)) return 'camping';
     if (desc.match(/Vipps.Solstrand Grill/i)) return 'camping';
@@ -591,5 +592,5 @@ function category(options: CategoryOptions): string {
   if (desc.match(/^efaktura nettbank/i)) return 'regning ukjent';
   if (desc.match(/NETTGIRO/i)) return 'regning ukjent';
 
-  return '';
+  return 'regning ukjent';
 }
