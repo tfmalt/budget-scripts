@@ -23,7 +23,7 @@ function category(options: CategoryOptions): string {
   const { date, desc, income, expense } = options;
 
   // ferie 2022
-  if (date >= new Date('2022-07-12') && date <= new Date('2022-07-21')) {
+  if (date >= new Date('2022-07-12') && date <= new Date('2022-07-22')) {
     if (desc.match(/Galleriet Kjopesen/i)) return 'ferieaktiviteter';
     if (desc.match(/Grieggarasjen/i)) return 'bilferie';
     if (desc.match(/SOLAVAGEN/i)) return 'bilferie';
