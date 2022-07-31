@@ -48,6 +48,8 @@ function category(options: CategoryOptions): string {
     if (desc.match(/Nettbank til: 9801.61.97645 Betalt/i)) return 'ekstra lommepenger';
   }
 
+  if (desc.match(/sommerleir/i)) return 'ferieaktiviteter';
+
   // tilbakeføring og inntekter
   if (income > 1) {
     if (desc.match(/fra.*elvia.*betalt/i)) return 'strømstøtte';
