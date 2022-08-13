@@ -278,6 +278,9 @@ function category(options: CategoryOptions): string {
   if (desc.match(/UNO-X/i)) return 'drivstoff';
   if (desc.match(/esso tveita/i)) return 'drivstoff';
 
+  // førerkort
+  if (desc.match(/vipps.tabs/i)) return 'førerkort';
+
   // aktiviteter
   if (desc.match(/aktiviteter/i)) return 'aktiviteter';
   if (desc.match(/museum/i)) return 'aktiviteter';
@@ -558,6 +561,10 @@ function category(options: CategoryOptions): string {
   // teater
   if (desc.match(/ebillett kultur/i)) return 'teater';
 
+  // sykkel
+  if (desc.match(/oslo sykkelverksted/i)) return 'sykkel';
+  if (desc.match(/bike brothers/i)) return 'sykkel';
+
   // ====================================================================
   // Usortert herfra
 
@@ -578,8 +585,6 @@ function category(options: CategoryOptions): string {
   if (desc.match(/norges automobi/i)) return 'naf';
   if (desc.match(/NORLANDIA/i)) return 'barnehage';
   if (desc.match(/OBOS/i)) return 'obos';
-
-  if (desc.match(/oslo sykkelverksted/i)) return 'sykkel';
 
   if (desc.match(/RENTER/i)) return 'renter';
 
