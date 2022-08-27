@@ -74,10 +74,6 @@ function category(options: CategoryOptions): string {
   if (desc.match(/^nettbank$/i)) return 'overføring ukjent';
   if (desc.match(/^Giro$/i)) return 'overføring ukjent';
 
-  // utlegg
-  if (desc.match(/stockholm fisk/i)) return 'utlegg';
-  if (desc.match(/LAKRIDS BY JOHAN BUELOW/i)) return 'utlegg';
-
   // julegaver
   if (desc.match(/gebyr vipps/i)) return 'julegaver';
   if (desc.match(/julepresang/i)) return 'julegaver';
@@ -265,6 +261,8 @@ function category(options: CategoryOptions): string {
   if (desc.match(/til.*annie therese videsjorden/i)) return 'lommepenger';
   if (desc.match(/vipps.*martha elin anstad/i)) return 'lommepenger';
   if (desc.match(/nettbank til.*9801.61.97645/i)) return 'lommepenger';
+  if (desc.match(/Til: Silje Isabelle/i)) return 'lommepenger';
+  if (desc.match(/Til: Ella Lyche/i)) return 'lommepenger';
 
   // kiosk eller drivstoff
   if (desc.match(/yx sande/i)) return expense > 300 ? 'drivstoff' : 'kiosk';
@@ -362,6 +360,11 @@ function category(options: CategoryOptions): string {
 
   // utlegg på restaurant
   if (desc.match(/SUDOEST RESTAURA/i)) return expense > 4000 ? 'utlegg' : 'restaurant';
+  if (desc.match(/bestekompis as/i)) return expense > 4000 ? 'utlegg' : 'restaurant';
+
+  // utlegg
+  if (desc.match(/stockholm fisk/i)) return 'utlegg';
+  if (desc.match(/LAKRIDS BY JOHAN BUELOW/i)) return 'utlegg';
 
   // bøker
   if (desc.match(/bok/i)) return 'bøker';
