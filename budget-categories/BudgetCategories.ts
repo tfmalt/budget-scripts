@@ -141,6 +141,7 @@ function category(options: CategoryOptions): string {
   // kollektivtransport
   if (desc.match(/ruter/i)) return 'kollektivtransport';
   if (desc.match(/ruter/i)) return 'kollektivtransport';
+  if (desc.match(/entur/i)) return 'kollektivtransport';
 
   // klær og sko
   if (desc.match(/xxl alna/i)) return 'klær og sko';
@@ -235,7 +236,12 @@ function category(options: CategoryOptions): string {
   // Spill
   if (desc.match(/paypal.*steam games/i)) return 'spill';
   if (desc.match(/paypal.*iracingcomm/i)) return 'spill';
+  if (desc.match(/paypal.*racesimstud/i)) return 'spill';
   if (desc.match(/paypal.*nicolasguil/i)) return 'spill';
+  if (desc.match(/paypal.*rd bv/i)) return 'spill';
+  if (desc.match(/paypal.*itch io/i)) return 'spill';
+  if (desc.match(/paypal.*patreonirel/i)) return 'spill';
+
   if (desc.match(/paypal.*facebook/i)) return 'spill';
   if (desc.match(/nintendo/i)) return 'spill';
   if (desc.match(/UBISOFT/i)) return 'spill';
@@ -246,6 +252,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/parkering/i)) return 'parkering';
   if (desc.match(/apcoa flow/i)) return 'parkering';
   if (desc.match(/apcoa p/i)) return 'parkering';
+  if (desc.match(/kredinor as/i)) return 'parkering';
   if (desc.match(/paypal.*easypark/i)) return 'parkering';
   if (desc.match(/arvato finance/i)) return 'parkering';
 
