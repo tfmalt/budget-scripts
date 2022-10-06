@@ -222,6 +222,8 @@ function removeInternalTransactions(items: any[], from: string): any[] {
   return items
     .filter((row) => new Date(row[accountingDate]) >= new Date(from))
     .filter((row) => {
+      if (row[text].match(/Til.*9713.88.10511 Betalt.*04.10.22/i)) return false;
+      if (row[text].match(/Nettbank fra.*THOMAS FREDRIK MALT Betalt.*04.10.22/i)) return false;
       if (row[2] === 'Felles bufferkonto' && row[5] === 'OVFNETTB' && row[5].match(/overskudd/i)) {
         console.log('Removed transaction:', row);
         return false;
