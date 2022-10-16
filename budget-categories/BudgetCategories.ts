@@ -123,12 +123,14 @@ function category(options: CategoryOptions): string {
   if (desc.match(/apotek/i)) return 'helse';
   if (desc.match(/gastro poliklinikk/i)) return 'helse';
   if (desc.match(/AHUS/i)) return 'helse';
+  if (desc.match(/vita 1108/i)) return 'helse';
   if (desc.match(/DKS SKI/i)) return 'helse';
   if (desc.match(/NIMI.*AS/i)) return 'helse';
   if (desc.match(/STOROKLINIKKEN/i)) return 'helse';
   if (desc.match(/MAMMOGRAFIPROGR TRONDHEIMSVE/i)) return 'helse';
   if (desc.match(/Convene Collect/i)) return 'helse';
   if (desc.match(/riks sognsvannsvn/i)) return 'helse';
+  if (desc.match(/centrum fastleg rosenkrantz/i)) return 'helse';
 
   // aviser
   if (desc.match(/aftenposten/i)) return 'aviser';
@@ -172,7 +174,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/paypal.*beautycosap/i)) return 'klær og sko';
   if (desc.match(/paypal.*wickedragon/i)) return 'klær og sko';
   if (desc.match(/spar kjop metro/i)) return 'klær og sko';
-  if (desc.match(/skorep as tvetenveien/i)) return 'klær og sko';
+  if (desc.match(/skorep as/i)) return 'klær og sko';
   if (desc.match(/match tveita/i)) return 'klær og sko';
   if (desc.match(/zizzi tveita/i)) return 'klær og sko';
   if (desc.match(/bogerud tekstil/i)) return 'klær og sko';
@@ -307,6 +309,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/PAYPAL.*SFE/i)) return 'hobby';
   if (desc.match(/STOFF OG STIL/i)) return 'hobby';
   if (desc.match(/MINGZHANXIN/i)) return 'hobby';
+  if (desc.match(/knapper og garn/i)) return 'hobby';
 
   // apper
   if (desc.match(/microsoft sto/i)) return 'apper';
@@ -331,6 +334,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/mester gr.nn/i)) return 'gaver';
   if (desc.match(/japan photo/i)) return 'gaver';
   if (desc.match(/glitter/i)) return 'gaver';
+  if (desc.match(/parfymejentene/i)) return 'gaver';
   if (desc.match(/KICKS 616 TVEIT TVETENVEIEN/i)) return 'gaver';
   if (desc.match(/BLOMSTERSENTRET HEGDEHAUGSVE/i)) return 'gaver';
   if (desc.match(/skapemer/i)) return 'gaver';
