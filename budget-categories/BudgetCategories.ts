@@ -112,6 +112,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/PRIX/i)) return 'dagligvarer';
   if (desc.match(/REMA/i)) return 'dagligvarer';
   if (desc.match(/RIMI/i)) return 'dagligvarer';
+  if (desc.match(/MFG AVD FURUSET/i)) return 'dagligvarer';
   if (desc.match(/sande meieri/i)) return 'dagligvarer';
   if (desc.match(/metro buga trygve lies/i)) return 'dagligvarer';
   if (desc.match(/manglerud frukt/i)) return 'dagligvarer';
@@ -131,6 +132,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/Convene Collect/i)) return 'helse';
   if (desc.match(/riks sognsvannsvn/i)) return 'helse';
   if (desc.match(/centrum fastleg rosenkrantz/i)) return 'helse';
+  if (desc.match(/unilabs røntgen/i)) return 'helse';
 
   // aviser
   if (desc.match(/aftenposten/i)) return 'aviser';
@@ -339,6 +341,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/BLOMSTERSENTRET HEGDEHAUGSVE/i)) return 'gaver';
   if (desc.match(/skapemer/i)) return 'gaver';
   if (desc.match(/bjørklund tveit/i)) return date.getMonth() == 11 ? 'julegaver' : 'gaver';
+  if (desc.match(/gave martha/i)) return 'gaver';
   // if (desc.match(/olsens enke san/i)) return 'gaver';
 
   // tannlege
@@ -518,6 +521,7 @@ function category(options: CategoryOptions): string {
 
   // ved
   if (desc.match(/vedhandel/i)) return 'ved';
+  if (desc.match(/christiana ved/i)) return 'ved';
   if (desc.match(/kortreistved/i)) return 'ved';
 
   // sparing
