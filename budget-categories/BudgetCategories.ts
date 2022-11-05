@@ -372,6 +372,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/backstube u8/i)) return 'restaurant';
   if (desc.match(/cafe amsterdam/i)) return 'restaurant';
   if (desc.match(/grunerhaven/i)) return 'restaurant';
+  if (desc.match(/granavolden/i)) return 'restaurant';
 
   // utlegg på restaurant
   if (desc.match(/SUDOEST RESTAURA/i)) return expense > 4000 ? 'utlegg' : 'restaurant';
