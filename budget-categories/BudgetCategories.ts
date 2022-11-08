@@ -271,6 +271,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/^nettbank$/i)) return expense == 180 ? 'lommepenger' : 'overføring';
   if (desc.match(/til.*annie therese videsjorden/i)) return 'lommepenger';
   if (desc.match(/vipps.*martha elin anstad/i)) return 'lommepenger';
+  if (desc.match(/vipps.*edith anna anstad/i)) return 'lommepenger';
   if (desc.match(/nettbank til.*9801.61.97645/i)) return 'lommepenger';
   if (desc.match(/Til: Silje Isabelle/i)) return 'lommepenger';
   if (desc.match(/Til: Ella Lyche/i)) return 'lommepenger';
