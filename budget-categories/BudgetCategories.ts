@@ -349,6 +349,7 @@ function category(options: CategoryOptions): string {
   // tannlege
   if (desc.match(/vitalmolar/i)) return 'tannlege';
   if (desc.match(/vitamolar/i)) return 'tannlege';
+  if (desc.match(/tannlege/i)) return 'tannlege';
 
   // restaurant
   if (desc.match(/vipps.*postkon/i)) return 'restaurant';
