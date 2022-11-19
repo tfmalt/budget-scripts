@@ -117,7 +117,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/metro buga trygve lies/i)) return 'dagligvarer';
   if (desc.match(/manglerud frukt/i)) return 'dagligvarer';
   if (desc.match(/w b samson/i)) return 'dagligvarer';
-  if (desc.match(/NO\d+ stenersgaten/i)) return 'dagligvarer';
+  if (desc.match(/NO\d+/i)) return 'dagligvarer';
 
   // helse
   if (desc.match(/helse/i)) return 'helse';
