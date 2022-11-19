@@ -266,6 +266,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/tentamen/i)) return 'lommepenger';
   if (desc.match(/til.*martha brukskon/i)) return 'lommepenger';
   if (desc.match(/til.*martha malt/i)) return 'lommepenger';
+  if (desc.match(/til.*edith malt/i)) return 'lommepenger';
   if (desc.match(/Nettgiro til: Malt Martha/i)) return 'lommepenger';
   if (desc.match(/overført til annen konto/i)) return expense == 180 ? 'lommepenger' : 'overføring';
   if (desc.match(/^nettbank$/i)) return expense == 180 ? 'lommepenger' : 'overføring';
