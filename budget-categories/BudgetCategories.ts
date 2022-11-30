@@ -97,7 +97,8 @@ function category(options: CategoryOptions): string {
   // dagligvarer
   if (desc.match(/MENY/i)) return 'dagligvarer';
   if (desc.match(/bunnpris/i)) return 'dagligvarer';
-  if (desc.match(/coop/i)) return 'dagligvarer';
+  if (desc.match(/coop mega storo/i)) return 'dagligvarer';
+  if (desc.match(/www coop no/i)) return 'dagligvarer';
   if (desc.match(/obs alnabru/i)) return 'dagligvarer';
   if (desc.match(/DAGLIGVARE/i)) return 'dagligvarer';
   if (desc.match(/EUROPRIS/i)) return 'dagligvarer';
@@ -197,6 +198,8 @@ function category(options: CategoryOptions): string {
   if (desc.match(/LAMPEHUSET/i)) return 'hus og hage';
   if (desc.match(/husholdning/i)) return 'hus og hage';
   if (desc.match(/no1019/i)) return 'hus og hage';
+  if (desc.match(/coop obs bygg alnabru/i)) return 'hus og hage';
+  if (desc.match(/coop obs bygg/i)) return 'hus og hage';
   if (desc.match(/nets.*parkett/i)) return 'hus og hage';
 
   // vedlikehold
@@ -227,6 +230,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/Anders Rønning Dahlen/i)) return 'kiosk';
   if (desc.match(/bit osl gardermoen/i)) return 'kiosk';
   if (desc.match(/mix tveita/i)) return 'kiosk';
+  if (desc.match(/backstube storgatan/i)) return 'kiosk';
 
   // Internett
   if (desc.match(/paypal.*privateint/i)) return 'internett';
@@ -320,6 +324,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/paypal.*microsoft/i)) return 'apper';
   if (desc.match(/apple\.com/i)) return expense > 600 ? (date.getMonth() == 11 ? 'julegaver' : 'apple') : 'apper';
   if (desc.match(/paypal.*evernote/i)) return 'apper';
+  if (desc.match(/paypal.*adblock/i)) return 'apper';
   if (desc.match(/itunes/i)) return 'apper';
 
   // Gaver
@@ -376,6 +381,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/cafe amsterdam/i)) return 'restaurant';
   if (desc.match(/grunerhaven/i)) return 'restaurant';
   if (desc.match(/granavolden/i)) return 'restaurant';
+  if (desc.match(/gamle munch kaffebar/i)) return 'restaurant';
 
   // utlegg på restaurant
   if (desc.match(/SUDOEST RESTAURA/i)) return expense > 4000 ? 'utlegg' : 'restaurant';
