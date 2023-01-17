@@ -119,6 +119,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/manglerud frukt/i)) return 'dagligvarer';
   if (desc.match(/w b samson/i)) return 'dagligvarer';
   if (desc.match(/NO\d+/i)) return 'dagligvarer';
+  if (desc.match(/normal oslo/i)) return 'dagligvarer';
 
   // helse
   if (desc.match(/helse/i)) return 'helse';
@@ -355,6 +356,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/vitalmolar/i)) return 'tannlege';
   if (desc.match(/vitamolar/i)) return 'tannlege';
   if (desc.match(/tannlege/i)) return 'tannlege';
+  if (desc.match(/festningen tann/i)) return 'tannlege';
 
   // restaurant
   if (desc.match(/vipps.*postkon/i)) return 'restaurant';
@@ -505,6 +507,7 @@ function category(options: CategoryOptions): string {
   // aktivitetsskole - skole
   if (desc.match(/oslo kommune/i)) return 'skole';
   if (desc.match(/skoleutstyr/i)) return 'skole';
+  if (desc.match(/utdanningsetaten/i)) return 'skole';
   if (desc.match(/Lasse Feyling-Gruber/i)) return 'skole';
   if (desc.match(/Leif Inge Dahl Thom/i)) return 'skole';
 
@@ -528,11 +531,13 @@ function category(options: CategoryOptions): string {
   if (desc.match(/SKANDIABANKEN/i)) return 'boliglån';
   if (desc.match(/til:97108091812/i)) return 'boliglån';
   if (desc.match(/Til:97138810511/i)) return 'boliglån';
+  if (desc.match(/Nettbank til: 9801.52.61633 Betalt: 09.01.23/i)) return 'boliglån';
 
   // ved
   if (desc.match(/vedhandel/i)) return 'ved';
   if (desc.match(/christiana ved/i)) return 'ved';
   if (desc.match(/kortreistved/i)) return 'ved';
+  if (desc.match(/norsk vedsentral/i)) return 'ved';
 
   // sparing
   if (desc.match(/Spareavtale/i)) return 'sparing';
