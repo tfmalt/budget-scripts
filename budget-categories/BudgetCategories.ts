@@ -213,6 +213,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/1503.17.34573/i)) return 'hund';
   if (desc.match(/alnavet/i)) return 'hund';
   if (desc.match(/oslo dyrebutikk/i)) return 'hund';
+  if (desc.match(/petxl/i)) return 'hund';
   if (desc.match(/buddy tveita/i)) return 'hund';
   if (desc.match(/vipps.*cotrau/i)) return 'hund';
   if (desc.match(/cotrau groomin/i)) return 'hund';
@@ -594,6 +595,7 @@ function category(options: CategoryOptions): string {
 
   // teater
   if (desc.match(/ebillett kultur/i)) return 'teater';
+  if (desc.match(/albillett/i)) return 'teater';
 
   // sykkel
   if (desc.match(/oslo sykkelverksted/i)) return 'sykkel';
