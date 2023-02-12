@@ -135,6 +135,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/riks sognsvannsvn/i)) return 'helse';
   if (desc.match(/centrum fastleg rosenkrantz/i)) return 'helse';
   if (desc.match(/unilabs røntgen/i)) return 'helse';
+  if (desc.match(/vitamin torg/i)) return 'helse';
 
   // aviser
   if (desc.match(/aftenposten/i)) return 'aviser';
@@ -418,6 +419,8 @@ function category(options: CategoryOptions): string {
   if (desc.match(/quality fredrik/i)) return 'reise';
   if (desc.match(/flyr as/i)) return 'reise';
   if (desc.match(/flyr.no/i)) return 'reise';
+  if (desc.match(/dsb kastrup/i)) return 'reise';
+  if (desc.match(/lagkagehuset/i)) return 'reise';
 
   // ferie
   if (desc.match(/ferie/i)) return 'ferie';
@@ -447,6 +450,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/paypal.*disneyplus/i)) return 'tv og streaming';
   if (desc.match(/PAYPAL.*WALTDISNEYC/i)) return 'tv og streaming';
   if (desc.match(/usd.*audible/i)) return 'tv og streaming';
+  if (desc.match(/audible uk/i)) return 'tv og streaming';
 
   // Elektrisitet
   if (desc.match(/Hafslund/i)) return 'elektrisitet';
@@ -567,6 +571,7 @@ function category(options: CategoryOptions): string {
 
   // taxfree
   if (desc.match(/dutyfree/i)) return 'taxfree';
+  if (desc.match(/heinemann retail/i)) return 'taxfree';
   if (desc.match(/duty-free/i)) return 'taxfree';
 
   // Frisør
