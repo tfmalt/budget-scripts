@@ -135,6 +135,8 @@ function category(options: CategoryOptions): string {
   if (desc.match(/riks sognsvannsvn/i)) return 'helse';
   if (desc.match(/centrum fastleg rosenkrantz/i)) return 'helse';
   if (desc.match(/unilabs røntgen/i)) return 'helse';
+  if (desc.match(/KARKIRURGI POL/i)) return 'helse';
+  if (desc.match(/Oslo Legevakt/i)) return 'helse';
   if (desc.match(/vitamin torg/i)) return 'helse';
 
   // aviser
