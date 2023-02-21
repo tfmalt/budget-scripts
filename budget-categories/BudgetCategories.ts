@@ -534,6 +534,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/Nettbank til: 9801.52.61633 Betalt: 09.01.23/i)) return 'boliglån';
   if (desc.match(/Nettbank til: 9803.10.01277/i)) return 'rammelån';
   if (desc.match(/Nettbank fra: THOMAS FREDRIK MALT Betalt: 19.02.23/i)) return 'rammelån';
+  if (desc.match(/rammelån/i)) return 'rammelån';
 
   // Thomas
   if (desc.match(/thomas/i)) return 'thomas';
