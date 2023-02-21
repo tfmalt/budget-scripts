@@ -596,6 +596,8 @@ function category(options: CategoryOptions): string {
 
   // Datautstyr
   if (desc.match(/komplett/i)) return 'datautstyr';
+  if (desc.match(/NOK 2644.00 Klarna/i)) return 'datautstyr';
+  if (desc.match(/NOK 599.00 Klarna/i)) return 'datautstyr';
 
   // kino
   if (desc.match(/kino/i)) return 'kino';
