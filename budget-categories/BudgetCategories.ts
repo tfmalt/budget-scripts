@@ -526,13 +526,6 @@ function category(options: CategoryOptions): string {
   if (desc.match(/vipps.spleis/i)) return 'filantropi';
   if (desc.match(/bidra\.no/i)) return 'filantropi';
 
-  // Thomas
-  if (desc.match(/thomas/i)) return 'thomas';
-  if (desc.match(/prince lunchbar/i)) return 'lunch thomas';
-  if (desc.match(/backstube gronland/i)) return 'lunch thomas';
-  if (desc.match(/ram thai/i)) return 'lunch thomas';
-  if (desc.match(/EUREST 3393 ENTRA SUNDTKV/i)) return 'lunch thomas';
-
   // boliglån
   if (desc.match(/^lån$/i)) return 'boliglån';
   if (desc.match(/SKANDIABANKEN/i)) return 'boliglån';
@@ -541,6 +534,13 @@ function category(options: CategoryOptions): string {
   if (desc.match(/Nettbank til: 9801.52.61633 Betalt: 09.01.23/i)) return 'boliglån';
   if (desc.match(/Nettbank til: 9803.10.01277/i)) return 'rammelån';
   if (desc.match(/Nettbank fra: THOMAS FREDRIK MALT Betalt: 19.02.23/i)) return 'rammelån';
+
+  // Thomas
+  if (desc.match(/thomas/i)) return 'thomas';
+  if (desc.match(/prince lunchbar/i)) return 'lunch thomas';
+  if (desc.match(/backstube gronland/i)) return 'lunch thomas';
+  if (desc.match(/ram thai/i)) return 'lunch thomas';
+  if (desc.match(/EUREST 3393 ENTRA SUNDTKV/i)) return 'lunch thomas';
 
   // ved
   if (desc.match(/vedhandel/i)) return 'ved';
