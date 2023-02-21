@@ -52,6 +52,7 @@ function category(options: CategoryOptions): string {
 
   // tilbakeføring og inntekter
   if (income > 1) {
+    if (desc.match(/rammelån/i)) return 'rammelån';
     if (desc.match(/fra.*elvia.*betalt/i)) return 'strømstøtte';
     if (desc.match(/tilbakeføring/i)) return 'tilbakeføring';
     if (desc.match(/feriepenger/i)) return 'feriepenger';
