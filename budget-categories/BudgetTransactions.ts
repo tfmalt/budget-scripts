@@ -193,6 +193,11 @@ function fetchTransactions(from: string, to?: string): TransactionsObject | unde
   return { items, status, version: data.version, name: data.name };
 }
 
+function fetchTransactionsTest(): TransactionsObject | undefined {
+  const trans = fetchTransactions('2023-01-01');
+  return trans;
+}
+
 /**
  * Filter the fetched items to remove internal transactions based on date and
  * idential expense<->income values
