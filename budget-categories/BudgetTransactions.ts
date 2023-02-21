@@ -219,48 +219,51 @@ function removeInternalTransactions(items: any[], from: string): any[] {
     'faste utgifter elektrisitet',
   ];
 
-  return items
-    .filter((row) => new Date(row[accountingDate]) >= new Date(from))
-    .filter((row) => {
-      if (row[text].match(/Til.*9713.88.10511 Betalt.*04.10.22/i)) return false;
-      if (row[text].match(/Nettbank fra.*THOMAS FREDRIK MALT Betalt.*04.10.22/i)) return false;
-      if (row[text].match(/10405581/i)) return false;
-      if (row[2] === 'Felles bufferkonto' && row[5] === 'OVFNETTB' && row[5].match(/overskudd/i)) {
+  let result = items;
+
+  result = result.filter((row) => new Date(row[accountingDate]) >= new Date(from));
+  result = result.filter((row) => !row[text].match(/Til.*9713.88.10511 Betalt.*04.10.22/i));
+  result = result.filter((row) => !row[text].match(/Nettbank fra.*THOMAS FREDRIK MALT Betalt.*04.10.22/i));
+  result = result.filter((row) => !row[text].match(/10405581/i));
+  result = result.filter(
+    (row) => !(row[2] === 'Felles bufferkonto' && row[5] === 'OVFNETTB' && row[5].match(/overskudd/i))
+  );
+  result = result.filter((row) => {
+    for (let i = 0; i < items.length; i++) {
+      if (
+        row[accountingDate] === items[i][accountingDate] &&
+        row[text] === items[i][text] &&
+        row[expense] === items[i][income] &&
+        row[income] === items[i][expense]
+      ) {
         console.log('Removed transaction:', row);
         return false;
       }
-      return true;
-    })
-    .filter((row) => {
-      for (let i = 0; i < items.length; i++) {
-        if (
-          row[accountingDate] === items[i][accountingDate] &&
-          row[text] === items[i][text] &&
-          row[expense] === items[i][income] &&
-          row[income] === items[i][expense]
-        ) {
+      // ------------------------------------------------------------------
+      // Catch internal account transfers
+      if (
+        row[accountingDate] === items[i][accountingDate] &&
+        row[expense] === items[i][income] &&
+        row[income] === items[i][expense]
+      ) {
+        if (row[text].match(/nettbank/i) && items[i][text].match(/nettbank/i)) {
           console.log('Removed transaction:', row);
           return false;
         }
-        // ------------------------------------------------------------------
-        // Catch internal account transfers
-        if (row[accountingDate] === items[i][accountingDate] && row[expense] === items[i][income]) {
-          if (row[text].match(/nettbank/i) && items[i][text].match(/nettbank/i)) {
-            console.log('Removed transaction:', row);
-            return false;
-          }
-          if (row[text].match(/OVERFØRT TIL ANNEN KONTO/i) && internalTransfers.includes(items[i][text])) {
-            console.log('Removed transaction:', row);
-            return false;
-          }
-          if (internalTransfers.includes(row[text]) && items[i][text].match(/OVERFØRT TIL ANNEN KONTO/i)) {
-            console.log('Removed transaction:', row);
-            return false;
-          }
+        if (row[text].match(/OVERFØRT TIL ANNEN KONTO/i) && internalTransfers.includes(items[i][text])) {
+          console.log('Removed transaction:', row);
+          return false;
+        }
+        if (internalTransfers.includes(row[text]) && items[i][text].match(/OVERFØRT TIL ANNEN KONTO/i)) {
+          console.log('Removed transaction:', row);
+          return false;
         }
       }
-      // The row is included in the returned array
-      return true;
-    })
-    .filter((row) => row[9] !== 'sparing');
+    }
+    // The row is included in the returned array
+    return true;
+  });
+  // .filter((row) => row[9] !== 'sparing');
+
+  return result;
 }
