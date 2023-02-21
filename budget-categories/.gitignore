@@ -2,3 +2,5 @@
 2021.clasp.json
 Config.b64
 Config.ts
+.pnp.cjs
+.yarn
