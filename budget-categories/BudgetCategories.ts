@@ -23,7 +23,7 @@ function category(options: CategoryOptions): string {
   const { date, desc, income, expense } = options;
 
   // Edith handler matvarer tilbakeføring
-  if (date >= new Date('2023-02-20') && date <= new Date('2023-02-21')) {
+  if (date >= new Date('2023-02-20') && date <= new Date('2023-02-22')) {
     if (desc.match(/edith anna ånstad malt/i)) return 'dagligvarer';
   }
 
