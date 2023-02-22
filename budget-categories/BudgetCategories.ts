@@ -486,13 +486,6 @@ function category(options: CategoryOptions): string {
   if (desc.match(/skatteetaten/i)) return 'diverse';
   if (desc.match(/KLARNA BANK AB/i)) return 'diverse';
 
-  // konfirmasjon
-  if (desc.match(/HUMAN ETISK FOR/i)) return 'konfirmasjon';
-  if (desc.match(/cakeiteasy.no/i)) return 'konfirmasjon';
-  if (desc.match(/heimen husflid/i)) return 'konfirmasjon';
-  if (desc.match(/konfirmasjon/i)) return 'konfirmasjon';
-  if (desc.match(/kreativ cateeri/i)) return 'konfirmasjon';
-
   // kontanter
   if (desc.match(/kontanter/i)) return 'kontanter';
   if (desc.match(/NORDEA TVEITA LOBBY/i)) return 'kontanter';
@@ -618,6 +611,16 @@ function category(options: CategoryOptions): string {
   // sykkel
   if (desc.match(/oslo sykkelverksted/i)) return 'sykkel';
   if (desc.match(/bike brothers/i)) return 'sykkel';
+
+  // Fest og høytid
+  //   andre markeringer
+  if (desc.match(/ADSTATE AS BLOMSTER OG BE/i)) return 'andre markeringer';
+  //   konfirmasjon
+  if (desc.match(/HUMAN ETISK FOR/i)) return 'konfirmasjon';
+  if (desc.match(/cakeiteasy.no/i)) return 'konfirmasjon';
+  if (desc.match(/heimen husflid/i)) return 'konfirmasjon';
+  if (desc.match(/konfirmasjon/i)) return 'konfirmasjon';
+  if (desc.match(/kreativ cateeri/i)) return 'konfirmasjon';
 
   // ====================================================================
   // Usortert herfra
