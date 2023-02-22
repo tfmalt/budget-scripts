@@ -22,6 +22,11 @@
 function category(options: CategoryOptions): string {
   const { date, desc, income, expense } = options;
 
+  // Edith handler matvarer tilbakeføring
+  if (date >= new Date('2023-02-20') && date <= new Date('2023-02-21')) {
+    if (desc.match(/edith anna ånstad malt/i)) return 'matvarer';
+  }
+
   // ferie 2022
   if (date >= new Date('2022-07-12') && date <= new Date('2022-07-22')) {
     if (desc.match(/Galleriet Kjopesen/i)) return 'ferieaktiviteter';
