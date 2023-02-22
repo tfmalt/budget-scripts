@@ -24,7 +24,7 @@ function category(options: CategoryOptions): string {
 
   // Edith handler matvarer tilbakeføring
   if (date >= new Date('2023-02-20') && date <= new Date('2023-02-21')) {
-    if (desc.match(/edith anna ånstad malt/i)) return 'matvarer';
+    if (desc.match(/edith anna ånstad malt/i)) return 'dagligvarer';
   }
 
   // ferie 2022
