@@ -27,6 +27,11 @@ function category(options: CategoryOptions): string {
     if (desc.match(/edith anna ånstad malt/i)) return 'dagligvarer';
   }
 
+  // edith synsprøve
+  if (date >= new Date('2023-03-01') && date <= new Date('2023-03-02')) {
+    if (desc.match(/edith malt/i)) return 'briller';
+  }
+
   // ferie 2022
   if (date >= new Date('2022-07-12') && date <= new Date('2022-07-22')) {
     if (desc.match(/Galleriet Kjopesen/i)) return 'ferieaktiviteter';
@@ -599,6 +604,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/komplett/i)) return 'datautstyr';
   if (desc.match(/NOK 2644.00 Klarna/i)) return 'datautstyr';
   if (desc.match(/NOK 599.00 Klarna/i)) return 'datautstyr';
+  if (desc.match(/keychron/i)) return 'datautstyr';
 
   // kino
   if (desc.match(/kino/i)) return 'kino';
