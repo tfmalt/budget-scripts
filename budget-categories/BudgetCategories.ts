@@ -29,7 +29,7 @@ function category(options: CategoryOptions): string {
 
   // edith synsprøve
   if (date >= new Date('2023-03-01') && date <= new Date('2023-03-02')) {
-    if (desc.match(/edith malt/i)) return 'briller';
+    if (desc.match(/edith malt/i) && expense > 500) return 'briller';
   }
 
   // ferie 2022
