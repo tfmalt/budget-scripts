@@ -246,7 +246,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/Anders Rønning Dahlen/i)) return 'kiosk';
   if (desc.match(/bit osl gardermoen/i)) return 'kiosk';
   if (desc.match(/mix tveita/i)) return 'kiosk';
-  if (desc.match(/backstube storgatan/i)) return 'kiosk';
+  if (desc.match(/backstube/i)) return 'kiosk';
 
   // Internett
   if (desc.match(/paypal.*privateint/i)) return 'internett';
@@ -322,6 +322,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/kulturetaten/i)) return 'aktiviteter';
   if (desc.match(/paypal.*billettserv/i)) return 'aktiviteter';
   if (desc.match(/glenn.sverre.gulbrandsen/i)) return 'aktiviteter';
+  if (desc.match(/stiftelsen nasj/i)) return 'aktiviteter';
 
   // hobby
   if (desc.match(/trg norge/i)) return 'hobby';
@@ -394,7 +395,6 @@ function category(options: CategoryOptions): string {
   if (desc.match(/ordr kurs/i)) return 'restaurant';
   if (desc.match(/cafe sjarm/i)) return 'restaurant';
   if (desc.match(/iss.*ulle kirkeveien/i)) return 'restaurant';
-  if (desc.match(/backstube u8/i)) return 'restaurant';
   if (desc.match(/cafe amsterdam/i)) return 'restaurant';
   if (desc.match(/grunerhaven/i)) return 'restaurant';
   if (desc.match(/granavolden/i)) return 'restaurant';
@@ -413,6 +413,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/bøker/i)) return 'bøker';
   if (desc.match(/bokhandel/i)) return 'bøker';
   if (desc.match(/amzn digital/i)) return 'bøker';
+  if (desc.match(/amzn mktp/i)) return 'bøker';
   if (desc.match(/kindle/i)) return 'bøker';
 
   // reise
@@ -543,7 +544,6 @@ function category(options: CategoryOptions): string {
   // Thomas
   if (desc.match(/thomas/i)) return 'thomas';
   if (desc.match(/prince lunchbar/i)) return 'lunch thomas';
-  if (desc.match(/backstube gronland/i)) return 'lunch thomas';
   if (desc.match(/ram thai/i)) return 'lunch thomas';
   if (desc.match(/EUREST 3393 ENTRA SUNDTKV/i)) return 'lunch thomas';
 
@@ -605,6 +605,8 @@ function category(options: CategoryOptions): string {
   if (desc.match(/NOK 2644.00 Klarna/i)) return 'datautstyr';
   if (desc.match(/NOK 599.00 Klarna/i)) return 'datautstyr';
   if (desc.match(/keychron/i)) return 'datautstyr';
+  if (desc.match(/proshop.no/i)) return 'datautstyr';
+  if (desc.match(/eplehuset.no/i)) return 'datautstyr';
 
   // kino
   if (desc.match(/kino/i)) return 'kino';
