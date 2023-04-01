@@ -502,6 +502,7 @@ function category(options: CategoryOptions): string {
 
   // møbler og interiør
   if (desc.match(/ikea/i)) return 'møbler og interiør';
+  if (desc.match(/skousen.no/i)) return 'møbler og interiør';
   if (desc.match(/kid.*interiør/i)) return 'møbler og interiør';
   if (desc.match(/elkjoep/i)) return 'møbler og interiør';
   if (desc.match(/elkjøp alna/i)) {
