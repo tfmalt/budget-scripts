@@ -296,6 +296,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/nettbank til.*9801.61.97645/i)) return 'lommepenger';
   if (desc.match(/Til: Silje Isabelle/i)) return 'lommepenger';
   if (desc.match(/Til: Ella Lyche/i)) return 'lommepenger';
+  if (desc.match(/Til: Camilla Godø Krohn/i)) return 'lommepenger';
   if (desc.match(/pinger/i)) return 'lommepenger';
 
   // kiosk eller drivstoff
