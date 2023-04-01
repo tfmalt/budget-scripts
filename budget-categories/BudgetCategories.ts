@@ -630,6 +630,11 @@ function category(options: CategoryOptions): string {
   if (desc.match(/konfirmasjon/i)) return 'konfirmasjon';
   if (desc.match(/kreativ cateeri/i)) return 'konfirmasjon';
 
+  if (desc.match(/fra nesodden/i)) return 'bursdag';
+  if (desc.match(/bursdag/i)) return 'bursdag';
+  if (desc.match(/fra farmor/i)) return 'bursdag';
+  if (desc.match(/til edith fra tord/i)) return 'bursdag';
+
   // ====================================================================
   // Usortert herfra
 
