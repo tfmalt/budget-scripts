@@ -560,6 +560,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/Til aksjedepot/i)) return 'sparing';
   if (desc.match(/verdipapirhandel/i)) return 'sparing';
   if (desc.match(/.*sparing/i)) return 'sparing';
+  if (desc.match(/fra buffer til ramme/i)) return 'sparing';
 
   // bil
   if (desc.match(/bilkollektivet/i)) return 'bilkollektivet';
