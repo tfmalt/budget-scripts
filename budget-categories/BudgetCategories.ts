@@ -542,6 +542,13 @@ function category(options: CategoryOptions): string {
   if (desc.match(/Nettbank til: 9803.10.01277/i)) return 'rammelån';
   if (desc.match(/Nettbank fra: THOMAS FREDRIK MALT Betalt: 19.02.23/i)) return 'rammelån';
   if (desc.match(/rammelån/i)) return 'rammelån';
+  if (desc.match(/fra buffer til ramme/i)) return 'rammelån';
+
+  // sparing
+  if (desc.match(/Spareavtale/i)) return 'sparing';
+  if (desc.match(/Til aksjedepot/i)) return 'sparing';
+  if (desc.match(/verdipapirhandel/i)) return 'sparing';
+  if (desc.match(/.*sparing/i)) return 'sparing';
 
   // Thomas
   if (desc.match(/thomas/i)) return 'thomas';
@@ -554,13 +561,6 @@ function category(options: CategoryOptions): string {
   if (desc.match(/christiana ved/i)) return 'ved';
   if (desc.match(/kortreistved/i)) return 'ved';
   if (desc.match(/norsk vedsentral/i)) return 'ved';
-
-  // sparing
-  if (desc.match(/Spareavtale/i)) return 'sparing';
-  if (desc.match(/Til aksjedepot/i)) return 'sparing';
-  if (desc.match(/verdipapirhandel/i)) return 'sparing';
-  if (desc.match(/.*sparing/i)) return 'sparing';
-  if (desc.match(/fra buffer til ramme/i)) return 'sparing';
 
   // bil
   if (desc.match(/bilkollektivet/i)) return 'bilkollektivet';
