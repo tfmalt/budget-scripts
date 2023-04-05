@@ -173,6 +173,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/lindex/i)) return 'klær og sko';
   if (desc.match(/klær/i)) return 'klær og sko';
   if (desc.match(/H&M/i)) return 'klær og sko';
+  if (desc.match(/hm stroemmen storsenter/i)) return 'klær og sko';
   if (desc.match(/fretex/i)) return 'klær og sko';
   if (desc.match(/euro ?sko/i)) return 'klær og sko';
   if (desc.match(/cubus/i)) return 'klær og sko';
@@ -296,6 +297,8 @@ function category(options: CategoryOptions): string {
   if (desc.match(/nettbank til.*9801.61.97645/i)) return 'lommepenger';
   if (desc.match(/Til: Silje Isabelle/i)) return 'lommepenger';
   if (desc.match(/Til: Ella Lyche/i)) return 'lommepenger';
+  if (desc.match(/Til: Julie Rekstad/i)) return 'lommepenger';
+  if (desc.match(/Til: Edith Anna Ånstad Malt/i)) return 'lommepenger';
   if (desc.match(/Til: Camilla Godø Krohn/i)) return 'lommepenger';
   if (desc.match(/pinger/i)) return 'lommepenger';
 
@@ -330,7 +333,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/flying tiger copenhagen/i)) return 'hobby';
   if (desc.match(/ark [a-z]/i)) return 'hobby';
   if (desc.match(/nøstet mitt/i)) return 'hobby';
-  if (desc.match(/PANDURO KARL JOHANS/i)) return 'hobby';
+  if (desc.match(/PANDURO/i)) return 'hobby';
   if (desc.match(/kjell.*company/i)) return 'hobby';
   if (desc.match(/PAYPAL.*SFE/i)) return 'hobby';
   if (desc.match(/STOFF OG STIL/i)) return 'hobby';
@@ -503,6 +506,7 @@ function category(options: CategoryOptions): string {
 
   // møbler og interiør
   if (desc.match(/ikea/i)) return 'møbler og interiør';
+  if (desc.match(/sostrene grene/i)) return 'møbler og interiør';
   if (desc.match(/skousen.no/i)) return 'møbler og interiør';
   if (desc.match(/kid.*interiør/i)) return 'møbler og interiør';
   if (desc.match(/elkjoep/i)) return 'møbler og interiør';
