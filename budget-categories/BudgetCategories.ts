@@ -149,9 +149,11 @@ function category(options: CategoryOptions): string {
   if (desc.match(/KARKIRURGI POL/i)) return 'helse';
   if (desc.match(/Oslo Legevakt/i)) return 'helse';
   if (desc.match(/vitamin torg/i)) return 'helse';
+  if (desc.match(/riverty norway/i)) return 'helse';
 
   // aviser
   if (desc.match(/aftenposten/i)) return 'aviser';
+  if (desc.match(/morgenbladet/i)) return 'aviser';
   if (desc.match(/paypal.*newyorktime/i)) return 'aviser';
   if (desc.match(/paypal.*washpost/i)) return 'aviser';
   if (desc.match(/paypal.*ny.times/i)) return 'aviser';
@@ -424,7 +426,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/gbp \d+/i)) return 'reise';
   if (desc.match(/EUR \d+/i)) return 'reise';
   if (desc.match(/flybuss/i)) return 'reise';
-  if (desc.match(/osloekspressen/i)) return 'reise';
+  if (desc.match(/oslekspressen/i)) return 'reise';
   if (desc.match(/caffe ritazza/i)) return 'reise';
   if (desc.match(/vy.?app/i)) return 'reise';
   if (desc.match(/vy\.no/i)) return 'reise';
@@ -441,7 +443,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/dsb kastrup/i)) return 'reise';
   if (desc.match(/lagkagehuset/i)) return 'reise';
   if (desc.match(/inflight services norwegi/i)) return 'reise';
-  if (desc.match(/oslo lufth. gardermoen/i)) return 'reise';
+  if (desc.match(/oslo lufth/i)) return 'reise';
 
   // ferie
   if (desc.match(/ferie/i)) return 'ferie';
@@ -473,6 +475,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/PAYPAL.*WALTDISNEYC/i)) return 'tv og streaming';
   if (desc.match(/usd.*audible/i)) return 'tv og streaming';
   if (desc.match(/audible uk/i)) return 'tv og streaming';
+  if (desc.match(/paypal.*motorsport/i)) return 'tv og streaming';
 
   // Elektrisitet
   if (desc.match(/Hafslund/i)) return 'elektrisitet';
