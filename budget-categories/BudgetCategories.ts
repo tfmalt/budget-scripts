@@ -424,6 +424,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/gbp \d+/i)) return 'reise';
   if (desc.match(/EUR \d+/i)) return 'reise';
   if (desc.match(/flybuss/i)) return 'reise';
+  if (desc.match(/osloekspressen/i)) return 'reise';
   if (desc.match(/caffe ritazza/i)) return 'reise';
   if (desc.match(/vy.?app/i)) return 'reise';
   if (desc.match(/vy\.no/i)) return 'reise';
@@ -439,6 +440,8 @@ function category(options: CategoryOptions): string {
   if (desc.match(/flyr.no/i)) return 'reise';
   if (desc.match(/dsb kastrup/i)) return 'reise';
   if (desc.match(/lagkagehuset/i)) return 'reise';
+  if (desc.match(/inflight services norwegi/i)) return 'reise';
+  if (desc.match(/oslo lufth. gardermoen/i)) return 'reise';
 
   // ferie
   if (desc.match(/ferie/i)) return 'ferie';
@@ -457,6 +460,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/svenningdal camping/i)) return 'ferie';
   if (desc.match(/ulvsvaag gjestgiveri/i)) return 'ferie';
   if (desc.match(/thn catering kirkegata/i)) return 'ferie';
+  if (desc.match(/theodosakis theodoros/i)) return 'ferie';
 
   // TV og Streaming
   if (desc.match(/paypal.*crunchyroll/i)) return 'tv og streaming';
@@ -559,6 +563,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/prince lunchbar/i)) return 'lunch thomas';
   if (desc.match(/ram thai/i)) return 'lunch thomas';
   if (desc.match(/EUREST 3393 ENTRA SUNDTKV/i)) return 'lunch thomas';
+  if (desc.match(/EUREST .* ENTRA/i)) return 'lunch thomas';
 
   // ved
   if (desc.match(/vedhandel/i)) return 'ved';
