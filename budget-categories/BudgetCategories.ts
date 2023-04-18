@@ -165,7 +165,7 @@ function category(options: CategoryOptions): string {
 
   // klær og sko
   if (desc.match(/xxl alna/i)) return 'klær og sko';
-  if (desc.match(/XXL NOR 303 ALN/i)) return 'klær og sko';
+  if (desc.match(/xxl nor/i)) return 'klær og sko';
   if (desc.match(/dressmann/i)) return 'klær og sko';
   if (desc.match(/boys tveita/i)) return 'klær og sko';
   if (desc.match(/klarna.*xxl no/i)) return 'klær og sko';
