@@ -59,6 +59,7 @@ function category(options: CategoryOptions): string {
   }
 
   if (desc.match(/sommerleir/i)) return 'ferieaktiviteter';
+  if (desc.match(/checkin as/i)) return 'ferieaktiviteter';
 
   // tilbakeføring og inntekter
   if (income > 1) {
@@ -134,6 +135,7 @@ function category(options: CategoryOptions): string {
 
   // helse
   if (desc.match(/helse/i)) return 'helse';
+  if (desc.match(/zolva/i)) return 'helse';
   if (desc.match(/apotek/i)) return 'helse';
   if (desc.match(/gastro poliklinikk/i)) return 'helse';
   if (desc.match(/AHUS/i)) return 'helse';
@@ -199,6 +201,15 @@ function category(options: CategoryOptions): string {
   if (desc.match(/match tveita/i)) return 'klær og sko';
   if (desc.match(/zizzi tveita/i)) return 'klær og sko';
   if (desc.match(/bogerud tekstil/i)) return 'klær og sko';
+
+  if (date >= new Date('2023-04-15') && date <= new Date('2023-04-20')) {
+    if (expense == 3264.2) {
+      if (desc.match(/klarna/i)) return 'klær og sko';
+    }
+    if (expense == 1199) {
+      if (desc.match(/klarna/i)) return 'hund';
+    }
+  }
 
   // Hus og hage - etc
   if (desc.match(/plantasjen/i)) return 'hus og hage';
@@ -463,6 +474,11 @@ function category(options: CategoryOptions): string {
   if (desc.match(/ulvsvaag gjestgiveri/i)) return 'ferie';
   if (desc.match(/thn catering kirkegata/i)) return 'ferie';
   if (desc.match(/theodosakis theodoros/i)) return 'ferie';
+  if (desc.match(/funkys/i)) return 'ferie';
+  if (desc.match(/chania/i)) return 'ferie';
+  if (desc.match(/yioi v. balantinou/i)) return 'ferie';
+  if (desc.match(/general stores shop/i)) return 'ferie';
+  if (desc.match(/N ARCHAIOL MOUSEIO CHA/i)) return 'ferie';
 
   // TV og Streaming
   if (desc.match(/paypal.*crunchyroll/i)) return 'tv og streaming';
