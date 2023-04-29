@@ -332,6 +332,7 @@ function category(options: CategoryOptions): string {
 
   // aktiviteter
   if (desc.match(/aktiviteter/i)) return 'aktiviteter';
+  if (desc.match(/oslo mdg/i)) return 'aktiviteter';
   if (desc.match(/museum/i)) return 'aktiviteter';
   if (desc.match(/Nettgiro til.*Su Betalt/i)) return 'aktiviteter';
   if (desc.match(/NEBBURSVOLLEN/i)) return 'aktiviteter';
@@ -395,6 +396,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/vipps.*postkon/i)) return 'restaurant';
   if (desc.match(/sit kafe/i)) return 'restaurant';
   if (desc.match(/restaurant/i)) return 'restaurant';
+  if (desc.match(/fridtjof oslo/i)) return 'restaurant';
   if (desc.match(/postkontoret/i)) return 'restaurant';
   if (desc.match(/kaffebrenneriet/i)) return 'restaurant';
   if (desc.match(/hai sushi/i)) return 'restaurant';
