@@ -457,6 +457,9 @@ function category(options: CategoryOptions): string {
   if (desc.match(/lagkagehuset/i)) return 'reise';
   if (desc.match(/inflight services norwegi/i)) return 'reise';
   if (desc.match(/oslo lufth/i)) return 'reise';
+  if (desc.match(/db fernverk/i)) return 'reise';
+  if (desc.match(/s-bahn berlin/i)) return 'reise';
+  if (desc.match(/osl garderm edvard munch/i)) return 'reise';
 
   // ferie
   if (desc.match(/ferie/i)) return 'ferie';
@@ -481,6 +484,8 @@ function category(options: CategoryOptions): string {
   if (desc.match(/yioi v. balantinou/i)) return 'ferie';
   if (desc.match(/general stores shop/i)) return 'ferie';
   if (desc.match(/N ARCHAIOL MOUSEIO CHA/i)) return 'ferie';
+  if (desc.match(/kadewe/i)) return 'ferie';
+  if (desc.match(/novasol/i)) return 'ferie';
 
   // TV og Streaming
   if (desc.match(/paypal.*crunchyroll/i)) return 'tv og streaming';
