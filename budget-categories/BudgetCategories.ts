@@ -486,6 +486,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/N ARCHAIOL MOUSEIO CHA/i)) return 'ferie';
   if (desc.match(/kadewe/i)) return 'ferie';
   if (desc.match(/novasol/i)) return 'ferie';
+  if (desc.match(/lidl dienst/i)) return 'ferie';
 
   // TV og Streaming
   if (desc.match(/paypal.*crunchyroll/i)) return 'tv og streaming';
