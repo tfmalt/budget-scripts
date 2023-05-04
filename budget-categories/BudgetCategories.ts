@@ -132,6 +132,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/w b samson/i)) return 'dagligvarer';
   if (desc.match(/NO\d+/i)) return 'dagligvarer';
   if (desc.match(/normal oslo/i)) return 'dagligvarer';
+  if (desc.match(/oda.com/i)) return 'dagligvarer';
 
   // helse
   if (desc.match(/helse/i)) return 'helse';
