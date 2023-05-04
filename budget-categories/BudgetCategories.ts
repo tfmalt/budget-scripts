@@ -346,7 +346,6 @@ function category(options: CategoryOptions): string {
   // hobby
   if (desc.match(/trg norge/i)) return 'hobby';
   if (desc.match(/flying tiger copenhagen/i)) return 'hobby';
-  if (desc.match(/ark [a-z]/i)) return 'hobby';
   if (desc.match(/nøstet mitt/i)) return 'hobby';
   if (desc.match(/PANDURO/i)) return 'hobby';
   if (desc.match(/kjell.*company/i)) return 'hobby';
@@ -461,6 +460,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/db fernverk/i)) return 'reise';
   if (desc.match(/s-bahn berlin/i)) return 'reise';
   if (desc.match(/osl garderm edvard munch/i)) return 'reise';
+  if (desc.match(/DFDS Danmark/i)) return 'reise';
 
   // ferie
   if (desc.match(/ferie/i)) return 'ferie';
