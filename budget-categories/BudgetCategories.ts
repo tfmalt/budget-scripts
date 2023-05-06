@@ -487,6 +487,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/N ARCHAIOL MOUSEIO CHA/i)) return 'ferie';
   if (desc.match(/kadewe/i)) return 'ferie';
   if (desc.match(/novasol/i)) return 'ferie';
+  if (desc.match(/GALERIA Karlsruhe/i)) return 'ferie';
   if (desc.match(/lidl dienst/i)) return 'ferie';
   if (date > new Date('2023-05-01') && date < new Date('2023-05-03')) {
     if (desc.match(/til: kirsti ånstad/i)) return 'ferie';
