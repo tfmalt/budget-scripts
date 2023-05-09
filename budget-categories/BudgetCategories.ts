@@ -461,6 +461,7 @@ function category(options: CategoryOptions): string {
   if (desc.match(/s-bahn berlin/i)) return 'reise';
   if (desc.match(/osl garderm edvard munch/i)) return 'reise';
   if (desc.match(/DFDS Danmark/i)) return 'reise';
+  if (desc.match(/DFDS crown of scandinavia/i)) return 'reise';
 
   // ferie
   if (desc.match(/ferie/i)) return 'ferie';
