@@ -334,6 +334,7 @@ function category(options: CategoryOptions): string {
   // aktiviteter
   if (desc.match(/aktiviteter/i)) return 'aktiviteter';
   if (desc.match(/oslo mdg/i)) return 'aktiviteter';
+  if (desc.match(/mdg butikk/i)) return 'aktiviteter';
   if (desc.match(/museum/i)) return 'aktiviteter';
   if (desc.match(/Nettgiro til.*Su Betalt/i)) return 'aktiviteter';
   if (desc.match(/NEBBURSVOLLEN/i)) return 'aktiviteter';
