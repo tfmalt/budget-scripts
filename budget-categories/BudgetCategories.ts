@@ -494,6 +494,9 @@ function category(options: CategoryOptions): string {
   if (date > new Date('2023-05-01') && date < new Date('2023-05-03')) {
     if (desc.match(/til: kirsti ånstad/i)) return 'ferie';
   }
+  if (date > new Date('2023-05-14') && date < new Date('2023-05-16')) {
+    if (desc.match(/Til: KLARNA BANK AB Betalt: 14.05.23/i)) return 'ferie';
+  }
 
   // TV og Streaming
   if (desc.match(/paypal.*crunchyroll/i)) return 'tv og streaming';
